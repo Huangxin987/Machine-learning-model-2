@@ -1,0 +1,2426 @@
+metabolite,metab_class,metab_name
+FT05897PR,Carboxylic acids and derivatives,L-phenylalanyl-L-proline
+FT01662PR,Imidazopyrimidines,Hypoxanthine
+FT05664PR,Glycerophospholipids,Glycerophosphocholine
+FT02192PR,Carboxylic acids and derivatives,L-Histidine
+FT01996PR,Carboxylic acids and derivatives,L-Glutamic acid
+FT03139NR,Fatty Acyls,12-Methyltridecanoic acid
+FT02956PR,Carboxylic acids and derivatives,L-Tyrosine
+FT02044PR,Carboxylic acids and derivatives,L-Methionine
+FT02118PR,Imidazopyrimidines,Xanthine
+FT09115NR,Flavonoids,"5,2',5'-Trihydroxy-3,7,8-trimethoxyflavone 2'-acetate"
+FT03656PR,Carboxylic acids and derivatives,Asymmetric dimethylarginine
+FT02392PR,Organonitrogen compounds,L-Carnitine
+FT15228PR,Glycerophospholipids,PC(19:1/0:0)
+FT03218PR,Carboxylic acids and derivatives,"N6,N6,N6-Trimethyl-L-lysine"
+FT07174NR,Fatty Acyls,Leiopathic acid
+FT06386PR,Purine nucleosides,Deoxyinosine
+FT08358PR,Fatty Acyls,5-(Galactosylhydroxy)-L-Lysine
+FT02773PR,Carboxylic acids and derivatives,Formiminoglutamic acid
+FT01668PR,Pyridines and derivatives,1-Methylnicotinamide
+FT04279PR,Carboxylic acids and derivatives,Boc-L-cysteine
+FT02603PR,Carboxylic acids and derivatives,3-Methylhistidine
+FT01712PR,Azoles,Urocanic acid
+FT05802NR,Fatty Acyls,"Eicosa-11,14-dienoic acid"
+FT15016PR,Glycerophospholipids,LysoPC(0:0/18:0)
+FT05849PR,Fatty Acyls,Methylmalonylcarnitine
+FT09511PR,Organooxygen compounds,Isograyanotoxin II
+FT02344PR,Fatty Acyls,Aminovaleric acid betaine
+FT04897NR,Purine nucleosides,Xanthosine
+FT03998NR,Fatty Acyls,Isopalmitic acid
+FT03648PR,Carboxylic acids and derivatives,Alanylleucine
+FT04940PR,Peptidomimetics,Anserine
+FT03478NR,Macrolides and analogues,Cucujolide IV
+FT05482NR,Fatty Acyls,11-methoxy-heptadecanoic acid
+FT06483PR,Diazines,5-Benzylacyclouridine
+FT01938PR,Fatty Acyls,4-Trimethylammoniobutanoic acid
+FT04168NR,Carboxylic acids and derivatives,gamma-Glutamylasparagine
+FT03933PR,Carboxylic acids and derivatives,Cyclo(Pro-Leu)
+FT14488NR,Carboxylic acids and derivatives,Oxidized glutathione
+FT01522PR,Carboxylic acids and derivatives,Creatine
+FT11004PR,Carboxylic acids and derivatives,N-Palmitoyl Methionine
+FT02475PR,Carboxylic acids and derivatives,Methionine sulfoxide
+FT07333PR,5'-deoxyribonucleosides,5'-Methylthioadenosine
+FT04687PR,Carboxylic acids and derivatives,Threonylisoleucine
+FT07072PR,Purine nucleosides,Inosine
+FT01273PR,Pyridines and derivatives,Isonicotinic acid
+FT05084NR,Prenol lipids,"7(14)-Farnesene-9,12-diol"
+FT04857NR,Fatty Acyls,Vaccenic acid
+FT06437PR,Carboxylic acids and derivatives,Glutamyllysine
+FT05226PR,Carboxylic acids and derivatives,gamma-Glutamylvaline
+FT01252PR,Pyridines and derivatives,Niacinamide
+FT03688PR,Carboxylic acids and derivatives,Gly-Lys
+FT07771PR,Organooxygen compounds,1-Deoxy-1-(N6-lysino)-D-fructose
+FT15448PR,Glycerophospholipids,LysoPC(20:1/0:0)
+FT06479PR,Carboxylic acids and derivatives,gamma-Glutamylglutamic acid
+FT01975PR,Carboxylic acids and derivatives,L-Lysine
+FT04555PR,Carboxylic acids and derivatives,Ergothioneine
+FT04713PR,Carboxylic acids and derivatives,Seryllysine
+FT01028PR,Carboxylic acids and derivatives,L-Proline
+FT00878PR,Pyrroles,Brunfelsamidine
+FT08893PR,Carboxylic acids and derivatives,Linoleoyl glycine
+FT04334NR,Purine nucleosides,Deoxyguanosine
+FT05328NR,Fatty Acyls,8S-HODE
+FT00980PR,Carboxylic acids and derivatives,Creatinine
+FT05764PR,Carboxylic acids and derivatives,Leu-Gln
+FT07034PR,Carboxylic acids and derivatives,Ophthalmic acid
+FT08123PR,Carboxylic acids and derivatives,Leu-Trp
+FT14749PR,Glycerophospholipids,PC(O-16:0/1:0)
+FT02749NR,Glycerophospholipids,Glycerylphosphorylethanolamine
+FT03232PR,Carboxylic acids and derivatives,N-Acetyl-L-glutamic acid
+FT01968PR,Carboxylic acids and derivatives,L-Glutamine
+FT01753PR,Azoles,Imidazolepropionic acid
+FT06233NR,Steroids and steroid derivatives,Androsterol
+FT01272PR,Pyridines and derivatives,Nicotinic acid
+FT05900PR,Organooxygen compounds,Streptidine
+FT11867PR,Carboxylic acids and derivatives,N-Linoleoyl Glutamine
+FT03211PR,Carboxylic acids and derivatives,Glycyl-Isoleucine
+FT04172PR,Carboxylic acids and derivatives,Alanyllysine
+FT11992NR,Glycerophospholipids,LysoPE(0:0/18:0)
+FT02412PR,Carboxylic acids and derivatives,5-Hydroxylysine
+FT04703NR,Benzene and substituted derivatives,Monoethylhexyl phthalic acid
+FT05249NR,Prenol lipids,Tanacetol A
+FT15415PR,Glycerophospholipids,LysoPC(20:2/0:0)
+FT04430NR,Fatty Acyls,Heptadecanoic acid
+FT04575PR,Carboxylic acids and derivatives,"N1,N8-Diacetylspermidine"
+FT12707PR,Carboxylic acids and derivatives,N-stearoyl phenylalanine
+FT04495PR,Fatty Acyls,Myristamide
+FT06755NR,Organooxygen compounds,"(S)-a-Amino-2,5-dihydro-5-oxo-4-isoxazolepropanoic acid N2-glucoside"
+FT03003PR,Organonitrogen compounds,Phosphorylcholine
+FT02783PR,Carboxylic acids and derivatives,L-Arginine
+FT00931PR,Organonitrogen compounds,Histamine
+FT10789PR,Carboxylic acids and derivatives,N-palmitoleyl glutamine
+FT01619PR,Benzene and substituted derivatives,3-Phenylpropanal
+FT06403PR,Carboxylic acids and derivatives,Lysylglutamine
+FT03088NR,Peptidomimetics,Carnosine
+FT01493PR,Organonitrogen compounds,Agmatine
+FT06095PR,Purine nucleosides,Adenosine
+FT04199PR,Carboxylic acids and derivatives,Ser-Leu
+FT03272NR,Prenol lipids,"(1beta,2beta,5beta)-p-Menth-3-ene-1,2,5-triol"
+FT07981NR,Carboxylic acids and derivatives,N-Palmitoyl Leucine
+FT02701NR,Organic sulfuric acids and derivatives,Indoxyl sulfate
+FT03033NR,"Linear 1,3-diarylpropanoids",4'-Hydroxychalcone
+FT02344NR,Phenylpropanoic acids,Dihydroferulic acid
+FT06889PR,Carboxylic acids and derivatives,Gly-Pro-Leu
+FT06774NR,Fatty Acyls,Docosatrienoic acid
+FT03522NR,Carboxylic acids and derivatives,Cyclo(L-Pro-L-Val)
+FT05810PR,Carboxylic acids and derivatives,Asparaginyl-Lysine
+FT09173PR,Carboxylic acids and derivatives,Gly-Arg-Leu
+FT05289PR,Fatty Acyls,3-Hydroxybutyrylcarnitine
+FT09274PR,Ribonucleoside 3'-phosphates,3'-AMP
+FT01410PR,Diazines,Dihydrothymine
+FT06853NR,Fatty Acyls,"13Z,16Z-docosadienoic acid"
+FT02786PR,Carboxylic acids and derivatives,Ethyl lysine
+FT12701NR,Glycerophospholipids,LysoPC(17:2/0:0)
+FT14659PR,Glycerophospholipids,LysoPC(P-18:1/0:0)
+FT05909PR,Fatty Acyls,6-[3]-ladderane-1-hexanol
+FT03987NR,Carboxylic acids and derivatives,Threonylhistidine
+FT05546PR,Fatty Acyls,Palmitoleamide
+FT07215PR,Carboxylic acids and derivatives,gamma-Glutamylphenylalanine
+FT05921NR,Hydroxy acids and derivatives,"10S,11S-epoxy-9S-hydroxy-12Z-octadecenoic acid"
+FT14131PR,Glycerophospholipids,LysoPC(O-16:0/0:0)
+FT09865PR,Carboxylic acids and derivatives,Arg-Ala-Asp
+FT04358NR,Purine nucleosides,Ara-HX
+FT07672PR,Carboxylic acids and derivatives,Threonyltryptophan
+FT06064PR,Carboxylic acids and derivatives,N5-(4-Methoxybenzyl)glutamine
+FT06966PR,Carboxylic acids and derivatives,Arginylleucine
+FT08616PR,Glycerolipids,1-O-(2R-methoxy-4Z-pentadecenyl)-sn-glycerol
+FT05481NR,Fatty Acyls,18-hydroxy stearic acid
+FT04767PR,Dihydrofurans,Pandamarilactam 3x
+FT00762PR,Organonitrogen compounds,Choline
+FT02124PR,Pyridines and derivatives,N1-Methyl-4-pyridone-3-carboxamide
+FT05411NR,Fatty Acyls,Nonadecanoic acid
+FT06146PR,Carboxylic acids and derivatives,Histidylisoleucine
+FT07234PR,Fatty Acyls,13-HOTE
+FT04300NR,Carboxylic acids and derivatives,N-(4-Aminobenzoyl)-L-glutamic acid
+FT01569PR,Carboxylic acids and derivatives,Ornithine
+FT04911NR,Fatty Acyls,2-Hydroxy-4-[(1R)-1-hydroxy-8-methyl-6-oxononyl]-3-methyl-2H-furan-5-one
+FT06793NR,Piperidines,Dihydroferuperine
+FT04052NR,Pyrimidine nucleosides,Ribothymidine
+FT02698PR,Carboxylic acids and derivatives,Glycyl-L-proline
+FT07834PR,Carboxylic acids and derivatives,Phenylalanine glutamate
+FT04226PR,Organooxygen compounds,Pantothenic acid
+FT06348NR,Fatty Acyls,"12-oxo-14,18-dihydroxy-9Z,13E,15Z-octadecatrienoic acid"
+FT03124NR,Pyrimidine nucleosides,Deoxyuridine
+FT03687PR,Imidazopyrimidines,Isopentenyladenine
+FT13774PR,Glycerophospholipids,LysoPC(0:0/14:0)
+FT06825PR,Isoflavonoids,Glycitein
+FT06753NR,Glycerophospholipids,Glycerophosphoinositol
+FT02035NR,Pyridines and derivatives,4-Pyridoxic acid
+FT13144PR,Steroids and steroid derivatives,Schleicherastatin 5
+FT06809PR,Carboximidic acids and derivatives,Stearamide
+FT05378NR,Organooxygen compounds,4-Ethylphenol glucuronide
+FT04114NR,Organooxygen compounds,Glucose 6-phosphate
+FT03030NR,Organooxygen compounds,3-Keto-b-D-galactose
+FT02942PR,Benzofurans,"4,5,7,7a-Tetrahydro-4,4,7a-trimethyl-2(6H)-benzofuranone"
+FT03651NR,Organic phosphoric acids and derivatives,Glycerophosphoglycerol
+FT02292PR,Pyridines and derivatives,Nicotyrine
+FT01239PR,Benzene and substituted derivatives,Phenylethylamine
+FT05844PR,Carboxylic acids and derivatives,Glycyl-Tryptophan
+FT07362PR,Organonitrogen compounds,Palmitoleoyl Ethanolamide
+FT01359PR,Diazines,Thymine
+FT05560PR,Organooxygen compounds,Nicotinamide riboside
+FT02272NR,Carboxylic acids and derivatives,Citric acid
+FT03715PR,Indoles and derivatives,L-Tryptophan
+FT02367PR,Carboxylic acids and derivatives,N2-Methyl-L-lysine
+FT05007PR,Pteridines and derivatives,Lumichrome
+FT05817NR,Organooxygen compounds,N-Acetylneuraminic acid
+FT05335NR,Fatty Acyls,10Z-Nonadecenoic acid
+FT02385PR,Carboxylic acids and derivatives,Glutamic acid gamma-methyl ester
+FT05244NR,Fatty Acyls,Prenyl glucoside
+FT03230PR,Quinolines and derivatives,Kynurenic acid
+FT01588PR,Indoles and derivatives,Oxindole
+FT03081PR,Carboxylic acids and derivatives,4-Hepteneoylglycine
+FT02553NR,Indoles and derivatives,Indolelactic acid
+FT07375NR,Fatty Acyls,"Ethyl octadeca-9,12,15-trienoate"
+FT03446NR,Non-metal oxoanionic compounds,Trimetaphosphoric acid
+FT01539PR,Carboxylic acids and derivatives,L-Alloisoleucine
+FT03083NR,Benzoxazines,"(6-Amino-3,4-dihydro-2H-1,4-benzoxazin-3-yl)methanol"
+FT14715PR,Glycerophospholipids,LysoPC(P-18:0/0:0)
+FT02214NR,Dihydrofurans,2-O-Methylascorbic acid
+FT07290PR,Carboxylic acids and derivatives,Aspartyl-Tyrosine
+FT03667NR,Carboxylic acids and derivatives,N-Acetyltryptophan
+FT12439PR,Carboxylic acids and derivatives,N-Docosahexaenoyl Proline
+FT08320PR,Carboxylic acids and derivatives,Gly-Thr-Phe
+FT04102NR,Carboxylic acids and derivatives,Hydroxyprolyl-Lysine
+FT03643PR,Indoles and derivatives,N-Acetyltryptamine
+FT02285PR,Carboxylic acids and derivatives,Oxiracetam
+FT06360PR,Carboxylic acids and derivatives,Ala-Ala-Ile
+FT06551PR,Carboxylic acids and derivatives,N-gamma-Glutamylcysteine ethyl ester
+FT11159PR,Carboxylic acids and derivatives,Tyr-Pro-Ile
+FT07984PR,Organonitrogen compounds,Margaroyl-EA
+FT02023NR,Organooxygen compounds,Sorbitol
+FT03528PR,Fatty Acyls,Dodecanamide
+FT07338PR,Purine nucleosides,2-Methylguanosine
+FT06965PR,Carboxylic acids and derivatives,Ile-Arg
+FT06408PR,Fatty Acyls,"5Z,8Z,11Z,14Z,17Z-octadecapentaenoic acid"
+FT05969PR,Carboxylic acids and derivatives,Aspartyl-Methionine
+FT03685PR,Fatty Acyls,L-Acetylcarnitine
+FT09200PR,Carboxylic acids and derivatives,Val-Asp-Leu
+FT11426NR,Glycerophospholipids,PE(O-18:1/0:0)
+FT01879NR,Carboxylic acids and derivatives,N-Acetyl-L-aspartic acid
+FT07292PR,Carboxylic acids and derivatives,Methionyl-Phenylalanine
+FT14392PR,Glycerophospholipids,LysoPC(0:0/16:1)
+FT13452PR,Fatty Acyls,5-methylnonadecanoylcarnitine
+FT06779PR,Purine nucleosides,Guanosine
+FT08564PR,Carboxylic acids and derivatives,Thr-Pro-Leu
+FT03990PR,Carboxylic acids and derivatives,Glycyl-Histidine
+FT05917NR,Prenol lipids,"4-Hydroxy-3-methoxy-2,10-bisaboladien-9-one"
+FT04614PR,Carboxylic acids and derivatives,Isoleucyl-Valine
+FT07569NR,Carboxylic acids and derivatives,Succinyldisalicylic acid
+FT02281NR,Diazepanes,Cyclic Urea
+FT06832NR,Carboxylic acids and derivatives,"Glycine, N-[1-(phenylacetyl)-L-prolyl]-"
+FT05191NR,Fatty Acyls,Etherolenic acid
+FT15343PR,Glycerophospholipids,LysoPC(0:0/20:4)
+FT02737PR,Carboxylic acids and derivatives,N-Acetylleucine
+FT11206PR,Fatty Acyls,19-Hydroxyprostaglandin F
+FT13050PR,Fatty Acyls,(9Z)-12-Hydroxyoctadec-9-enoylcarnitine
+FT04424NR,Fatty Acyls,3-keto palmitic acid
+FT15484PR,Glycerophospholipids,LysoPE(0:0/24:6)
+FT06306NR,Organooxygen compounds,Cytidine 3'-monophosphate
+FT04630NR,Carboxylic acids and derivatives,N-lactoyl-Tryptophan
+FT05972PR,Diazines,Thiamine
+FT02929NR,Peptidomimetics,L-beta-aspartyl-L-serine
+FT05180PR,Carboxylic acids and derivatives,Valyl-Gamma-glutamate
+FT02732NR,Prenol lipids,(+)-exo-5-hydroxycamphor
+FT10490NR,Prenol lipids,Gibberellin A39
+FT02492PR,Carboxylic acids and derivatives,L-Phenylalanine
+FT05783NR,Carboxylic acids and derivatives,N-(4-Acetamidobenzoyl)-L-glutamic acid
+FT10003PR,Organooxygen compounds,Melibiose
+FT05014PR,Diazines,3'-Hydroxyamobarbital
+FT05116PR,Carboxylic acids and derivatives,Cyclo(L-Phe-L-Pro)
+FT14750PR,Glycerophospholipids,LysoPC(17:0/0:0)
+FT04998NR,Fatty Acyls,2-methoxy-hexadecanoic acid
+FT04248PR,Indoles and derivatives,5-Hydroxy-L-tryptophan
+FT03898NR,Carboxylic acids and derivatives,N-lactoyl-Tyrosine
+FT04179PR,Carboxylic acids and derivatives,Spermic acid 1
+FT06604NR,Fatty Acyls,Sativic acid
+FT01863PR,Azoles,5-(2-Hydroxyethyl)-4-methylthiazole
+FT14964PR,Glycerophospholipids,LysoPC(0:0/18:1)
+FT10560PR,Pteridines and derivatives,Riboflavin
+FT01585NR,Pyrrolidines,5-Hydroxy-1-methylpyrrolidin-2-one
+FT14067PR,Glycerophospholipids,LysoPC(O-16:1/0:0)
+FT05185PR,Carboxylic acids and derivatives,Alanylarginine
+FT04402NR,Isoflavonoids,Genistein
+FT07522PR,Carboxylic acids and derivatives,Gly-Ile-Ile
+FT03394NR,Carboxylic acids and derivatives,N-Lactoylphenylalanine
+FT04545NR,Cinnamic acids and derivatives,Isoferulic acid 3-sulfate
+FT11799PR,Carboxylic acids and derivatives,Glu-Ile-Phe
+FT05863NR,Fatty Acyls,11Z-Eicosenoic acid
+FT01926PR,Quinolines and derivatives,OXYQUINOLINE
+FT03009NR,Carboxylic acids and derivatives,N-Acetyl-L-tyrosine
+FT03092NR,Fatty Acyls,2-(2'-trans-pentenyl-5'-hydroxy)-3-methyl-2-cyclopenten-1-one
+FT02601PR,Pyridines and derivatives,Pyridoxine
+FT06165NR,Fatty Acyls,15-HEPE
+FT01540PR,Carboxylic acids and derivatives,"N,N-Diethylglycine"
+FT06498NR,Fatty Acyls,"13,16-Epoxy-7,12-dihydroxy-9Z-octadecenoic acid"
+FT06304NR,Pyrimidine nucleotides,5'-Cytidylic acid
+FT07454PR,Organonitrogen compounds,Sphingosine
+FT07827NR,Imidazole ribonucleosides and ribonucleotides,Phosphoribosyl formamidocarboxamide
+FT08565PR,Carboxylic acids and derivatives,Val-Val-Ile
+FT12423NR,Glycerophospholipids,1-Nonadecanoyl-glycero-3-phosphoethanolamine
+FT11242PR,Peptidomimetics,Ile-Asp-Phe
+FT08496PR,Carboxylic acids and derivatives,Val-Pro-Ile
+FT02115NR,Organic sulfuric acids and derivatives,p-Cresol sulfate
+FT09069NR,Fatty Acyls,delta2-THA
+FT02224NR,Carboxylic acids and derivatives,2-Amino-4-[(2-hydroxy-1-oxopropyl)amino]butanoic acid
+FT08713NR,Steroids and steroid derivatives,"7alpha,12alpha-Dihydroxy-5beta-chol-2-en-24-oic Acid"
+FT02734NR,Carboxylic acids and derivatives,"2,2'-(3-methylcyclohexane-1,1-diyl)diacetic acid"
+FT01095PR,Carboxylic acids and derivatives,Betaine
+FT05532PR,Carboxylic acids and derivatives,L-DOPA n-Butyl Ester
+FT09825PR,Peptidomimetics,Ile-Asp-Leu
+FT14615PR,Glycerophospholipids,PE(20:3/0:0)
+FT05265PR,Carboxylic acids and derivatives,N-Succinyl-L-glutamate
+FT10341PR,Fatty Acyls,Tetradecanoylcarnitine
+FT06944NR,Carboxylic acids and derivatives,N-Oleoyl glycine
+FT11844NR,Glycerophospholipids,LysoPE(18:2/0:0)
+FT06524NR,Epoxides,"2-methyl-7R,8S-Epoxy-octadecane"
+FT08193PR,Carboxylic acids and derivatives,Pro-Gly-Phe
+FT14442PR,Glycerophospholipids,LysoPC(0:0/16:0)
+FT15471PR,Glycerophospholipids,(2-Acetyloxy-3-octadecoxypropyl) 2-(trimethylazaniumyl)ethyl phosphate
+FT03727NR,Carboxylic acids and derivatives,Alanylhydroxyproline
+FT04597NR,Carboxylic acids and derivatives,N2-gamma-Glutamylglutamine
+FT04650PR,Fatty Acyls,Isobutyryl-L-carnitine
+FT05395PR,Carboxylic acids and derivatives,Threonylmethionine
+FT05969NR,Carboxylic acids and derivatives,N-palmitoylglycine
+FT01702NR,Organooxygen compounds,Erythrose
+FT08563PR,Carboxylic acids and derivatives,Ile-Pro-Thr
+FT05929NR,Prenol lipids,Phytanic acid
+FT06241NR,Carboxylic acids and derivatives,Beta-Citryl-L-glutamic acid
+FT03919NR,Isoflavonoids,Daidzein
+FT05400NR,Fatty Acyls,"6R,7S-epoxy-octadecanoic acid"
+FT09170PR,Carboxylic acids and derivatives,Asn-Ile-Val
+FT04124PR,Carboxylic acids and derivatives,"[(2S,3R)-2-Amino-3-hydroxybutanoyl] (2S)-pyrrolidine-2-carboxylate"
+FT05714PR,Alpha-methyldeoxybenzoin flavonoids,O-Desmethylangolensin
+FT05803PR,Carboxylic acids and derivatives,Isoleucyl-Glutamate
+FT03235NR,Carboxylic acids and derivatives,5-Hepteneoylglycine
+FT11660PR,Carboxylic acids and derivatives,N-palmitoyl phenylalanine
+FT10735PR,Peptidomimetics,Thr-Asp-Phe
+FT12153PR,Carboxylic acids and derivatives,Trp-Pro-Asp
+FT15122PR,Glycerophospholipids,LysoPE(0:0/22:4)
+FT09126PR,Carboxylic acids and derivatives,Ile-Pro-Asp
+FT03595NR,Fatty Acyls,"1,11-Undecanedicarboxylic acid"
+FT06358NR,Fatty Acyls,11R-HEDE
+FT03852PR,Organooxygen compounds,L-Kynurenine
+FT00926PR,Diazines,Cytosine
+FT08517PR,Organonitrogen compounds,Stearoylethanolamide
+FT10137PR,Carboxylic acids and derivatives,Val-His-Ile
+FT04008PR,Fatty Acyls,Isotridecenoic acid
+FT14540NR,Glycerophospholipids,LysoPC(22:4/0:0)
+FT05070PR,Fatty Acyls,3-Methylbut-2-enoylcarnitine
+FT03299PR,Carboxylic acids and derivatives,N-Acetyl-L-methionine
+FT14068PR,Glycerophospholipids,LysoPC(P-16:0/0:0)
+FT05881NR,Purine nucleosides,"N2,N2-Dimethylguanosine"
+FT00803PR,Carboxylic acids and derivatives,L-Serine
+FT05634PR,Organooxygen compounds,"1-(beta-D-Ribofuranosyl)-1,4-dihydronicotinamide"
+FT08872NR,Carboxylic acids and derivatives,N-Oleoyl Leucine
+FT13679PR,Carboxylic acids and derivatives,Tyr-Pro-Trp
+FT08663PR,Carboxylic acids and derivatives,Glutaminyltryptophan
+FT08173PR,Fatty Acyls,Arachidonic Acid methyl ester
+FT10449NR,Glycerophospholipids,PE(14:0(13Me)/0:0)
+FT05009PR,Isoflavonoids,Equol
+FT07523PR,Carboxylic acids and derivatives,Val-Ala-Leu
+FT03726PR,Carboxylic acids and derivatives,Ser-Val
+FT07216NR,Purine nucleotides,Inosinic acid
+FT08126PR,Carboxylic acids and derivatives,Ser-Val-Leu
+FT13782PR,Glycerophospholipids,LysoPE(O-18:0/0:0)
+FT04499NR,Fatty Acyls,2S-hydroxypalmitic acid
+FT07250PR,Carboxylic acids and derivatives,Asparaginyl-Tyrosine
+FT13715PR,Glycerophospholipids,PE(17:1/0:0)
+FT04122PR,Indoles and derivatives,"1,2,3,4-Tetrahydro-beta-carboline-3-carboxylic acid"
+FT02955NR,Pyranopyridines,Gentianine
+FT04425NR,Fatty Acyls,10-keto palmitic acid
+FT06142PR,Benzene and substituted derivatives,"N'-Benzoyl-N,N'-dimethylbenzohydrazide"
+FT02339NR,Organooxygen compounds,Gluconic acid
+FT07086PR,Carboxylic acids and derivatives,Gly-Ser-Lys
+FT07004PR,Carboxylic acids and derivatives,Arginylasparagine
+FT07974NR,Carboxylic acids and derivatives,N-oleoyl L-serine
+FT07049NR,Fatty Acyls,15Z-Eicosen-1-ol
+FT05977NR,Glycinamide ribonucleotides,5'-phosphoribosyl-N-formylglycinamide
+FT02149NR,Fatty Acyls,Azelaic acid
+FT15015PR,Glycerophospholipids,LysoPC(18:0/0:0)
+FT13380PR,Glycerophospholipids,LysoPC(O-14:0/0:0)
+FT09907PR,Carboxylic acids and derivatives,Pro-Val-Phe
+FT07597NR,Fatty Acyls,12-[5]-ladderane-dodecanoic acid
+FT03521NR,Benzene and substituted derivatives,Phenol A
+FT08155PR,Carboxylic acids and derivatives,Gly-Asp-Lys
+FT01795NR,Glycerophospholipids,beta-Glycerophosphoric acid
+FT08787PR,Purine nucleosides,N6-isopentenyladenosine
+FT13596PR,Sphingolipids,Glucosylsphingosine
+FT06970PR,Fatty Acyls,5-Methylheptanoylcarnitine
+FT07878PR,Benzodiazepines,"1-(4-Aminophenyl)-7,8-dimethoxy-3,5-dihydro-2,3-benzodiazepin-4-one"
+FT09792PR,Carboxylic acids and derivatives,Asn-Ile-Leu
+FT03209PR,Carboxylic acids and derivatives,N-alpha-Acetyl-L-lysine
+FT04069NR,Fatty Acyls,Tetradecanal
+FT04845PR,Fatty Acyls,12-amino-dodecanoic acid
+FT08046PR,Carboxylic acids and derivatives,Leu-Ala-Ile
+FT04502NR,Fatty Acyls,9-Hydroxyhexadecanoic acid
+FT09135PR,Carboxylic acids and derivatives,Val-Ile-Ile
+FT05775PR,Fatty Acyls,Hexanoylcarnitine
+FT07551PR,Carboxylic acids and derivatives,Histidylphenylalanine
+FT03601NR,Fatty Acyls,omega-hydroxy myristic acid
+FT01341PR,Diazines,2-O-Methylcytosine
+FT04500NR,Fatty Acyls,Kerrolic acid
+FT03530NR,Fatty Acyls,Sarcinic acid
+FT05737NR,Fatty Acyls,"cis-8,11,14-Eicosatrienoic Acid"
+FT12426PR,Carboxylic acids and derivatives,Tyr-Pro-Phe
+FT02796NR,Fatty Acyls,Undecanedioic acid
+FT03237PR,Indoles and derivatives,Indole-3-propionic acid
+FT05247NR,Carboxylic acids and derivatives,Tyrosyl-Leucine
+FT04926NR,Fatty Acyls,Methyl 14-methyl-8-hexadecenoate
+FT04781NR,Cinnamic acids and derivatives,4-Coumaroylputrescine
+FT05291PR,Carboxylic acids and derivatives,Thr-Lys
+FT04494NR,Fatty Acyls,Pentadecanedioic acid
+FT02298NR,Benzene and substituted derivatives,2-Methylhippuric acid
+FT05855PR,Carboxylic acids and derivatives,Lysylaspartic acid
+FT06717PR,Fatty Acyls,Oleamide
+FT08266PR,Carboxylic acids and derivatives,Phenylalanylarginine
+FT01773NR,Organooxygen compounds,"2,3-Dimethyl-2-cyclohexen-1-one"
+FT09053PR,Carboxylic acids and derivatives,Histidinyl-Tryptophan
+FT07444NR,Fatty Acyls,Dinoprost
+FT10039PR,Carboxylic acids and derivatives,Glu-Ala-Phe
+FT14706PR,Glycerophospholipids,LysoPE(20:1/0:0)
+FT09133PR,Organooxygen compounds,Heptaethylene glycol
+FT02019NR,Phenylpropanoic acids,Hydroxyphenyllactic acid
+FT04677NR,Organooxygen compounds,Polyribosylribitolphosphate
+FT05179NR,Carboxylic acids and derivatives,"(2S,4S)-Monatin"
+FT07033PR,Carboxylic acids and derivatives,Asp-Gly-Val
+FT08187PR,Carboxylic acids and derivatives,Aspartyl-Tryptophan
+FT08607PR,Steroids and steroid derivatives,"1alpha-hydroxy-23,24,25,26,27-pentanorvitamin D3"
+FT09733NR,Isoflavonoids,Equol 4'-O-glucuronide
+FT05851NR,Macrolides and analogues,"15,16-dihydrosacrolide A"
+FT09824PR,Carboxylic acids and derivatives,Val-Glu-Leu
+FT07234NR,Fatty Acyls,Ataprost
+FT07361PR,Organooxygen compounds,Spiroxamine
+FT11007PR,Fatty Acyls,3-hydroxytetradecanoylcarnitine
+FT01413NR,Benzene and substituted derivatives,Methylparaben
+FT07785PR,Tetrahydrofurans,Obtusilactone A
+FT10043PR,Carboxylic acids and derivatives,Val-Thr-Phe
+FT12058PR,Carboxylic acids and derivatives,N-oleoyl methionine
+FT14065PR,Unclassified,Cholylalanine
+FT05225PR,Carboxylic acids and derivatives,Valylglutamic acid
+FT02446NR,Organic sulfuric acids and derivatives,3-ethylphenyl Sulfate
+FT03817NR,Cinnamyl alcohols,2-Benzylidene-1-heptanol
+FT01895NR,Carboxylic acids and derivatives,Citrulline
+FT01840NR,Organic sulfuric acids and derivatives,Phenol sulphate
+FT11213PR,Carboxylic acids and derivatives,Val-Lys-Phe
+FT02989NR,Benzene and substituted derivatives,4-Methylaminorex
+FT08275PR,Organonitrogen compounds,"Anandamide (18:3, n-3)"
+FT04501NR,Fatty Acyls,15-hydroxy-hexadecanoic acid
+FT10783PR,Glycerophospholipids,LysoPA(i-14:0/0:0)
+FT14188PR,Fatty Acyls,5-Methylhenicosanoylcarnitine
+FT03872NR,Benzopyrans,"2,3-Dihydro-6-methoxy-2,2-dimethyl-4H-1-benzopyran-4-one"
+FT13375PR,Glycerophospholipids,lysoPE(0:0/16:0)
+FT05405PR,Indoles and derivatives,3-Hydroxymelatonin
+FT04230PR,Benzene and substituted derivatives,Cyclohexyl 2-aminobenzoate
+FT06769NR,Fatty Acyls,"5Z,8Z,11Z,14Z-Eicosatetraenedioic acid"
+FT14508NR,Glycerophospholipids,LysoPC(22:6/0:0)
+FT06085NR,Steroids and steroid derivatives,6b-Hydroxymethandienone
+FT03199NR,Fatty Acyls,Dodecanedioic acid
+FT02152PR,Carboxylic acids and derivatives,N-Acetylhistamine
+FT05235PR,Carboxylic acids and derivatives,Octopine
+FT05130PR,Carboxylic acids and derivatives,Ethyl N2-acetyl-L-argininate
+FT01336NR,Hydroxy acids and derivatives,L-2-Hydroxyglutaric acid
+FT10145PR,Carboxylic acids and derivatives,N-Linoleoyl Serine
+FT00043PR,Pyrrolidines,Pyrrolidine
+FT03137NR,Carboxylic acids and derivatives,Leucylproline
+FT05968PR,Pyrimidine nucleosides,Thymidine
+FT01738NR,Imidazopyrimidines,Uric acid
+FT04788NR,Fatty Acyls,12S-HHT
+FT05778PR,Carboxylic acids and derivatives,Lysylleucine
+FT15229PR,Glycerophospholipids,PC(18:0(11cp)/0:0)
+FT02218NR,Peptidomimetics,L-beta-aspartyl-L-glycine
+FT04680PR,Carboxylic acids and derivatives,Asp-Val
+FT08047PR,Carboxylic acids and derivatives,Ile-Leu-Ala
+FT07934PR,Carboxylic acids and derivatives,Phenylalanylphenylalanine
+FT01879PR,Carboxylic acids and derivatives,Proline betaine
+FT12455PR,Fatty Acyls,Oleoylcarnitine
+FT07635PR,Carboxylic acids and derivatives,L-N-(1H-Indol-3-ylacetyl)glutamic acid
+FT06084NR,Fatty Acyls,"15-deoxy-delta-12,14-PGA2"
+FT05111PR,Carboxylic acids and derivatives,Pro-Glu
+FT14702NR,Glycerophospholipids,Povpc
+FT06234NR,Phenols,5-Pentadecylresorcinol
+FT03191NR,Organooxygen compounds,"(1R,2S,3R)-2-Acetyl-4(5)-(1,2,3,4-tetrahydroxybutyl)imidazole"
+FT06293PR,Fatty Acyls,2R-aminohexadecanoic acid
+FT07525NR,Fatty Acyls,"4,8,12,15,19,21-tetracosahexaenoic acid"
+FT11129PR,Steroids and steroid derivatives,7-Ketolithocholic acid
+FT05500PR,Carboxylic acids and derivatives,Histidinyl-Proline
+FT01340PR,Diazines,5-Methylcytosine
+FT06954NR,Organooxygen compounds,"Fructose 1,6-bisphosphate"
+FT02937NR,Carboxylic acids and derivatives,Valylcysteine
+FT11154PR,Carboxylic acids and derivatives,Glu-Leu-Met
+FT01696PR,Benzene and substituted derivatives,Tyramine
+FT06005PR,Pyrimidine nucleosides,Cytidine
+FT02808PR,Coumarins and derivatives,7-Amino-4-methylcoumarin
+FT02581PR,Indoles and derivatives,Norharmane
+FT05081NR,Fatty Acyls,"9,16-dihydroxy-palmitic acid"
+FT05451NR,Flavonoids,Diosmetin
+FT12585PR,Carboxylic acids and derivatives,Tyr-Thr-Phe
+FT07652PR,Fatty Acyls,Eicosatetraenoic acid
+FT09795PR,Carboxylic acids and derivatives,Arg-Ala-Ile
+FT07310NR,Steroids and steroid derivatives,Methandriol
+FT01927PR,Indoles and derivatives,4-Formylindole
+FT08503NR,Fatty Acyls,"26:6(8Z,11Z,14Z,17Z,20Z,23Z)"
+FT13566NR,Glycerophospholipids,LysoPS(20:5/0:0)
+FT10640PR,Endocannabinoids,MG(0:0/20:4)
+FT04862PR,Carboxylic acids and derivatives,Glycyltyrosine
+FT03210PR,Carboxylic acids and derivatives,Valylalanine
+FT04915NR,Fatty Acyls,Tetranorprostanedioic acid
+FT02297NR,Carboxylic acids and derivatives,Phenylacetylglycine
+FT00781NR,Carboxylic acids and derivatives,L-Allothreonine
+FT00758PR,Carboxylic acids and derivatives,gamma-Aminobutyric acid
+FT06692PR,Purine nucleosides,1-Methyladenosine
+FT06408NR,Fatty Acyls,9-epi-9-D1t-PhytoP
+FT07216PR,Carboxylic acids and derivatives,Tyrosylhydroxyproline
+FT12540PR,Organonitrogen compounds,Stearoylcarnitine
+FT06623PR,Prenol lipids,"6,10,14-Trimethyl-5,9,13-pentadecatrien-2-one"
+FT06748PR,Carboxylic acids and derivatives,Threonyltyrosine
+FT14914PR,Glycerophospholipids,LysoPC(0:0/18:2)
+FT00044PR,Organonitrogen compounds,3-Buten-1-amine
+FT01010NR,Fatty Acyls,D-Leucic acid
+FT07684NR,Carboxylic acids and derivatives,N-Arachidonoylglycine
+FT06598PR,Carboxylic acids and derivatives,Phe-Gly-Gly
+FT07573NR,Benzopyrans,alpha-carboxyethylhydroxychroman sulfate
+FT04351NR,Isoflavonoids,coumesterol
+FT12159PR,Carboxylic acids and derivatives,Glutamylleucylarginine
+FT06500NR,Fatty Acyls,Corchorifatty acid F
+FT10522PR,Carboxylic acids and derivatives,Pro-Ile-Phe
+FT08705PR,Carboxylic acids and derivatives,Ala-Leu-Met
+FT12945NR,Steroids and steroid derivatives,Taurocholic acid
+FT03647NR,Organic sulfuric acids and derivatives,3-[4-(sulfooxy)phenyl]propanoic acid
+FT12361NR,Steroids and steroid derivatives,Esculeogenin A
+FT15147NR,Prenol lipids,Soyasaponin III
+FT10118NR,Steroids and steroid derivatives,Ptilosteroid B
+FT03184PR,Carboximidic acids and derivatives,N1-Acetylspermidine
+FT05809PR,Prenol lipids,"10-Hydroxy-3-methoxy-1,3,5,7-cadinatetraen-9-one"
+FT09245PR,Steroids and steroid derivatives,Corticosterone
+FT04789PR,Carboxylic acids and derivatives,Serylmethionine
+FT04376NR,Fatty Acyls,10E-heptadecenoic acid
+FT03373NR,Organooxygen compounds,N'-Formylkynurenine
+FT04687NR,Carboxylic acids and derivatives,Kifunensine
+FT08529PR,Carboxylic acids and derivatives,Tyrosyl-Phenylalanine
+FT14967PR,Steroids and steroid derivatives,Cholylleucine
+FT03136NR,Hydroxy acids and derivatives,9-hydroxy-traumatin
+FT03602NR,Fatty Acyls,2-Hydroxymyristic acid
+FT06270NR,Pyrimidine nucleotides,Thymidine-5'-phosphate
+FT05255NR,Fatty Acyls,"(9S,10E,12Z,15Z)-9-Hydroxy-10,12,15-octadecatrienoic acid"
+FT02660NR,Organooxygen compounds,"1,5-Anhydro-d-mannitol"
+FT10412PR,Carboxylic acids and derivatives,Leu-Glu-Leu
+FT13102PR,Carboxylic acids and derivatives,N-Linoleoyl Tyrosine
+FT10471PR,Fatty Acyls,Prostaglandin E2
+FT02593NR,Quinolines and derivatives,"2,8-Quinolinediol"
+FT02457NR,Fatty Acyls,Sebacic acid
+FT02271NR,Keto acids and derivatives,Oxoglutaric acid
+FT03707NR,Carboxylic acids and derivatives,Glutaminylthreonine
+FT08677PR,Steroids and steroid derivatives,17a-Hydroxypregnenolone
+FT07517PR,Carboxylic acids and derivatives,Tryptophyl-Proline
+FT03588NR,Keto acids and derivatives,4-Oxododecanedioic acid
+FT13961PR,Glycerophospholipids,PE(18:3/0:0)
+FT09802PR,Carboxylic acids and derivatives,Lys-Val-Ile
+FT02602NR,Carboxylic acids and derivatives,N-Acetyl-L-phenylalanine
+FT10960PR,Steroids and steroid derivatives,"12alpha-Hydroxy-3-oxochola-4,6-dien-24-oic Acid"
+FT12946NR,Steroids and steroid derivatives,Tauro-b-muricholic acid
+FT06009PR,Carboxylic acids and derivatives,Boc-D-phenylalanine
+FT01279NR,Lactones,Solerol
+FT01348PR,Organonitrogen compounds,1-Methylhistamine
+FT07801PR,Carboxylic acids and derivatives,Glutaminyltyrosine
+FT07372NR,Fatty Acyls,Prostaglandin D2
+FT01710NR,Phenol ethers,4-Methoxyphenylacetic acid
+FT03977NR,Flavonoids,Liquiritigenin
+FT08003NR,Steroids and steroid derivatives,Androsterone sulfate
+FT06007PR,Carboxylic acids and derivatives,N-Phenylacetylglutamic acid
+FT08159NR,Steroids and steroid derivatives,Dehydrolithocholic acid
+FT03639PR,Carboxylic acids and derivatives,Hydroxyprolyl-Alanine
+FT09125PR,Peptidomimetics,Pro-Asp-Ile
+FT07597PR,Carboxylic acids and derivatives,Valyltryptophan
+FT04686PR,Carboxylic acids and derivatives,Spermic acid 2
+FT01548NR,Fatty Acyls,Pimelic acid
+FT02658NR,Benzene and substituted derivatives,Vanilpyruvic acid
+FT08265NR,Furanoid lignans,Enterolactone 3'-sulfate
+FT03278PR,Carboxylic acids and derivatives,Threonylalanine
+FT01286NR,Hydroxy acids and derivatives,omega-hydroxy enanthoic acid
+FT07485PR,Prenol lipids,4-Oxoretinol
+FT07458NR,Fatty Acyls,21-oxo-docosanoic acid
+FT11264PR,Fatty Acyls,Pinane thromboxane A2
+FT10282PR,Steroids and steroid derivatives,"3-Oxochola-4,6-dien-24-oic Acid"
+FT04639NR,Fatty Acyls,Stearidonic acid
+FT07449NR,Prenol lipids,Sterebin G
+FT13783PR,Glycerophospholipids,PC(O-15:0/0:0)
+FT07240NR,Fatty Acyls,Carbocyclic Thromboxane A2
+FT04505NR,Fatty Acyls,Juniperic acid
+FT10465PR,Peptidomimetics,Ile-Asp-Gln
+FT10754NR,Steroids and steroid derivatives,"N-(3beta,7beta,dihydroxycholest-5-en-24-oyl) glycine"
+FT15194PR,Glycerophospholipids,1-linoleoyl-sn-glycero-3-phosphocholine
+FT06517NR,Fatty Acyls,2-methyl-16-heptadecenoic acid
+FT05852NR,Fatty Acyls,"9,10-epoxy-13-oxo-11-octadecenoic acid"
+FT10881PR,Carboxylic acids and derivatives,N-palmitoyl glutamine
+FT06061PR,Carboxylic acids and derivatives,Threonylphenylalanine
+FT05638PR,Naphthalenes,Nafagrel
+FT12536NR,Steroids and steroid derivatives,Taurodeoxycholic acid
+FT08168PR,Prenol lipids,Yucalexin B20
+FT03623NR,Carboxylic acids and derivatives,3-octenoylglycine
+FT07275NR,Isoflavonoids,Genistein 7-sulfate
+FT07453PR,Carboximidic acids and derivatives,Palmitoylethanolamide
+FT10814PR,Purine nucleosides,Succinyladenosine
+FT02779PR,Carboxylic acids and derivatives,Valylglycine
+FT06063PR,Carboxylic acids and derivatives,Phenylalanylthreonine
+FT11611PR,Glycerolipids,MG(22:6/0:0)
+FT05922NR,Fatty Acyls,8-nonylenic acid
+FT08837NR,Prenol lipids,"(E,E)-3,7,11-Trimethyl-2,6,10-dodecatrienyl octanoate"
+FT02418NR,Fatty Acyls,Cladosporacid E
+FT09176PR,Fatty Acyls,"9-(3,4-dimethyl-5-pentylfuran-2-yl)-nonanoic acid"
+FT06772NR,Prenol lipids,Candol B
+FT15348NR,Prenol lipids,Soyasaponin
+FT09447PR,Carboxylic acids and derivatives,Ala-Asp-Phe
+FT13796NR,Prenol lipids,Colforsin daropate
+FT10761NR,Carboxylic acids and derivatives,N-stearoyl tyrosine
+FT05452NR,Imidazopyrimidines,beta-D-3-Ribofuranosyluric acid
+FT06597PR,Carboxylic acids and derivatives,Phenylalanylasparagine
+FT07653PR,Prenol lipids,Yucalexin P21
+FT06374PR,Fatty Acyls,Tetradecyl acetate
+FT06011NR,Fatty Acyls,(Z)-11-Hexadecenyl formate
+FT02443PR,Carboxylic acids and derivatives,N-Phenethylacetamide
+FT04257NR,Carboxylic acids and derivatives,L-Valyl-L-phenylalanine
+FT11468NR,Steroids and steroid derivatives,"1beta,3alpha,7alpha,12alpha-Tetrahydroxy-5beta-cholestan-26-oic acid"
+FT06556PR,Carboxylic acids and derivatives,Tyrosyl-Proline
+FT05059NR,Harmala alkaloids,"3-Carboxy-2,3,4,9-tetrahydro-1H-pyrido[3,4-b]indole-1-propanoic acid"
+FT01637PR,Phenols,p-Octopamine
+FT13183PR,Steroids and steroid derivatives,Allocholic acid
+FT06580NR,Flavonoids,"3',4'-Trihydroxy-6,7-dimethoxyflavone"
+FT11694NR,Prenol lipids,"(23S,24S)-17,23-Epoxy-24,29-dihydroxy-27-norlanost-8-ene-3,15-dione"
+FT05229PR,Carboxylic acids and derivatives,Aspartyl-Isoleucine
+FT07651NR,Steroids and steroid derivatives,"20-oxo-22,23,24,25,26,27-hexanorvitamin D3"
+FT01099NR,Hydroxy acids and derivatives,D-Lactic acid
+FT06431PR,Carboxylic acids and derivatives,Alanyltryptophan
+FT09174PR,Carboxylic acids and derivatives,Gly-Leu-Arg
+FT07652NR,Fatty Acyls,Resolvin D6
+FT08910PR,Fatty Acyls,13-Docosenamide
+FT01030NR,Carboxylic acids and derivatives,L-Aspartic acid
+FT03302NR,Carboxylic acids and derivatives,Asparaginyl-Threonine
+FT04375NR,Macrolides and analogues,Berkeleylactone L
+FT11548PR,Steroids and steroid derivatives,7a-Hydroxy-cholestene-3-one
+FT06138PR,Carboxylic acids and derivatives,Seryltyrosine
+FT13438NR,Unclassified,Cholyllysine
+FT02958NR,Carboxylic acids and derivatives,N-lactoyl-Methionine
+FT07176PR,Carboxylic acids and derivatives,Phenylalanylglutamine
+FT05190PR,Fatty Acyls,Isovalerylcarnitine
+FT02431NR,Azoles,"5-Acetyl-2,4-dimethylthiazole"
+FT04967NR,Flavonoids,Scutellarein
+FT08699PR,Carboxylic acids and derivatives,gamma-Glutamyltryptophan
+FT07607PR,Fatty Acyls,5-Hydroxyoctanoylcarnitine
+FT02327PR,Indoles and derivatives,Indoleacetaldehyde
+FT09273PR,Organooxygen compounds,2'-Adenylic acid
+FT02186NR,Carboxylic acids and derivatives,Glycyl-Asparagine
+FT03628NR,Carboxylic acids and derivatives,Asparaginylisoleucine
+FT05184NR,Benzene and substituted derivatives,3-(2-Ethyl-5-oxohexyl)phthalic acid
+FT02818PR,Benzofurans,5-(2-Aminopropyl)benzofuran
+FT04993NR,Fatty Acyls,Hexadecanedioic acid
+FT05495PR,Carboxylic acids and derivatives,Serylphenylalanine
+FT06503PR,Fatty Acyls,9(S)-HOTrE
+FT10249PR,Carboxylic acids and derivatives,N-stearoyl GABA
+FT09423PR,Fatty Acyls,11-deoxyprostaglandin E2 methyl ester
+FT05994PR,Fatty Acyls,"11Z,13Z-Octadecadienal"
+FT01788NR,Organonitrogen compounds,2-Ethyl-5-imino-1-cyclopenten-1-ol
+FT07453NR,Fatty Acyls,Eicosadienoic acid
+FT06913NR,Steroids and steroid derivatives,"3b,17b-Dihydroxyetiocholane"
+FT04085NR,Organooxygen compounds,Aminofructose 6-phosphate
+FT06911NR,Fatty Acyls,"5,6-DHET"
+FT06562PR,Carboxylic acids and derivatives,Leucylphenylalanine
+FT04712NR,Fatty Acyls,11-Octadecen-9-ynoic acid
+FT04797PR,Carboxylic acids and derivatives,Alanylphenylalanine
+FT09526PR,Fatty Acyls,MG(0:0/18:3)
+FT15068PR,Organooxygen compounds,Melezitose
+FT10606PR,Carboxylic acids and derivatives,Val-Glu-Met
+FT06931PR,Prenol lipids,dehydroabietadienol
+FT09177PR,Fatty Acyls,19(20)-EpDPE
+FT02986NR,Benzene and substituted derivatives,Monobutylphthalate
+FT03866NR,Dioxanes,"4,6-O-Ethylidene-D-glucose"
+FT06502NR,Fatty Acyls,"9S,10S,11R-trihydroxy-12Z,15Z-octadecadienoic acid"
+FT05108NR,Carboxylic acids and derivatives,Val-Ala-Thr
+FT02997NR,Benzene and substituted derivatives,Acetaldehyde butyl phenethyl acetal
+FT07036NR,Fatty Acyls,"17-keto-4(Z),7(Z),10(Z),13(Z),15(E),19(Z)-Docosahexaenoic Acid"
+FT04428NR,Fatty Acyls,(+)-12-hydroxy-9Z-hexadecenoic acid
+FT10567PR,Fatty Acyls,"5,6beta-Dihydro PGI2"
+FT03660PR,Prenol lipids,beta-Vatirenene
+FT05498NR,Organooxygen compounds,N-Acetylglucosamine 6-sulfate
+FT01859NR,Carboxylic acids and derivatives,N2-Acetylornithine
+FT10089NR,Carboxylic acids and derivatives,N-oleoyl phenylalanine
+FT02996NR,Organooxygen compounds,Polygonal
+FT04233NR,Carboxylic acids and derivatives,Ser-Gly-Thr
+FT08384NR,Carboxylic acids and derivatives,N-Linoleoyl Threonine
+FT03931PR,Keto acids and derivatives,Sedanonic acid
+FT06166NR,Fatty Acyls,5-KETE
+FT06195NR,Carboxylic acids and derivatives,Ser-Ile-Thr
+FT04318PR,Carboxylic acids and derivatives,Glycyl-Phenylalanine
+FT09510PR,Fatty Acyls,20-Hydroxy-leukotriene B4
+FT02829NR,Carboxylic acids and derivatives,N-alpha-Acetyl-L-citrulline
+FT01870PR,Quinolines and derivatives,Quinaldine
+FT02690NR,Pyridines and derivatives,N-(2-Hydroxyethyl)nicotinamide
+FT08468NR,Carboxylic acids and derivatives,N-(3-hydroxy-octadecanoyl)-homoserine lactone
+FT07594NR,Fatty Acyls,"13,14-Dihydro PGF-1a"
+FT04146NR,Fatty Acyls,Ipurolic acid
+FT02985PR,Harmala alkaloids,Harman
+FT05381NR,Furanoid lignans,Enterolactone
+FT04903NR,Carboxylic acids and derivatives,Glutamylhistidine
+FT10129PR,Carboxylic acids and derivatives,Val-Ser-Tyr
+FT05394PR,Organooxygen compounds,N-Acetylkynurenine
+FT04427NR,Fatty Acyls,8-keto palmitic acid
+FT08405PR,Carboxylic acids and derivatives,Pro-Pro-Ile
+FT05853NR,Fatty Acyls,"7S,8S-DiHOTrE"
+FT04194PR,Indoles and derivatives,N-Acetylserotonin
+FT05751NR,Carboxylic acids and derivatives,Glutathione
+FT03326NR,Carboxylic acids and derivatives,Glutamylserine
+FT04992NR,Prenol lipids,"7-(2-hydroxypropan-2-yl)-1,4a-dimethyl-2,3,4,5,6,7,8,8a-octahydronaphthalen-1-ol"
+FT11945PR,Carboxylic acids and derivatives,N-Oleoyl Glutamine
+FT06229NR,Prenol lipids,Apo-13-zeaxanthinone
+FT00729NR,Carboxylic acids and derivatives,Succinic acid
+FT03935NR,Fatty Acyls,Palmitoleic acid
+FT03638PR,Carboxylic acids and derivatives,Serylproline
+FT06447PR,Fatty Acyls,4-Hydroxyhexanoycarnitine
+FT08896NR,Prenol lipids,gibberellin A2
+FT05719NR,Naphthalenes,Musanolone C
+FT05196PR,Carboxylic acids and derivatives,Lysylvaline
+FT09914NR,Steroids and steroid derivatives,"2b,3a,7a,12a-Tetrahydroxy-5b-cholanoic acid"
+FT13222PR,Fatty Acyls,"(8Z,11Z,14Z,17Z)-Icosa-8,11,14,17-tetraenoylcarnitine"
+FT05221PR,Carboxylic acids and derivatives,Methionyl-Proline
+FT13308PR,Glycerophospholipids,LysoPE(0:0/16:1)
+FT10052PR,Carboxylic acids and derivatives,N-Myristoyl Histidine
+FT07569PR,Prenol lipids,Yucalexin B14
+FT04692NR,Carboxylic acids and derivatives,Methionyl-Glutamate
+FT01981NR,Organooxygen compounds,myo-Inositol
+FT08572PR,Fatty Acyls,"7S,8S-DiHODE"
+FT08687NR,Carboxylic acids and derivatives,N-Arachidonoyl GABA
+FT05919NR,Fatty Acyls,9-hydroxy-10-oxo-12Z-octadecenoic acid
+FT05514PR,Fatty Acyls,"2,6,8,12-Tetramethyl-2,4-tridecadien-1-ol"
+FT02075NR,Organooxygen compounds,3-Phosphoglyceric acid
+FT12430PR,Glycerophospholipids,LysoPE(0:0/14:0)
+FT02571NR,Keto acids and derivatives,Oxoadipic acid
+FT04132PR,Carboxylic acids and derivatives,Valylvaline
+FT03391NR,Carboxylic acids and derivatives,S-Cysteinosuccinic acid
+FT01856NR,Fatty Acyls,Suberic acid
+FT08424PR,Organonitrogen compounds,Oleoylethanolamide
+FT01940PR,Carboxylic acids and derivatives,N-METHYLISOLEUCINE
+FT08366PR,Steroids and steroid derivatives,Etonogestrel
+FT01725NR,Organic sulfonic acids and derivatives,N-acetyltaurine
+FT01932PR,Carboxylic acids and derivatives,4-Guanidinobutanoic acid
+FT07233PR,Prenol lipids,Sterebin D
+FT12359NR,Steroids and steroid derivatives,Chenodeoxycholylthreonine
+FT05984NR,Quinolines and derivatives,"3-(1-Azatricyclo[7.3.1.05,13]trideca-5,7,9(13)-trien-7-yl)-2-cyanoprop-2-enoic acid"
+FT15091PR,Glycerophospholipids,LysoPE(22:5/0:0)
+FT01189PR,Imidazopyrimidines,Purine
+FT14347PR,Carboxylic acids and derivatives,N-Docosahexaenoyl Tyrosine
+FT05801PR,Carboxylic acids and derivatives,gamma-Glutamylleucine
+FT08040PR,Carboxylic acids and derivatives,Pro-Ser-Ile
+FT10566NR,Steroids and steroid derivatives,cortisol 21-sulfate
+FT05665PR,Pyrimidine nucleosides,5-Methylcytidine
+FT10019NR,Carboxylic acids and derivatives,N-Linoleoyl Phenylalanine
+FT10934PR,Fatty Acyls,(S)-(-)-N-(alpha-methylbenzyl)-oleamide
+FT03217PR,Carboxylic acids and derivatives,Homo-L-arginine
+FT01137PR,Benzene and substituted derivatives,"1,2-Diacylglycerol-LD-PI-pool"
+FT09752PR,Carboxylic acids and derivatives,Ile-Ile-Ile
+FT10386PR,Carboxylic acids and derivatives,Lys-Leu-Ile
+FT11128PR,Steroids and steroid derivatives,3alpha-Hydroxy-7-oxo-5beta-cholanic acid
+FT05936PR,Prenol lipids,Curcolone
+FT04787NR,Prenol lipids,"Herbertene-1,2-diol"
+FT05256NR,Fatty Acyls,9S-HOTrE
+FT09747PR,Carboxylic acids and derivatives,N-(8-Amino-1-carboxyoctyl)-alanyl-proline
+FT08973PR,Fatty Acyls,12R-HETrE
+FT07309NR,Fatty Acyls,Misoprostol acid
+FT04953NR,Carboxylic acids and derivatives,Myristoylglycine
+FT08729NR,Carboxylic acids and derivatives,Glu-Asp-Glu
+FT01620NR,Carboxylic acids and derivatives,Serylglycine
+FT02556NR,Carboxylic acids and derivatives,N-Propionylmethionine
+FT02696NR,Fatty Acyls,Cucurbic acid
+FT07851PR,Fatty Acyls,"9-oxo-12,13-epoxy-10-octadecenoic acid"
+FT04207PR,Prenol lipids,"4,7(11)-Guaiadien-8-one"
+FT03547NR,Pyrimidine nucleosides,"4-Amino-5-hydroxy-1-[(2R,5R)-4-hydroxy-5-(hydroxymethyl)oxolan-2-yl]pyrimidin-2-one"
+FT08102PR,Steroids and steroid derivatives,5-alpha-Dihydroprogesterone
+FT04596PR,Harmala alkaloids,"(1xi,3xi)-1,2,3,4-Tetrahydro-1-methyl-beta-carboline-3-carboxylic acid"
+FT00845NR,Organooxygen compounds,4-Hydroxybenzaldehyde
+FT10413NR,Steroids and steroid derivatives,Isoursodeoxycholic acid
+FT01430NR,Benzene and substituted derivatives,2-Pyrocatechuic acid
+FT06295NR,Prenol lipids,"(-)-Spongiane-15,16-diol"
+FT15982PR,Glycerophospholipids,OG-PC
+FT04458PR,Fatty Acyls,cis-tetradec-11-enoic acid
+FT06614NR,Fatty Acyls,Docosapentaenoic acid (22n-3)
+FT13969PR,Carboxylic acids and derivatives,N-docosahexaenoyl phenylalanine
+FT12741NR,Glycerophospholipids,PC(17:1/0:0)
+FT04794NR,Fatty Acyls,"9Z,11E-Octadecadienoic acid"
+FT10828NR,Steroids and steroid derivatives,Glycoursodeoxycholic acid
+FT09275NR,Steroids and steroid derivatives,"3alpha,7alpha,12alpha-Trihydroxy-5beta-chol-9(11)-en-24-oic Acid"
+FT12965PR,Glycerophospholipids,PC(12:0/0:0)
+FT09196NR,Steroids and steroid derivatives,"7,12-Dioxolithocholic Acid"
+FT07997PR,Azoles,Cyclopropyl-methoxycarbonyl metomidate
+FT03043NR,Fatty Acyls,"13-Oxo-9,11-tridecadienoic acid"
+FT08779NR,Steroids and steroid derivatives,Lagodeoxycholic acid
+FT05649NR,Fatty Acyls,Arachidonic acid
+FT11015NR,Steroids and steroid derivatives,alpha-muricholic acid
+FT01459NR,Benzene and substituted derivatives,2-Chlorobenzoic acid
+FT11422NR,Steroids and steroid derivatives,Glycocholic acid
+FT02479NR,Indoles and derivatives,Indolepyruvate
+FT11108PR,Carboxylic acids and derivatives,Tryptophyl-Tryptophan
+FT08425NR,Fatty Acyls,ent-10-F2t-dihomo-IsoP
+FT11993NR,Glycerophospholipids,LysoPC(15:0/0:0)
+FT03160PR,Indoles and derivatives,Indoleacrylic acid
+FT10090PR,Fatty Acyls,"17R,18R-dihydroxy-14R-methoxy-5Z,8Z,11Z,15E-eicosatetraenoic acid"
+FT10329PR,Organonitrogen compounds,"Anandamide (22:6, n-3)"
+FT02902NR,Carboxylic acids and derivatives,O-Succinyl-L-homoserine
+FT09623PR,Unclassified,MG(18:2/0:0/0:0)
+FT11741NR,Steroids and steroid derivatives,Petromyzonol sulfate
+FT13166NR,Glycerophospholipids,LysoPE(0:0/22:6)
+FT01954NR,Non-metal oxoanionic compounds,Pyrophosphate
+FT15374PR,Glycerophospholipids,LysoPC(20:3/0:0)
+FT00457NR,Carboxylic acids and derivatives,DL-Serine
+FT08698PR,Carboxylic acids and derivatives,Trp-Glu
+FT05152PR,Carboxylic acids and derivatives,N1-Acetylspermine
+FT02138NR,Indoles and derivatives,dihydro-4-hydroxy-2oxo-indole-3-acetonitrile
+FT06932PR,Prenol lipids,"8,13-Abietadien-18-al"
+FT04815PR,Naphthofurans,Ambroxide
+FT02315NR,Phenols,Methoxyeugenol
+FT03212PR,Carboxylic acids and derivatives,Leu-Gly
+FT14064PR,Steroids and steroid derivatives,Deoxycholylserine
+FT05983NR,Furanoid lignans,6'-Hydroxyenterolactone
+FT10636PR,Carboxylic acids and derivatives,Asn-Val-Phe
+FT16098PR,Prenol lipids,Lansioside A
+FT06407PR,Fatty Acyls,6-[5]-ladderane-hexanoic acid
+FT08303PR,Fatty Acyls,20-Hydroxyeicosatrieneoic acid
+FT06643PR,Carboxylic acids and derivatives,Aspartylphenylalanine
+FT13309PR,Glycerophospholipids,LysoPE(16:1/0:0)
+FT03240NR,Carboxylic acids and derivatives,Asparaginyl-Valine
+FT13802NR,Unclassified,Cholylphenylalanine
+FT01557NR,Hydroxy acids and derivatives,3-Hydroxyoctanoic acid
+FT11506NR,Glycerophospholipids,LysoPE(17:0/0:0)
+FT04202NR,Peptidomimetics,Glutamylaspartic acid
+FT10849NR,Carboxylic acids and derivatives,Thr-Trp-Val
+FT06843NR,Fatty Acyls,PGB1
+FT04036PR,Prenol lipids,"4-(2,6,6-Trimethyl-1-cyclohexenyl)-2-butanol"
+FT02422NR,Fatty Acyls,Dodecanoic acid
+FT01969NR,Benzene and substituted derivatives,Hippuric acid
+FT02904NR,Carboxylic acids and derivatives,Serylasparagine
+FT03176NR,Organooxygen compounds,D-Ribose 5-phosphate
+FT07012NR,Carboxylic acids and derivatives,N-Myristoyl Isoleucine
+FT10119NR,Steroids and steroid derivatives,Ptilosteroid C
+FT01374NR,Benzene and substituted derivatives,4-Formylbenzoic acid
+FT08780NR,Steroids and steroid derivatives,Murideoxycholic acid
+FT11852NR,Glycerophospholipids,PE(P-19:1/0:0)
+FT05107PR,Biotin and derivatives,Biotin
+FT06407NR,Fatty Acyls,"2,3-dinor-PGE1"
+FT08940PR,Glycerolipids,Glyceryl Monooleate
+FT07184PR,Carboxylic acids and derivatives,Lysylphenylalanine
+FT08186PR,Purine nucleosides,1-Methylguanosine
+FT06013NR,Fatty Acyls,"9,13-DiHOME(10)"
+FT03093NR,Fatty Acyls,Myristoleic acid
+FT07256NR,Peptidomimetics,Asp-Thr-Asp
+FT08883PR,Carboxylic acids and derivatives,Arginyltyrosine
+FT00976NR,Carboxylic acids and derivatives,N-Acetyl-L-alanine
+FT09705PR,Steroids and steroid derivatives,"1alpha,24-dihydroxy-25,26,27-trinorvitamin D3"
+FT07781PR,Fatty Acyls,9-A1-PhytoP
+FT08216NR,Prenol lipids,7-Hydroxycannabidiol
+FT06489PR,Indanes,Acetylpterosin C
+FT01946PR,Organonitrogen compounds,Spermidine
+FT01096PR,Carboxylic acids and derivatives,Norvaline
+FT02463NR,Carboxylic acids and derivatives,L-Leucyl-L-alanine
+FT08227NR,Steroids and steroid derivatives,Lithocholic acid
+FT07722NR,Purine nucleotides,Guanosine monophosphate
+FT01561PR,Phenols,4-Allylcatechol
+FT01003NR,Carboxylic acids and derivatives,Glutaric acid
+FT03348PR,Carboxylic acids and derivatives,S-(2-Carboxyethyl)-L-cysteine
+FT07370NR,Hydroxy acids and derivatives,ent-11-epi-8-E2t-IsoP
+FT09679PR,Organonitrogen compounds,Arachidoyl Ethanolamide
+FT09525PR,Fatty Acyls,Isoraspailyne A
+FT05686NR,Carboxylic acids and derivatives,Tryptophyl-Threonine
+FT14566PR,Glycerophospholipids,LysoPE(20:4/0:0)
+FT08955NR,Carboxylic acids and derivatives,N-Stearoyl Isoleucine
+FT12146PR,Fatty Acyls,13-Hydroxyhexadecanoylcarnitine
+FT07582NR,Steroids and steroid derivatives,tibolone
+FT01639PR,Benzene and substituted derivatives,2-Phenylacetamide
+FT10462PR,Prenol lipids,secologanate
+FT09788PR,Carboxylic acids and derivatives,Trp-Pro-Gly
+FT09187NR,Carboxylic acids and derivatives,Asn-Pro-Glu
+FT08507PR,Carboxylic acids and derivatives,N-palmitoyl alanine
+FT14707PR,Fatty Acyls,(13Z)-3-Hydroxyicos-13-enoylcarnitine
+FT05624NR,Carboxylic acids and derivatives,N-Acetylaspartylglutamic acid
+FT01618NR,Fatty Acyls,3-Hydroxymethylglutaric acid
+FT09059PR,Carboxylic acids and derivatives,Leu-Pro-Ile
+FT14656PR,Glycerophospholipids,LysoPE(0:0/20:2)
+FT05560NR,Fatty Acyls,Eicosapentaenoic acid
+FT04734PR,Carboxylic acids and derivatives,Cyclo(his-pro)
+FT09294PR,Organonitrogen compounds,Anandamide
+FT04341PR,Prenol lipids,Guaiol
+FT04255NR,Carboxylic acids and derivatives,N(2)-phenylacetyl-L-glutaminate
+FT06506NR,Fatty Acyls,Docosahexaenoic acid
+FT06842NR,Fatty Acyls,"5,15-DiHETE"
+FT01925NR,Heteroaromatic compounds,"(R)-2-((S)-1,2-Dihydroxyethyl)-4,5-dihydroxyfuran-3(2H)-one"
+FT12868PR,Prenol lipids,4-O-Methylmelleolide
+FT01619NR,Organooxygen compounds,scyllo-Inositol
+FT03903PR,Prenol lipids,4-(4-Methyl-3-pentenyl)-3-cyclohexene-1-carboxaldehyde
+FT06275PR,Carboxylic acids and derivatives,Histidylvaline
+FT09793PR,Carboxylic acids and derivatives,Ile-Ile-Asn
+FT07442PR,Carboxylic acids and derivatives,N-Myristoyl Alanine
+FT07945PR,Glycerolipids,MG(0:0/16:0)
+FT04704NR,Tetralins,Emmotin A
+FT05157NR,Carboxylic acids and derivatives,Hydroxyprolyl-Asparagine
+FT08828NR,Steroids and steroid derivatives,Norcholic acid
+FT03126PR,Carboxylic acids and derivatives,N-(5-ACETAMIDOPENTYL)ACETAMIDE
+FT01699NR,Benzene and substituted derivatives,Phthalic acid
+FT01580NR,Indoles and derivatives,Indole-3-carboxylic acid
+FT07777NR,Fatty Acyls,"16,16-dimethyl-PGA1"
+FT12910PR,Glycerophospholipids,LysoPE(P-16:0/0:0)
+FT06747NR,Isoflavonoids,Daidzein 4'-sulfate
+FT09100PR,Steroids and steroid derivatives,Guggulsterone
+FT03433NR,Benzene and substituted derivatives,3-Carbamoyl-2-phenylpropionaldehyde
+FT02570NR,Keto acids and derivatives,3-oxo-adipic acid
+FT14877PR,Glycerophospholipids,PC(18:3/0:0)
+FT06091NR,Fatty Acyls,"6Z,9Z,12Z,15Z,18Z-heneicosapentaenoic acid"
+FT03239NR,Carboxylic acids and derivatives,Valylasparagine
+FT08241PR,Fatty Acyls,17(S)-HETE
+FT09352NR,Steroids and steroid derivatives,Ursocholic acid
+FT00469NR,Organooxygen compounds,2-(Hydroxymethoxy)acetic acid
+FT04000PR,Macrolides and analogues,Patulolide C
+FT06910NR,Fatty Acyls,"8,9-DiHETrE"
+FT02873NR,Carboxylic acids and derivatives,Gamma-Glutamylalanine
+FT06232NR,Fatty Acyls,12 Hydroxy arachidonic acid
+FT14968PR,Steroids and steroid derivatives,Cholylisoleucine
+FT10292PR,Glycerolipids,"MG(18:1-O(9S,10R)/0:0/0:0)"
+FT02957PR,Carboxylic acids and derivatives,D-Tyrosine
+FT01090PR,Indoles and derivatives,Indole
+FT12382PR,Organonitrogen compounds,Linoleyl carnitine
+FT02381PR,Quinolines and derivatives,"3,8-dihydroxyquinoline"
+FT02539NR,Hydroxy acids and derivatives,"3,10-dihydroxydecanoic acid"
+FT00875NR,Organic sulfonic acids and derivatives,Taurine
+FT00109PR,Organonitrogen compounds,Trimethylamine N-oxide
+FT13492NR,Steroids and steroid derivatives,Cholylmethionine
+FT07551NR,Carboxylic acids and derivatives,N-Myristoyl Glutamic acid
+FT03881NR,Fatty Acyls,4-heptynoic acid
+FT07302NR,Fatty Acyls,8-iso-15-keto-PGE2
+FT05245NR,Prenol lipids,Tocopheronic acid
+FT02805NR,Hydroxy acids and derivatives,3-Hydroxydodecanoic acid
+FT02691NR,Organooxygen compounds,Fucitol
+FT07137PR,Carboxylic acids and derivatives,Glutamyltyrosine
+FT08447PR,Organic phosphoric acids and derivatives,TRIPHENYL PHOSPHATE
+FT10187PR,Fatty Acyls,MG(18:2+=O/0:0/0:0)
+FT16070PR,Fatty Acyls,DG(LTE4/10:0/0:0)
+FT07808PR,Carboxylic acids and derivatives,Pro-Pro-Pro
+FT08671PR,Fatty Acyls,9S-HpOTrE
+FT07138PR,Carboxylic acids and derivatives,N-gamma-Glutamyl-S-propylcysteine
+FT06480PR,Carboxylic acids and derivatives,Glutamylglutamic acid
+FT07931PR,Carboxylic acids and derivatives,Tyrosyl-Methionine
+FT04062NR,Fatty Acyls,Tetradecanedioic acid
+FT01665NR,Keto acids and derivatives,xi-3-Hydroxy-2-oxobutanoic acid
+FT01461NR,Diazines,Orotic acid
+FT11891PR,Carboxylic acids and derivatives,Ile-Met-Phe
+FT13657PR,Glycerophospholipids,LysoPE(P-18:1/0:0)
+FT01786NR,Carboxylic acids and derivatives,Tetrahydrodipicolinate
+FT07436PR,Carboxylic acids and derivatives,Pro-Ala-Leu
+FT15294PR,Steroids and steroid derivatives,Deoxycholylphenylalanine
+FT08301PR,Fatty Acyls,15(S)-Hydroxyeicosatrienoic acid
+FT02636NR,Benzoxazines,"2-Methyl-2H-1,3-benzoxazin-4(3H)-one"
+FT11188NR,Carboxylic acids and derivatives,N-Docosahexaenoyl Methionine
+FT07175NR,Steroids and steroid derivatives,Allylestrenol
+FT11160PR,Carboxylic acids and derivatives,Ile-Pro-Tyr
+FT01141NR,Benzene and substituted derivatives,4-Hydroxybenzoic acid
+FT01526NR,Carboxylic acids and derivatives,N-Acetylvaline
+FT09958NR,Carboxylic acids and derivatives,Cysteineglutathione disulfide
+FT07249PR,Organooxygen compounds,(S)-2-Hydroxy-2-phenylacetonitrile O-b-D-allopyranoside
+FT08760PR,Steroids and steroid derivatives,dihydrodeoxycorticosterone
+FT10841PR,Fatty Acyls,Melinamide
+FT02555PR,Carboxylic acids and derivatives,Spinacine
+FT04616PR,Carboxylic acids and derivatives,Leu-Val
+FT05923NR,Fatty Acyls,"12,13,15-trihydroxy-9E-octadecenoic acid"
+FT02317NR,Hydroxy acids and derivatives,(R)-3-Hydroxy-5-phenylpentanoic acid
+FT01754PR,Azoles,(1-Methyl-1h-imidazol-2-yl)-acetic acid
+FT05311PR,Benzene and substituted derivatives,"N-(2,4-Dinitrophenyl)ethylenediamine"
+FT06086NR,Organooxygen compounds,12-deoxy-J2-IsoP
+FT13019PR,Carboxylic acids and derivatives,N-Stearoyl Arginine
+FT02624NR,Benzopyrans,"3,4-Dihydro-6-methoxy-2,2-dimethyl-2H-1-benzopyran-4-ol"
+FT07712NR,Steroids and steroid derivatives,Ethyltestosterone
+FT03415NR,Diazinanes,4-(2-Hydroxyethyl)-1-piperazineethanesulfonic acid
+FT10829NR,Steroids and steroid derivatives,Chenodeoxycholic acid glycine conjugate
+FT02088NR,Hydroxy acids and derivatives,6-hydroxy-3-isopropenylheptanoic acid
+FT08370PR,Fatty Acyls,"methyl 15-hydroperoxy-9Z,12Z,16E-octadecatrienoate"
+FT08851NR,Carboxylic acids and derivatives,Glu-Thr-Phe
+FT09913NR,Steroids and steroid derivatives,"3alpha,7alpha,12alpha,19-Tetrahydroxy-5beta-cholan-24-oic Acid"
+FT14011PR,Glycerophospholipids,LysoPE(0:0/18:2)
+FT07737PR,Carboxylic acids and derivatives,Ala-Ala-Phe
+FT14520NR,Glycerophospholipids,PC(22:5/0:0)
+FT05398NR,Fatty Acyls,"9S,10R-epoxy-stearic acid"
+FT02000PR,Cinnamic acids and derivatives,Cinnamamide
+FT07037NR,Fatty Acyls,"(4Z,7Z,11E,13Z,16Z,19Z)-10-Hydroperoxydocosahexaenoic acid"
+FT02299NR,Benzene and substituted derivatives,3-Hydroxy-3-phenylpentanamide
+FT06709NR,Fatty Acyls,Adrenic acid
+FT14062PR,Glycerophospholipids,PE(18:1/0:0)
+FT09763PR,Carboxylic acids and derivatives,N-Palmitoyl Threonine
+FT06357NR,Fatty Acyls,Alchornoic acid
+FT02248PR,Carboxylic acids and derivatives,2-amino-muconic acid
+FT10190PR,Fatty Acyls,MG(18:3-OH/0:0/0:0)
+FT08009NR,Fatty Acyls,6-keto-PGF1alpha
+FT08532PR,Carboxylic acids and derivatives,Val-Asn-Pro
+FT10989PR,Fatty Acyls,"5-Megastigmen-7-yne-3,9-diol 9-glucoside"
+FT11350NR,Steroids and steroid derivatives,Chenodeoxycholylalanine
+FT08033PR,Carboxylic acids and derivatives,Oglufanide
+FT01121PR,Benzene and substituted derivatives,4-Methylstyrene
+FT06110NR,Carboxylic acids and derivatives,Pro-Ser-Asp
+FT02879NR,Hydroxy acids and derivatives,3-Hydroxysebacic acid
+FT07944PR,Fatty Acyls,Methyl Ricinoleate
+FT06168NR,Benzene and substituted derivatives,2-Hydroxy-6-(8-tridecenyl)benzoic acid
+FT07746PR,Phenols,4-Hydroxypenbutolol
+FT01816NR,Quinolines and derivatives,Quinaldic acid
+FT08876PR,Carboxylic acids and derivatives,Gly-Phe-Asp
+FT01243NR,Carboxylic acids and derivatives,Allysine
+FT01801NR,Fatty Acyls,2-Octenedioic acid
+FT03041NR,Carboxylic acids and derivatives,2-Methylenecyclopropaneacetic Acid
+FT07538PR,Organonitrogen compounds,Enigmol
+FT11203PR,Carboxylic acids and derivatives,Ile-Asn-Phe
+FT04026NR,Carboxylic acids and derivatives,N-lauroyl glycine
+FT08406PR,Carboxylic acids and derivatives,Isoleucyl-prolyl-proline
+FT07451NR,Fatty Acyls,"11,12,15-TriHETRE"
+FT03556NR,Carboxylic acids and derivatives,L-Histidine trimethylbetaine
+FT06359NR,Fatty Acyls,Pentyl hexadec-12-enoate
+FT07223PR,Carboxylic acids and derivatives,Leucyl-Tyrosine
+FT02882NR,Carboxylic acids and derivatives,Serylisoleucine
+FT05042NR,Carboxylic acids and derivatives,Ritipenem
+FT07238PR,Fatty Acyls,Methyl linoleate
+FT05854NR,Benzene and substituted derivatives,6-Methylgingediol
+FT11249NR,Benzene and substituted derivatives,Salmeterol
+FT09183PR,Fatty Acyls,"Methyl 4,7,10,13,16-docosapentaenoate"
+FT11519PR,Carboxylic acids and derivatives,Pro-Trp-Val
+FT03010NR,Pyridines and derivatives,Plantagonine
+FT09790PR,Fatty Acyls,"5,20-DiHETE"
+FT03490NR,Carboxylic acids and derivatives,(S)-2-Acetamido-3-(4-chlorophenyl)propanoic acid
+FT10196PR,Carboxylic acids and derivatives,alpha-N-(3-hydroxy-14-methyl-pentadecanoyl)-ornithine
+FT04994NR,Prenol lipids,Auberganol
+FT11396PR,Fatty Acyls,N-ethyl N-(2-hydroxy-ethyl) arachidonoyl amine
+FT08088PR,Carboxylic acids and derivatives,Gly-Leu-Gln
+FT07108NR,Fatty Acyls,(+/-)-13-HDoHE
+FT01842NR,Lactones,Dehydroascorbic acid
+FT11888PR,Carboxylic acids and derivatives,Glu-Asp-Phe
+FT02911PR,Carboxylic acids and derivatives,Methyl l-phenylalaninate
+FT13327PR,Fatty Acyls,"(8Z,11Z)-Icosa-8,11-dienoylcarnitine"
+FT05323PR,Carboxylic acids and derivatives,Valylmethionine
+FT03127NR,Carboxylic acids and derivatives,Alaptide
+FT10465NR,Glycerophospholipids,LysoPE(O-16:0/0:0)
+FT07974PR,Fatty Acyls,Decenoylcarnitine
+FT03825PR,Carboxylic acids and derivatives,"(2R,2'S)-Isobuteine"
+FT10470PR,Fatty Acyls,5-epi-5-iso-LGD2
+FT16023PR,Glycerophospholipids,PA(18:1-O/12:0)
+FT08023NR,Fatty Acyls,3-Methyl-3-butenyl hexadecanoate
+FT06186NR,Carboxylic acids and derivatives,Tryptophyl-Aspartate
+FT11085PR,Benzopyrans,"(3R, 6'Z)-3,4-Dihydro-8-hydroxy-3-(6-pentadecenyl)-1H-2-benzopyran-1-one"
+FT03596NR,Carboxylic acids and derivatives,Leucylleucine
+FT00698PR,Carboxylic acids and derivatives,1-Aminocyclopropanecarboxylic acid
+FT08782PR,Carboxylic acids and derivatives,Tryptophyl-Methionine
+FT07855NR,Steroids and steroid derivatives,Beta-Cortolone
+FT03706NR,Carboxylic acids and derivatives,Threoninyl-Gamma-glutamate
+FT02229NR,Organooxygen compounds,5R-Hydroxy-4S-methylheptan-3-one
+FT12535NR,Steroids and steroid derivatives,Taurochenodesoxycholic acid
+FT02523PR,Imidazopyrimidines,1-Methylxanthine
+FT08139PR,Fatty Acyls,N-methyl arachidonoyl amine
+FT01971PR,Benzene and substituted derivatives,Benzylideneacetone
+FT13344NR,Benzene and substituted derivatives,Ponatinib
+FT02346NR,Macrolides and analogues,5-Dodecen-11-olide
+FT08178PR,Fatty Acyls,11E-Eicosen-1-ol
+FT04813NR,Carboxylic acids and derivatives,4-Hydroxyphenylacetylglutamic acid
+FT10266NR,Steroids and steroid derivatives,"3beta,5beta,14beta,16beta-19-pentahydroxy-bufa-20,22-dienolide"
+FT05072NR,Fatty Acyls,"8-hydroxy-13,17-octadecadiene-9,11-diynoic acid"
+FT05401NR,Fatty Acyls,Ricinoleic acid
+FT08196PR,Carboxylic acids and derivatives,Kyotorphin
+FT12337PR,Carboxylic acids and derivatives,Lys-Leu-Tyr
+FT03116PR,Carboxylic acids and derivatives,Valylserine
+FT06575PR,Steroids and steroid derivatives,"estrane-3alpha,17alpha-diol"
+FT01004NR,Carboxylic acids and derivatives,L-Asparagine
+FT06650PR,Carboxylic acids and derivatives,H-Val-Tyr-OH
+FT04274NR,Phenol ethers,Anisomycin
+FT07585NR,Benzene and substituted derivatives,Cannabidiolic acid
+FT10492PR,Steroids and steroid derivatives,15-Oxo-5beta-cholan-24-oic Acid
+FT08146NR,Prenol lipids,"11,12-Dimethylrosmanol"
+FT01152PR,Indoles and derivatives,Indoline
+FT05597PR,Carboxylic acids and derivatives,"4-[(2,4-Dihydroxy-3,3-dimethylbutanoyl)amino]butanoic acid"
+FT08602PR,Steroids and steroid derivatives,11beta-Hydroxyprogesterone
+FT07219PR,Phenols,"4-[(E)-5,6-Dihydro-2,3'-bipyridin-3(4H)-ylidenemethyl]-3-methoxyphenol"
+FT13902NR,Glycerophospholipids,LysoPC(18:4/0:0)
+FT02828NR,Carboxylic acids and derivatives,Alanylglutamine
+FT07341PR,Organooxygen compounds,Phenethylamine glucuronide
+FT10469PR,Fatty Acyls,8-oxo-Resolvin D1
+FT04833NR,Purine nucleosides,"Inosine,2',3'-dideoxy-"
+FT05683NR,Carboxylic acids and derivatives,Ser-Pro-Gly
+FT05015PR,Carboxylic acids and derivatives,Glutamylleucine
+FT02257NR,Carboxylic acids and derivatives,4-Acetamidobutanoic acid
+FT07658NR,Fatty Acyls,"9Z,12Z,15Z,18Z-Tetracosatetraenoic acid"
+FT04474NR,Flavonoids,Naringenin
+FT06188NR,Carboxylic acids and derivatives,Pro-Gly-Thr
+FT02081NR,Carboxylic acids and derivatives,gamma-Glutamylglycine
+FT03816NR,Fatty Acyls,Mumiamicin
+FT07369NR,Fatty Acyls,ent-PGE2
+FT07331NR,Carboxylic acids and derivatives,Imazamox
+FT02857NR,Glycerophospholipids,Glycerol 3-phosphate
+FT03146NR,Organic sulfuric acids and derivatives,HHPAA sulfate
+FT09513PR,Prenol lipids,Cinncassiol D4
+FT13154PR,Carboxylic acids and derivatives,4-Hydroxynonenal glutathione
+FT11106PR,Carboxylic acids and derivatives,Trp-Gly-Glu
+FT11488PR,Steroids and steroid derivatives,"12beta-hydroxy-24-norcholesta-1,4,22E-trien-3-one"
+FT13602NR,Glycerophospholipids,LysoPS(20:4/0:0)
+FT07713NR,Fatty Acyls,Protectin D1n-3 DPA
+FT09417PR,Fatty Acyls,15-dehydro-prostaglandin I2
+FT11244PR,Carboxylic acids and derivatives,Leu-Val-Tyr
+FT09764PR,Fatty Acyls,10-Methyldodecanoylcarnitine
+FT00945PR,Diazines,Uracil
+FT06448PR,Fatty Acyls,3-Hydroxyhexanoylcarnitine
+FT03303PR,Pyridines and derivatives,"(E)-5-(3,4,5,6-Tetrahydro-3-pyridylidenemethyl)-2-furanmethanol"
+FT11685PR,Steroids and steroid derivatives,"3alpha-Hydroxy-1,7-dioxo-5beta-cholan-24-oic Acid"
+FT11974PR,Carboxylic acids and derivatives,N-Linoleoyl Methionine
+FT10088PR,Fatty Acyls,15-methyl-15R-PGE2
+FT03263NR,Carboxylic acids and derivatives,Indole-3-acetylglycine
+FT00281PR,Piperidines,Piperidine
+FT03572NR,Carboxylic acids and derivatives,Mimosine
+FT02942NR,Benzopyrans,Precocene II
+FT03333NR,Benzodioxoles,"1-(1,3-Benzodioxol-5-yl)-4,4-dimethyl-1-penten-3-ol"
+FT08634NR,Carboxylic acids and derivatives,Gln-Val-Pro
+FT01056NR,Hydroxy acids and derivatives,Malic acid
+FT07008PR,Steroids and steroid derivatives,"D-Homo-A-nor-17a-oxaandrost-3(5)-ene-2,17-dione"
+FT06396NR,Carboxylic acids and derivatives,tyrosine-tyrosinate
+FT14206PR,Carboxylic acids and derivatives,N-Docosahexaenoyl Arginine
+FT08559PR,Carboxylic acids and derivatives,Asp-Pro-Val
+FT10363PR,Fatty Acyls,"5,6,18-triHEPE"
+FT00526NR,Organic phosphoric acids and derivatives,Methylphosphate
+FT02987NR,Benzopyrans,Carboxyethyl-hydroxychroman
+FT10285NR,Steroids and steroid derivatives,"3alpha,7alpha-Dihydroxycoprostanic acid"
+FT09226PR,Piperidines,"2,4,12-Octadecatrienoic acid piperidide"
+FT14400PR,Glycerophospholipids,LysoPE(P-20:0/0:0)
+FT09105PR,Fatty Acyls,Docosahexaenoic Acid methyl ester
+FT07494NR,Carboxylic acids and derivatives,N-Palmitoyl Valine
+FT15526PR,Glycerophospholipids,PE(22:1/0:0)
+FT09342PR,Fatty Acyls,"11(E)-(3,4-dimethyl-5-(pent-1-en-1-yl)furan-2-yl)-undecanoic acid"
+FT05594NR,Carboxylic acids and derivatives,N-(N-(3-Amino-3-carboxypropyl)-3-amino-3-carboxypropyl)azetidine-2-carboxylic acid
+FT05474NR,Prenol lipids,Dehydroabietic acid
+FT08082NR,Steroids and steroid derivatives,Androstanediol 17-sulfate
+FT13583PR,Carboxylic acids and derivatives,Z-Leu-Leu-Norvalinal
+FT15316PR,Glycerophospholipids,LysoPC(20:5/0:0)
+FT06871NR,Carboxylic acids and derivatives,Ala-Phe-Thr
+FT13517PR,Steroids and steroid derivatives,18-acetoxy-1alpha-hydroxyvitamin D3
+FT01837PR,Carboxylic acids and derivatives,Ectoine
+FT07654PR,Prenol lipids,(-)-Isoamijiol
+FT04311NR,Vinylogous acids,Humulinic acid A
+FT03378NR,Carboxylic acids and derivatives,Indantadol
+FT15487PR,Steroids and steroid derivatives,Chenodeoxycholyl-L-dopa
+FT02036NR,Unclassified,Trigonelline
+FT04563NR,Biotin and derivatives,"5-(Hexahydro-2-oxo-1H-thieno[3,4-D]imidazol-6-YL)pentanal"
+FT03267NR,Carboxylic acids and derivatives,Threonylhydroxyproline
+FT05404NR,Fatty Acyls,5-Hexyltetrahydro-2-furanoctanoic acid
+FT13374NR,Benzene and substituted derivatives,Vicriviroc
+FT03480NR,Prenol lipids,"7,8-Dehydro-3,4-dihydro-beta-ionol"
+FT11550PR,Steroids and steroid derivatives,22-Hydroxyvitamin D3
+FT05843NR,Carboxylic acids and derivatives,gamma-Glutamyltyrosine
+FT11113PR,Carboxylic acids and derivatives,Ser-Val-Trp
+FT06096NR,Fatty Acyls,1-O-(2R-hydroxy-4Z-pentadecenyl)-sn-glycerol
+FT01075NR,Diazines,FAPy-adenine
+FT07719PR,Prenol lipids,"ent-16b-Kauran-16,19-diol"
+FT02274NR,Fatty Acyls,"2,10-dihydroxy-4,6,8-decatriynoic acid"
+FT02056PR,Imidazopyrimidines,1-Methyladenine
+FT06726NR,Carboxylic acids and derivatives,N-Ribosylhistidine
+FT08284NR,Fatty Acyls,"5Z,13Z,16Z,19Z-Docosatetraenoic acid"
+FT05108PR,Carboxylic acids and derivatives,Indolylacryloylglycine
+FT05496PR,Carboxylic acids and derivatives,Tyrosyl-Alanine
+FT03629NR,Carboxylic acids and derivatives,Ile-Asn
+FT13664PR,Prenol lipids,Protometagenin
+FT04421PR,Heteroaromatic compounds,2-Decylfuran
+FT06912NR,Fatty Acyls,"8R,9S-cis-epoxy-10S-hydroxy-eicosa-11Z,14Z-dienoic acid."
+FT11127PR,Steroids and steroid derivatives,Hyocholic acid
+FT05598NR,Carboxylic acids and derivatives,Pro-Thr-Ser
+FT12552NR,Carboxylic acids and derivatives,N-hexacosanoylglycine
+FT08348NR,Steroids and steroid derivatives,Lycopersiconol
+FT06012NR,Fatty Acyls,"12,13-DiHOME"
+FT07786PR,Fatty Acyls,"8-methoxy-13-hydroxy-9,11-octadecadienoic acid"
+FT02343NR,Phenols,Hydroxytyrosol Acetate
+FT11417PR,Fatty Acyls,15-oxo-18Z-tetracosenoic acid
+FT03162PR,Indoles and derivatives,Indole-3-lactic acid
+FT13801NR,Steroids and steroid derivatives,Deoxycholyltyrosine
+FT04472PR,Pyrimidine nucleosides,Cytosine deoxyribonucleoside
+FT13335NR,Glycerophospholipids,LysoPC(19:3/0:0)
+FT15069PR,Organooxygen compounds,6-Kestose
+FT10893PR,Carboxylic acids and derivatives,N-Palmitoyl Lysine
+FT08427NR,Fatty Acyls,unoprostone
+FT05596NR,Peptidomimetics,Ala-Val-Asp
+FT02143NR,Carboxylic acids and derivatives,"Tetrahydro-2,5-furan-diacetic acid"
+FT03784PR,Carboxylic acids and derivatives,Glycyl-Methionine
+FT01154NR,Azolidines,Paramethadione
+FT05048PR,Organooxygen compounds,N-Acetylgalactosamine
+FT05375NR,Purine nucleosides,Nebularine
+FT11120PR,Benzene and substituted derivatives,Treprostinil
+FT01970NR,Indoles and derivatives,Indoxyl
+FT15556PR,Glycerophospholipids,LysoPE(22:0/0:0)
+FT08849PR,Fatty Acyls,Bicyclo Prostaglandin E1
+FT07885NR,Peptidomimetics,Ser-Phe-Asp
+FT03646PR,Carboxylic acids and derivatives,N-Acetylisoputreanine
+FT09869PR,Carboxylic acids and derivatives,Arginyltryptophan
+FT03045NR,Fatty Acyls,"10Z,12E-tetradecadienoic acid"
+FT01151PR,Organonitrogen compounds,2-Amino-1-phenylethanol
+FT16000PR,Organooxygen compounds,Am-LPE(18:0/0:0)
+FT15118NR,Steroids and steroid derivatives,Chenodeoxycholic acid
+FT09821PR,Carboxylic acids and derivatives,Pro-Leu-Met
+FT08533NR,Carboxylic acids and derivatives,N-Oleoyl Cysteine
+FT00741NR,Fatty Acyls,2-Hydroxy-3-methylbutyric acid
+FT07857PR,Fatty Acyls,13(S)-HODE methyl ester
+FT07367NR,Fatty Acyls,5-hydroperoxy-15-HETE
+FT06411NR,Fatty Acyls,Epoxydocosapentaenoic acid
+FT01632PR,Imidazopyrimidines,Adenine
+FT05617PR,Fatty Acyls,Palmitamide
+FT07965PR,Carboxylic acids and derivatives,epsilon-(gamma-Glutamyl)lysine
+FT03928NR,Carboxylic acids and derivatives,Aldosine
+FT00620NR,Carboxylic acids and derivatives,Fumaric acid
+FT09940PR,Carboxylic acids and derivatives,Glu-Lys-Ser
+FT02518NR,Keto acids and derivatives,2-(2-Hydroxyethyl)-4-oxohexanedioic acid
+FT02691PR,Indoles and derivatives,4-Hydroxy-1H-indole-3-acetonitrile
+FT06253NR,Carboxylic acids and derivatives,Trp-Ala
+FT14657PR,Glycerophospholipids,PC(17:2/0:0)
+FT06332PR,Steroids and steroid derivatives,19-Norandrostenedione
+FT05687NR,Carboxylic acids and derivatives,Trp-Thr
+FT06901PR,Organonitrogen compounds,D-erythro-Sphingosine C-17
+FT04003PR,Carboxylic acids and derivatives,Brivaracetam
+FT09237PR,Prenol lipids,3-Epinobilin
+FT06409NR,Organooxygen compounds,delta14-10-PhytoF
+FT01669NR,Benzene and substituted derivatives,Phenylpyruvic acid
+FT05941PR,Phenol ethers,N-Desmethylvenlafaxine
+FT04709NR,Fatty Acyls,"7-hydroxy-10E,16-heptadecadien-8-ynoic acid"
+FT12813PR,Benzopyrans,"4-Amino-5-methylamino-2',7'-difluorescein"
+FT09163PR,Organooxygen compounds,(-)-erythro-Anethole glycol 2-glucoside
+FT07468NR,Organooxygen compounds,5-methylthiopentyldesulfoglucosinolate
+FT03937PR,Fatty Acyls,"3E,5E-tridecadienoic acid"
+FT11651NR,Fatty Acyls,"(4Z,7Z)-Hexadeca-4,7-dienedioylcarnitine"
+FT07013NR,Carboxylic acids and derivatives,N-palmitoyl GABA
+FT11497PR,Fatty Acyls,O-palmitoylcarnitine
+FT10760PR,Carboxylic acids and derivatives,N-Stearoyl Proline
+FT10335NR,Steroids and steroid derivatives,"3beta,12alpha-Dihydroxychol-5-en-24-oic Acid"
+FT11850NR,Fatty Acyls,"(5Z)-7-[(1R,2E,5S)-5-Hydroxy-2-[(2E)-oct-2-en-1-ylidene]-3-oxocyclopentyl]hept-5-enoylcarnitine"
+FT00699PR,Fatty Acyls,t-4-AMINOCROTONIC ACID (TACA)
+FT05028NR,Carboxylic acids and derivatives,Ala-Val-Val
+FT08304PR,Fatty Acyls,5S-HETrE
+FT05132NR,Carboxylic acids and derivatives,Argininosuccinic acid
+FT04056PR,Harmala alkaloids,Harmaline
+FT06328NR,Pyrimidine nucleotides,Uridine 5'-monophosphate
+FT01788PR,Fatty Acyls,Allylisopropylacetamide
+FT06561PR,Benzene and substituted derivatives,Dibutyl phthalate
+FT05543PR,Carboxylic acids and derivatives,N-LAUROYLSARCOSINE
+FT09949PR,Steroids and steroid derivatives,"24-Nor-5beta-chol-22-ene-3alpha,7alpha,12alpha-triol"
+FT01838PR,Carboxylic acids and derivatives,Piracetam
+FT01418PR,Carboxylic acids and derivatives,Polylysine
+FT05418NR,Carboxylic acids and derivatives,Phosphopantothenic acid
+FT08665NR,Carboxylic acids and derivatives,Asp-Pro-Ile
+FT06813NR,Organooxygen compounds,Glucose pyruvate lactate
+FT06351NR,Fatty Acyls,Dinor-PGD2
+FT01854NR,Benzodioxoles,"4-(3,4-Methylenedioxyphenyl)-2-butanone"
+FT11290PR,Fatty Acyls,"MG(0:0/20:3-O(11S,12R)/0:0)"
+FT01168NR,Organic phosphoric acids and derivatives,O-Phosphoethanolamine
+FT04214NR,Carboxylic acids and derivatives,Leucyl-Methionine
+FT10820PR,Carboxylic acids and derivatives,Phe-Ala-Phe
+FT04301PR,Benzene and substituted derivatives,3-(1-(Dimethylamino)-2-methylpentan-3-yl)phenol
+FT12255PR,Carboxylic acids and derivatives,N-palmitoyl tyrosine
+FT13394PR,Fatty Acyls,Acar(20:1)
+FT09435NR,Prenol lipids,D-beta-Tocotrienol
+FT09450PR,Carboxylic acids and derivatives,H-Phe-Trp-OH
+FT05293PR,Indenes and isoindenes,Indenolol
+FT04360NR,"Pyrazolo[3,4-d]pyrimidine glycosides",Allopurinol riboside
+FT04679PR,Carboxylic acids and derivatives,Valylaspartic acid
+FT14081PR,Flavonoids,4'-Methylepicatechin 5-glucuronide
+FT07488PR,Prenol lipids,13-cis-Retinoic acid
+FT07262NR,Carboxylic acids and derivatives,Pro-Phe-Ser
+FT09719PR,Carboxylic acids and derivatives,N-Myristoyl Lysine
+FT10181PR,Fatty Acyls,Thromboxane B3
+FT13214PR,Steroids and steroid derivatives,Glycohyocholic acid
+FT07778PR,Phenols,Dihydrocapsiate
+FT11114PR,Fatty Acyls,TXB3
+FT00977NR,Carboxylic acids and derivatives,4-Hydroxyproline
+FT06945PR,Carboxylic acids and derivatives,2-(2-Phenylacetoxy)propionylglycine
+FT08239NR,Carboxylic acids and derivatives,Alitame
+FT10234PR,Carboxylic acids and derivatives,N-Stearoyl Cysteine
+FT12801NR,Glycerophospholipids,LysoPE(20:0/0:0)
+FT07617PR,Organonitrogen compounds,t17:0 phytosphingosine
+FT07709PR,Cinnamic acids and derivatives,N1-trans-Feruloylagmatine
+FT11681NR,Steroids and steroid derivatives,SDCA-Sulfodeoxycholic acid
+FT00982PR,Organooxygen compounds,3-Methyl-2-cyclopenten-1-one
+FT08442NR,Flavonoids,Lilaline
+FT11215PR,Glycerolipids,"MG(0:0/18:1-O(9S,10R)/0:0)"
+FT02161NR,Hydroxy acids and derivatives,3-Hydroxycapric acid
+FT10113PR,Steroids and steroid derivatives,3-Deoxy-25-hydroxyvitamin D3
+FT09465PR,Fatty Acyls,"PGE2 1,15-lactone"
+FT11178PR,Benzene and substituted derivatives,D8'-Merulinic acid C
+FT01915PR,Carboxylic acids and derivatives,N-Acetylcadaverine
+FT02793NR,Carboxylic acids and derivatives,Pro-Thr
+FT11763PR,Carboxylic acids and derivatives,Phe-Ile-Lys
+FT06923PR,Diazinanes,"3-(2-Butynyl)-5-methyl-2-(piperazin-1-yl)-3,5-dihydroimidazo[4,5-d]pyridazin-4-one"
+FT04265PR,Carboxylic acids and derivatives,2-[3]-ladderane ethanoic acid
+FT12214PR,Carboxylic acids and derivatives,Val-Asp-Trp
+FT10089PR,Fatty Acyls,Prostaglandin E2 methyl ester
+FT07757NR,Benzene and substituted derivatives,fluvoxamino acid
+FT10189PR,Macrolides and analogues,6-deoxyerythronolide B
+FT15090PR,Glycerophospholipids,LysoPE(0:0/22:5)
+FT08780PR,Protoberberine alkaloids and derivatives,Berberine
+FT03434NR,Carboxylic acids and derivatives,m-Methylhippuric acid
+FT07821NR,Carboxylic acids and derivatives,N-Linoleoyl GABA
+FT10123NR,Prenol lipids,Ingenol mebutate
+FT13087PR,Steroids and steroid derivatives,"(5Z,7E,24aE)-(1S,3R)-24a,24b-dihomo-9,10-seco-5,7,10(19),24a-cholestatetraene-1,3,25-triol"
+FT07852PR,Steroids and steroid derivatives,Desogestrel
+FT10197NR,Steroids and steroid derivatives,"3beta,5beta,14beta,16beta-tetrahydroxy-19-oxo-bufa-20,22-dienolide"
+FT06320NR,Carboxylic acids and derivatives,Phe-Gly-Thr
+FT06141PR,Naphthalenes,Nafazatrom
+FT11166PR,Carboxylic acids and derivatives,N-Arachidonoyl Serine
+FT11740NR,Prenol lipids,Lucidenic acid L
+FT09924PR,Steroids and steroid derivatives,"23-hydroxy-24,25,26,27-tetranorvitamin D3"
+FT03330NR,Indanes,"(10S,11S)-Pterosin C"
+FT07682PR,Prenol lipids,Isoxeniaphyllenol
+FT07709NR,Steroids and steroid derivatives,"11beta,20-Dihydroxy-3-oxopregn-4-en-21-oic acid"
+FT04735NR,Carboxylic acids and derivatives,Asparaginyl-Phenylalanine
+FT04286NR,Organic phosphoric acids and derivatives,beta-L-Arabinose 1-phosphate
+FT10111PR,Steroids and steroid derivatives,"27-nor-(24R)-methylcholest-5,22E-dien-3beta-ol"
+FT05562NR,Fatty Acyls,20-Hydroxyeicosatetraenoic acid
+FT11371PR,Carboxylic acids and derivatives,alpha-N-(3-hydroxyoctadecanoyl)-L-ornithine
+FT07080NR,Carboxylic acids and derivatives,N-Palmitoyl Serine
+FT07426NR,Pyrimidine nucleotides,dUMP
+FT15365PR,Glycerophospholipids,LysoPS(18:1/0:0)
+FT07531PR,Prenol lipids,Sinulobatin B
+FT11592NR,Glycerophospholipids,1-(2-methoxy-hexadecanyl)-sn-glycero-3-phosphoethanolamine
+FT14393PR,Glycerophospholipids,PE(19:1/0:0)
+FT08676PR,Steroids and steroid derivatives,oxymetholone
+FT08609PR,Fatty Acyls,Icosapent Ethyl
+FT05118PR,Keto acids and derivatives,"Polyethylene, oxidized"
+FT02027NR,Azoles,Carcinine
+FT05683PR,Fatty Acyls,"(1S,2S)-3-oxo-2-pentyl-cyclopentanebutanoic acid"
+FT07152PR,Fatty Acyls,"8-hydroxy-10,12-octadecadiynoic acid"
+FT04579PR,Prenol lipids,"4-(3-Hydroxybutyl)-3,3,5-trimethylcyclohexanone"
+FT06434NR,Carboxylic acids and derivatives,N-(1-Deoxy-1-fructosyl)phenylalanine
+FT01500NR,Azoles,Allantoin
+FT02487NR,Carboxylic acids and derivatives,Asparaginylalanine
+FT01571PR,Prenol lipids,D(+)-Carvone
+FT13733PR,Prenol lipids,Convallagenin  A
+FT06113NR,Carboxylic acids and derivatives,Tryptophylhydroxyproline
+FT04104NR,Carboxylic acids and derivatives,Leucyl-Glutamine
+FT05125NR,Flavonoids,Oritin-4beta-ol
+FT06228NR,Benzopyrans,5'-Carboxy-alpha-tocopherol
+FT08806PR,Steroids and steroid derivatives,5alpha-Pregnan-20alpha-ol-3-one
+FT09415PR,Fatty Acyls,5S-Hp-18R-HEPE
+FT00095NR,Non-metal oxoanionic compounds,Phosphate
+FT12069PR,Fatty Acyls,3-MethylHexadecanoylcarnitine
+FT08432NR,Fatty Acyls,"11Z,19-Eicosadienyl acetate"
+FT14407PR,Prenol lipids,Protopanaxatriol
+FT04916NR,Fatty Acyls,Muricatacin
+FT07140NR,Carboxylic acids and derivatives,Thr-Ile-Leu
+FT04043NR,Isochromanequinones,Thysanone
+FT13402NR,Steroids and steroid derivatives,Neriifolin
+FT09523PR,Fatty Acyls,MG(18:3/0:0/0:0)
+FT10563PR,Carboxylic acids and derivatives,Asn-Pro-Phe
+FT10687PR,Carboxylic acids and derivatives,N-Linoleoyl Valine
+FT09909PR,Fatty Acyls,4-Hydroxydecanedioylcarnitine
+FT07243NR,Phenols,5-Heptadecylresorcinol
+FT03819NR,Dioxolopyrans,Deoxydihydro-artemisinin
+FT03050NR,Indoles and derivatives,Adrenochrome
+FT05243NR,Carboxylic acids and derivatives,Aspartame
+FT13166PR,Carboxylic acids and derivatives,N-oleoyl tyrosine
+FT01303NR,Carboxylic acids and derivatives,L-4-Hydroxyglutamate semialdehyde
+FT08542PR,Carboxylic acids and derivatives,Lauroyl lysine
+FT08324PR,Carboxylic acids and derivatives,Val-Ala-Ile
+FT08276NR,Fatty Acyls,PGJ3
+FT07177PR,Carboxylic acids and derivatives,Gly-Phe-Ala
+FT10216PR,Benzene and substituted derivatives,Amisulpride
+FT14219NR,Glycerophospholipids,1-(2-methoxy-6Z-octadecenyl)-sn-glycero-3-phosphoserine
+FT05618PR,Organooxygen compounds,Muscone
+FT03818PR,Carboxylic acids and derivatives,DL-O-Phosphoserine
+FT01962NR,Cinnamic acids and derivatives,2-Methoxycinnamic acid
+FT12496PR,Steroids and steroid derivatives,1alpha-hydroxy-24-methylvitamin D2
+FT11508NR,Glycerophospholipids,LysoPC(14:0/0:0)
+FT09739PR,Organooxygen compounds,2-Methoxyacetaminophen glucuronide
+FT09422PR,Fatty Acyls,Avocadene 2-acetate
+FT07856PR,Prenol lipids,METHOPRENE (S)
+FT03194NR,Prenol lipids,"(4S,8R)-8,9-Dihydroxy-p-menth-1(6)-en-2-one"
+FT08299PR,Fatty Acyls,12(S)-HETrE
+FT14025PR,Steroids and steroid derivatives,2-Deoxy-25-Methyldolichosterone
+FT02017NR,Imidazopyrimidines,3-Methyluric acid
+FT08357PR,Benzene and substituted derivatives,"1,2-Diphenyl-3,5-dioxo-4-(3-hydroxybutyl)pyrazolidine"
+FT01626NR,Organooxygen compounds,3R-Hydroxyhexan-2-one
+FT07103PR,Harmala alkaloids,"(1xi,3S)-1,2,3,4-Tetrahydro-1-methyl-beta-carboline-1,3-dicarboxylic acid"
+FT05324PR,Carboxylic acids and derivatives,Methionyl-Valine
+FT04054PR,Quinolines and derivatives,"9-Amino-1,2,3,4-tetrahydroacridin-2-ol"
+FT08117PR,Carboxylic acids and derivatives,Hydroxyprolyl-Tryptophan
+FT04197PR,Carboxylic acids and derivatives,Carboxyethyllysine
+FT07857NR,Steroids and steroid derivatives,Cortolone
+FT13631PR,Glycerolipids,MG(24:1/0:0)
+FT01245NR,Carboxylic acids and derivatives,L-trans-5-Hydroxy-2-piperidinecarboxylic acid
+FT02886PR,Fatty Acyls,1-hydroxy-5-phenyl-3-pentanone
+FT04699NR,Benzene and substituted derivatives,Aminoglutethimide
+FT08157PR,Benzene and substituted derivatives,Fluvoxamine
+FT09672PR,Fatty Acyls,Hippobutenolide A
+FT05181PR,Carboxylic acids and derivatives,Valylglutamine
+FT10271NR,Steroids and steroid derivatives,3alpha-Hydroxy-15-oxo-5beta-chol-8-en-24-oic Acid
+FT01775NR,Fatty Acyls,(Z)-2-Decenoic acid
+FT05728NR,Carboxylic acids and derivatives,Tryptophan butyl ester
+FT08338PR,Prenol lipids,plaunotol
+FT07917PR,Prenol lipids,2E-Phytenal
+FT06255NR,Carboxylic acids and derivatives,Val-Gly-Phe
+FT09271NR,Steroids and steroid derivatives,12-Ketochenodeoxycholic acid
+FT10065PR,Organonitrogen compounds,linoleoylcholine
+FT07892PR,Fatty Acyls,PsiAalpha
+FT02671NR,Fatty Acyls,Traumatic acid
+FT01519NR,Carboxylic acids and derivatives,L-trans-alpha-Amino-2-carboxycyclopropaneacetic acid
+FT03659PR,Prenol lipids,Cuparene
+FT04356NR,Phenols,"3,4-Dihydro-8-hydroxy-3-(3-hydroxy-4-methoxyphenyl)-1H-2-benzopyran-1-one"
+FT04174NR,Carboxylic acids and derivatives,7-hydroxyoct-7-enoylglycine
+FT08222NR,Steroids and steroid derivatives,"22-hydroxy-23,24,25,26,27-pentanorvitamin D3"
+FT04761NR,Nucleoside and nucleotide analogues,Pseudouridine
+FT05961NR,Carboxylic acids and derivatives,Pro-Val-Val
+FT07315NR,Steroids and steroid derivatives,pregnan-21-ol
+FT06170NR,Prenol lipids,gamma-Camphorene
+FT07593NR,Carboxylic acids and derivatives,Val-Lys-Leu
+FT12215PR,Carboxylic acids and derivatives,Ile-Thr-Trp
+FT09246PR,Steroids and steroid derivatives,19-Hydroxydeoxycorticosterone
+FT03437PR,Carboxylic acids and derivatives,N-Acetylasparagine
+FT14207PR,Benzene and substituted derivatives,Janohigenin 21-0
+FT01418NR,Carboxylic acids and derivatives,3-Sulfinoalanine
+FT05319PR,Carboxylic acids and derivatives,Threonylglutamic acid
+FT08339PR,Prenol lipids,Sagittariol
+FT05750PR,Organooxygen compounds,D-Glucosamine-6-phosphate
+FT02136NR,Carboxylic acids and derivatives,"2-amino-3,7-dideoxy-D-threo-hept-6-ulosonate"
+FT01454NR,Pyrrolines,"3-Ethyl-5-hydroxy-4,5-dimethyl-pyrrolin-2-one"
+FT00962NR,Keto acids and derivatives,Ketoleucine
+FT02794NR,Carboxylic acids and derivatives,"N2,N5-Diacetylornithine"
+FT06732NR,Carboxylic acids and derivatives,Val-Asp-Thr
+FT08464PR,Steroids and steroid derivatives,medroxyprogesterone
+FT09466PR,Prenol lipids,Crispanone
+FT02239NR,Carboxylic acids and derivatives,"2,4-Thiazolidinedicarboxylic acid, 2-methyl-"
+FT09699PR,Carboxylic acids and derivatives,Pro-Lys-Leu
+FT09741PR,Carboxylic acids and derivatives,Val-Ala-Phe
+FT04913PR,Organooxygen compounds,Isokobusone
+FT03465NR,Flavonoids,7-Hydroxyflavanone
+FT07300NR,Fatty Acyls,PGG2
+FT07669NR,Cinnamic acids and derivatives,Avenanthramide A2
+FT06205PR,Organooxygen compounds,"1,16-Heptadecadien-3-one"
+FT15195PR,Glycerophospholipids,LysoPE(22:2/0:0)
+FT14876PR,Glycerophospholipids,LysoPC(16:0/0:0)
+FT03203PR,Carboxylic acids and derivatives,N-Acetylglutamine
+FT05437NR,Carboxylic acids and derivatives,N-hexanoyl histidine
+FT07043NR,Fatty Acyls,13-Cyclohexyltridecanoic acid
+FT10400NR,Steroids and steroid derivatives,Penicildione D
+FT09551PR,Carboxylic acids and derivatives,Ser-Thr-Phe
+FT03177PR,Carboxylic acids and derivatives,(2S)-6-Amino-2-(2-iminoethylamino)hexanoic Acid
+FT02175PR,Prenol lipids,Alpha-Terpineol
+FT09860NR,Steroids and steroid derivatives,"3alpha,6alpha,12alpha-Trihydroxy-7-oxo-5beta-cholan-24-oic Acid"
+FT14177PR,Steroids and steroid derivatives,TetraHCA
+FT09234PR,Carboxylic acids and derivatives,Miraxanthin-V
+FT11116PR,Prenol lipids,Neoquassin
+FT03662NR,Organooxygen compounds,"5,6-Dihydrouridine"
+FT09365PR,Carboxylic acids and derivatives,Phe-Ala-Ile
+FT02482PR,Imidazopyrimidines,7-Methylguanine
+FT08089NR,Steroids and steroid derivatives,cholacalcioic acid
+FT06472NR,Organooxygen compounds,Dihydromelilotoside
+FT11735PR,Carboxylic acids and derivatives,N-stearoyl valine
+FT05854PR,Organooxygen compounds,Lotaustralin
+FT07677NR,Carboxylic acids and derivatives,Pro-Thr-Val
+FT06203PR,Fatty Acyls,9Z-Heptadecenal
+FT01724PR,Pyridines and derivatives,6-Hydroxynicotinic acid
+FT14390PR,Unclassified,Cytochalasin H
+FT14070PR,Prenol lipids,"2,6,10,14-tetramethylpentadecanoylcarnitine"
+FT06349NR,Fatty Acyls,Dinor-PGE2
+FT08930PR,Fatty Acyls,"11,12-DiHETrE"
+FT07114NR,Fatty Acyls,17-phenyl-13E-heptadecenoic acid
+FT03934NR,Glycerolipids,Petroraspailyne B1
+FT02381NR,Harmala alkaloids,Harmol
+FT06152PR,Fatty Acyls,Corey PG-Lactone Diol
+FT09224PR,Fatty Acyls,N-propyl arachidonoyl amine
+FT07853NR,Prenol lipids,Annoglabasin E
+FT06292PR,Macrolides and analogues,Oxacycloheptadecan-2-one
+FT08145PR,Benzothiazines,"1,4-Benzothiazine-O-quinonimine"
+FT04567NR,Carboxylic acids and derivatives,Glutaminylglutamine
+FT07675PR,Carboxylic acids and derivatives,Ser-Ile-Ser
+FT11978PR,Fatty Acyls,"(6,12)-11-Hydroxyhexadecadienoylcarnitine"
+FT04942NR,Carboxylic acids and derivatives,N-Benzoyl-L-tyrosine
+FT04821PR,Glycerophospholipids,sn-glycero-3-Phosphoethanolamine
+FT03838NR,Carboxylic acids and derivatives,4-Hydroxy-3-methoxy-cinnamoylglycine
+FT06105PR,Diazanaphthalenes,Arborine
+FT05237PR,Carboxylic acids and derivatives,Lenticin
+FT00446NR,Hydroxy acids and derivatives,3-Hydroxybutyric acid
+FT12785PR,Prenol lipids,manoalide
+FT01297PR,Tropane alkaloids,Tropine
+FT04971PR,Pyrimidine nucleosides,3'-Amino-3'-deoxythimidine
+FT01549NR,Carboxylic acids and derivatives,3-Amino-2-piperidinone
+FT08885NR,Benzothiazines,"8-Chloro-10-[3-(dimethylamino)propyl]phenothiazine-2,3-diol"
+FT04875NR,Carboxylic acids and derivatives,Histidylglutamine
+FT02625NR,Organooxygen compounds,Coronafacic acid
+FT12199PR,Carboxylic acids and derivatives,N-Arachidonoyl Isoleucine
+FT13167PR,Steroids and steroid derivatives,"25-Hydroxyvitamin D3-26,23-lactone"
+FT04659NR,Carboxylic acids and derivatives,Glutaminylmethionine
+FT05877NR,Carboxylic acids and derivatives,Agaritinal
+FT07143PR,Benzopyrans,Fusarochromanone
+FT10706NR,Pyridines and derivatives,Methyl 2-[(3-carbamimidoylphenyl)methyl]-3-[4-(1-oxo-1lambda~5~-pyridin-4-yl)benzamido]butanoate
+FT01712NR,Phenylpropanoic acids,Desaminotyrosine
+FT06646NR,Carboxylic acids and derivatives,Gly-Pro-Ile
+FT03034NR,Anthracenes,ANTHRACENE
+FT02637PR,Lactones,delta-Decalactone
+FT09828PR,Fatty Acyls,"16,17-epoxy-DHA"
+FT11447PR,Carboxylic acids and derivatives,N-Stearoyl Asparagine
+FT01686NR,Benzene and substituted derivatives,Ethyl 2-aminobenzoate
+FT06283NR,Indoles and derivatives,N6-cis-p-Coumaroylserotonin
+FT03844NR,Pyrrolizines,"1-(2,3-Dihydro-1H-pyrrolizin-5-yl)-1,4-pentanedione"
+FT09327PR,Fatty Acyls,"12,17"
+FT07154PR,Fatty Acyls,9H-12(13)-EpODE
+FT14597NR,Flavonoids,"Farrerol 5,7-di-O-glucoside"
+FT07943PR,Fatty Acyls,1-O-(2R-hydroxy-4Z-hexadecenyl)-sn-glycerol
+FT09968PR,Aporphines,Isocorydine
+FT07366NR,Fatty Acyls,5-epi-5-iso-LGE2
+FT05606NR,Carboxylic acids and derivatives,(2S)-2-Amino-6-[(3-formylpiperidin-1-yl)amino]hexanoic acid
+FT05502PR,Organooxygen compounds,Talaromycin A
+FT03336NR,Prenol lipids,Dehydrocurdione
+FT07751NR,Flavonoids,Hesperetin 5-sulfate
+FT14233NR,Glycerolipids,DG(17:2/18:1/0:0)[iso2]
+FT04918PR,Carboxylic acids and derivatives,N-Dodecylsarcosinate
+FT04068NR,Fatty Acyls,2-hydroxy-pentadecanoic acid
+FT13532PR,Fatty Acyls,"(9Z,11E,13Z)-Octadeca-9,11,13-trienoylcarnitine"
+FT05276PR,Fatty Acyls,Malonylcarnitine
+FT07177NR,Prenol lipids,Siderol
+FT03820NR,Naphthofurans,Norambreinolide
+FT14610NR,Glycerophospholipids,POB-PC
+FT07314PR,Fatty Acyls,Octadecanedioic acid
+FT08463PR,Fatty Acyls,"4Z,7Z,9E,11E,13Z,16Z,19Z-docosaheptaenoic acid"
+FT01480NR,Pyridines and derivatives,"2,4-Dihydroxypyridine"
+FT06926PR,Fatty Acyls,"8,11,14-nonadecatriynoic acid"
+FT13224PR,Steroids and steroid derivatives,"3,7-Dioxo-5alpha-cholestan-26-oic acid"
+FT10015NR,Fatty Acyls,"(10Z,12E)-Pentadeca-10,12-dienoylcarnitine"
+FT04786NR,Vinylogous acids,Prehumulinic acid
+FT08278NR,Prenol lipids,Carnosic acid
+FT08827NR,Prenol lipids,Bixin
+FT03950PR,Carboxylic acids and derivatives,AminoDHQ
+FT07934NR,Fatty Acyls,15-methyl-15S-PGE1
+FT06292NR,Phenols,(S)-[8]-Gingerol
+FT03701NR,Carboxylic acids and derivatives,Aspartyl-Asparagine
+FT08060PR,Organonitrogen compounds,Dehydrophytosphingosine
+FT12817PR,Lactones,3'-Hydroxysimvastatin
+FT05177PR,Keto acids and derivatives,Asperitaconic acid C
+FT09898NR,Carboxylic acids and derivatives,N-Nervonoyl Glycine
+FT05191PR,Fatty Acyls,"(-)-12-hydroxy-9,10-dihydrojasmonic acid"
+FT05246PR,Fatty Acyls,"12-Oxo-2,3-dinor-10,15-phytodienoic acid"
+FT03327NR,Indenes and isoindenes,Coixinden B
+FT07226NR,Carboxylic acids and derivatives,"1,1,1-Tri(butyryloxy)propane"
+FT02383PR,Carboxylic acids and derivatives,S-Allylcysteine
+FT07754PR,Prenol lipids,Geranylgeraniol
+FT05941NR,Depsides and depsidones,Benorilate
+FT00659NR,Carboxylic acids and derivatives,Acetylglycine
+FT08902NR,Fatty Acyls,"(Z)-7-[(1R,3R)-3-Hydroxy-2-[(1E,3S,5Z)-3-hydroxyocta-1,5-dienyl]-5-oxocyclopentyl]hept-5-enoic acid"
+FT03661NR,Carboxylic acids and derivatives,Aspartylhydroxyproline
+FT08636PR,Carboxylic acids and derivatives,Ile-Ile-Ser
+FT02816PR,Keto acids and derivatives,"4,7-Dioxoheptanoic acid"
+FT08601PR,Steroids and steroid derivatives,"3beta,15beta,17alpha-Trihydroxy-pregnenone"
+FT08018NR,Prenol lipids,"13-Labdene-2,8,15-triol (ent-2a,8a,13E)-form)"
+FT08132PR,Fatty Acyls,Tetrahydrobungeanool
+FT08892NR,Benzopyrans,Gamma-Mangostin
+FT09129NR,Carboxylic acids and derivatives,Pro-Gln-Ile
+FT03988NR,Piperidines,2-(p-Acetamidophenyl)-2-ethylglutarimide
+FT02961PR,Benzene and substituted derivatives,Enol-phenylpyruvate
+FT01853NR,Carboxylic acids and derivatives,n-formimidoyl-glutamic acid
+FT01671NR,Hydroxy acids and derivatives,Digitoxic acid
+FT06586NR,Benzodioxanes,Isoamericanol A
+FT02956NR,Indoles and derivatives,Methyl dioxindole-3-acetate
+FT08816PR,Organonitrogen compounds,"2-amino-14,16-dimethyloctadecan-3-ol"
+FT04991PR,Organooxygen compounds,8Z-Pentadecen-2-one
+FT07054PR,Fatty Acyls,Hydroxy-Gamma-Sanshool
+FT08646PR,Fatty Acyls,N-ethyl arachidonoyl amine
+FT09483NR,Carboxylic acids and derivatives,N-(3-hydroxy-eicosanoyl)-homoserine lactone
+FT02162NR,Hydroxy acids and derivatives,10-Hydroxydecanoic acid
+FT06696PR,Carboxylic acids and derivatives,Ala-Ala-Val
+FT16017PR,Glycerophospholipids,PHODA-PE
+FT12277PR,Benzene and substituted derivatives,Sibrafiban
+FT05137PR,Carboxylic acids and derivatives,Leucyl-Isoleucine
+FT02045PR,Carboxylic acids and derivatives,Penicillamine
+FT13673NR,Steroids and steroid derivatives,Microdiscusol G
+FT06599NR,Prenol lipids,delta6-Dehydroferruginol
+FT07191NR,Carboxylic acids and derivatives,Ala-Glu-Glu
+FT01805NR,Hydroxy acids and derivatives,(+)-(4S)-(2E)-4-hydroxy-2-nonenoic acid
+FT11457NR,Fatty Acyls,Sorbitan stearate
+FT00810NR,Hydroxy acids and derivatives,"(S)-3,4-Dihydroxybutyric acid"
+FT07067NR,Unclassified,N-trans-Feruloyl-3-methoxytyramine
+FT09144PR,Fatty Acyls,Avocadyne 2-acetate
+FT04452PR,Macrolactams,"1,8-Diazacyclotetradecane-2,9-dione"
+FT08857PR,Fatty Acyls,MG(18:2/0:0)
+FT08175NR,Carboxylic acids and derivatives,Pro-Pro-Tyr
+FT05455NR,Phenols,Dimethyl fukiic acid
+FT06587NR,Benzodioxanes,Americanol
+FT05786NR,Carboxylic acids and derivatives,Nopalinic acid
+FT08736NR,Carboxylic acids and derivatives,Met-Glu-Ile
+FT07587NR,Carboxylic acids and derivatives,Gln-Val-Leu
+FT04411NR,Benzene and substituted derivatives,Diphenylhydantoic acid
+FT07787PR,Fatty Acyls,5-(2R-hydroxy-tridecyl)resorcinol
+FT01082PR,Carboxylic acids and derivatives,Guanidoacetic acid
+FT08349NR,Fatty Acyls,Enisoprost
+FT02160NR,Fatty Acyls,2-Hydroxydecanoic acid
+FT12916NR,Fatty Acyls,Exodeconolide D
+FT09244PR,Benzopyrans,7'-Carboxy-alpha-tocotrienol
+FT08086NR,Lactones,Zooxanthellactone
+FT08499PR,Fatty Acyls,undec-10-enoylcarnitine
+FT06469NR,Fatty Acyls,"9-hydroxy-7E-Nonene-3,5-diynoic acid"
+FT02405NR,Organic sulfuric acids and derivatives,4-Vinylphenol sulfate
+FT08345NR,Fatty Acyls,"PGF3alpha-1,15-lactone"
+FT03894PR,Carboxylic acids and derivatives,N-Heptanoylglycine
+FT05798NR,Prenol lipids,5-(1-hydroxypropan-2-yl)isolongifol-5-ene
+FT05187NR,Fatty Acyls,"4Z,7Z,9E,11E,13Z-hexadecapentaenoic acid"
+FT06756NR,Carboxylic acids and derivatives,"Valine, 3-mercapto-N-((5-oxo-2-(phenylmethyl)-4(5H)-oxazolylidene)methyl)-"
+FT04574PR,Fatty Acyls,9Z-traumatiin
+FT10929PR,Fatty Acyls,Pentadecanoylcarnitine
+FT11192NR,Carboxylic acids and derivatives,N-Docosahexaenoyl GABA
+FT06141NR,Flavonoids,"7,8,4'-Trihydroxyflavanone"
+FT04879NR,Carboxylic acids and derivatives,N-(dodecanoyl)-homoserine lactone
+FT04832PR,Tetrahydroisoquinolines,"6,7-Dimethoxy-1,2,3,4-tetrahydroisoquinoline-3-carboxylic acid"
+FT12605PR,Steroids and steroid derivatives,"1alpha,25-dihydroxy-23,23,24,24-tetradehydrovitamin D3"
+FT08976PR,Carboxylic acids and derivatives,Oleoyl glycine
+FT03076NR,Carboxylic acids and derivatives,Methionine sulfoximine
+FT06097NR,Fatty Acyls,2-methyl-octanoic acid
+FT06077PR,Prenol lipids,9-cis-Retinal
+FT10014PR,Fatty Acyls,"methyl 10,13-dihydroxy-9-oxo-11-octadecenoate"
+FT10059NR,Steroids and steroid derivatives,"(6S)-6,19-ethano-25-hydroxy-6,19-dihydrovitamin D3"
+FT01963NR,Fatty Acyls,5-Phenylvaleric acid
+FT10016PR,Prenol lipids,6-O-Acetylaustroinulin
+FT07119PR,Phenol ethers,Penbutolol
+FT04211NR,Prenol lipids,Enokipodin D
+FT09145PR,Fatty Acyls,Dodecanoylcarnitine
+FT14496PR,Fatty Acyls,Adrenoylcarnitine
+FT02771NR,Organooxygen compounds,Dihydroxyacetone phosphate
+FT05981NR,Carboxylic acids and derivatives,Cysteinyl-Phenylalanine
+FT04177NR,Carboxylic acids and derivatives,Gly-Ser-Val
+FT07358NR,Carboxylic acids and derivatives,Asn-Tyr-Gly
+FT09472PR,Prenol lipids,ent-16beta-Methoxy-19-kauranoic acid
+FT12212NR,Azoles,Etomidate
+FT06928PR,Prenol lipids,Cannabidivarin
+FT00482NR,Organooxygen compounds,"3,5-Dimethyl-1,2-cyclopentanedione"
+FT05332NR,Fatty Acyls,"9,10-Epoxy-18-hydroxy-octadecanoic acid"
+FT02804PR,Carboxylic acids and derivatives,Guanidinosuccinic acid
+FT03646NR,Organooxygen compounds,D-Erythrose 4-phosphate
+FT06979NR,Fatty Acyls,"11,13-dimethoxy-12-hydroxy-9-octadecenoic acid"
+FT02025NR,Benzene and substituted derivatives,(?¡À)-erythro-Anethole glycol
+FT08133PR,Carboxylic acids and derivatives,Linoleyl hydroxamic acid
+FT02154NR,Carboxylic acids and derivatives,Gly-Ile
+FT03050PR,Carboxylic acids and derivatives,3h-Phenylalanine
+FT07255PR,Phenanthrenes and derivatives,Solanolone
+FT08637NR,Fatty Acyls,Litchioside C
+FT08674PR,Prenol lipids,"7beta,12alpha-Dihydroxykaurenolide"
+FT01636PR,Phenols,Dopamine
+FT10132NR,Steroids and steroid derivatives,7alpha-hydroxy-3-oxocholest-4-en-27-oic acid
+FT02538PR,Fatty Acyls,Undecylenic acid
+FT08985NR,Fatty Acyls,Persediene
+FT01244NR,Carboxylic acids and derivatives,Isobutyrylglycine
+FT10852NR,Steroids and steroid derivatives,Strophanthidin
+FT07973NR,Organonitrogen compounds,Linoleoyl ethanolamide
+FT04849NR,Glycerolipids,MG(0:0/14:1)
+FT06567PR,Fatty Acyls,Panaxytriol
+FT05549NR,Carboxylic acids and derivatives,Gly-Gln-Val
+FT09946PR,Fatty Acyls,"7,8-DiHDPE"
+FT08417NR,Fatty Acyls,MG(0:0/5-iso PGF2VI/0:0)
+FT06780NR,Benzene and substituted derivatives,Sulotroban
+FT09881PR,Endocannabinoids,MG(20:4/0:0)
+FT12201PR,Steroids and steroid derivatives,"(17E)-1alpha,25-dihydroxy-17,20-didehydro-21-norvitamin D3"
+FT13788PR,Steroids and steroid derivatives,"3alpha,7alpha,24-Trihydroxy-5beta-cholestan-26-oic acid"
+FT13172PR,Steroids and steroid derivatives,4alpha-carboxy-zymosterol
+FT08435PR,Epoxides,"9R,10S-Epoxy-6Z-heneicosene"
+FT02311NR,Fatty Acyls,Citramalic acid
+FT04412PR,Carboxylic acids and derivatives,Glutaminylproline
+FT00527NR,Keto acids and derivatives,Gamma-delta-Dioxovaleric acid
+FT08096PR,Prenol lipids,"(4Z,9a)-9-(3-Methyl-2-butenoyloxy)-4,10(14)-oplopadien-3-one"
+FT04720PR,Tetralins,"1,10-Oxidocalamenene"
+FT07680PR,Prenol lipids,"all-trans-13,14-dihydroretinol"
+FT10709PR,Fatty Acyls,"9,13-dihydroxy-12-ethoxy-10-octadecenoic acid"
+FT12032NR,Steroids and steroid derivatives,"(25S)-5alpha-cholestan-3beta,4beta,6alpha,7alpha,8beta,15beta,16beta,26-octol"
+FT10095NR,Fatty Acyls,11-Hydroxyheptadecanoylcarnitine
+FT14298NR,Glycerophospholipids,PC(16:0/6:0)
+FT12307PR,Steroids and steroid derivatives,"3alpha,12alpha-Dihydroxy-15-oxo-5beta-chol-8(14)-en-24-oic Acid"
+FT04798PR,Organooxygen compounds,N-Acetyl-5-methoxykynuramine
+FT07333NR,Phenylpropanoic acids,Cetraxate
+FT02345PR,Carboxylic acids and derivatives,3-amino-octanoic acid
+FT14942PR,Steroids and steroid derivatives,Hippurin-1
+FT12161PR,Glycerolipids,MG(20:4-OH/0:0/0:0)
+FT10125PR,Carboxylic acids and derivatives,Trp-Tyr
+FT09221PR,Organonitrogen compounds,"Anandamide (20:5, n-3)"
+FT04603PR,Carboxylic acids and derivatives,Valylhydroxyproline
+FT06794NR,Carboxylic acids and derivatives,Phe-Ile-Gly
+FT01580PR,Carboxylic acids and derivatives,Thioproline
+FT04184NR,Carboxylic acids and derivatives,Serylarginine
+FT06432NR,Organooxygen compounds,N-(1-Deoxy-1-fructosyl)threonine
+FT04403NR,Flavonoids,Dihydrokaempferol
+FT07732NR,Carboxylic acids and derivatives,Thr-Leu-Met
+FT08416NR,Fatty Acyls,Hepoxilin A3
+FT02280PR,Keto acids and derivatives,(Z)-5-oxohex-2-enedioic acid
+FT11214NR,Prenol lipids,25-Acetylvulgaroside
+FT03455NR,Carboxylic acids and derivatives,L-Cystine
+FT02040NR,Pyridines and derivatives,Isoniazid
+FT03157NR,Carboxylic acids and derivatives,N-(3-oxo-hexanoyl)-homoserine thiolactone
+FT09858PR,Carboxylic acids and derivatives,Caffeoyl tyrosine
+FT08628PR,Carboxylic acids and derivatives,Ile-Glu-Ala
+FT02894PR,Fatty Acyls,7-dodecynoic acid
+FT06015NR,Fatty Acyls,Methyl 7Z-hexadecenoate
+FT08932PR,Prenol lipids,3-Epiaphidicolin
+FT04940NR,Carboxylic acids and derivatives,hydroxytyrosyl acetate
+FT11169NR,Steroids and steroid derivatives,"(3beta,5alpha,9alpha,22E,24R)-3,5,9-Trihydroxy-23-methylergosta-7,22-dien-6-one"
+FT03609NR,Carboxylic acids and derivatives,O-Phosphothreonine
+FT10716PR,Endocannabinoids,MG(0:0/20:3/0:0)
+FT02913NR,Carboxylic acids and derivatives,5-[(1-Iminoethyl)amino]-2-aminopentanoic acid
+FT04637NR,Benzene and substituted derivatives,Cyclandelate
+FT10926NR,Steroids and steroid derivatives,3-dehydrocholic acid
+FT10599NR,Steroids and steroid derivatives,"ergosta-4,7,22E-trien-3beta-ol"
+FT04595NR,Oxepanes,"1,6-anhydro-N-acetyl-beta-muramate"
+FT13316PR,Glycerophospholipids,LysoPC(P-14:0/0:0)
+FT09506NR,Isoflavonoids,Austalide K
+FT02607PR,Organooxygen compounds,"2,6,6-Trimethyl-2-cyclohexene-1,4-dione"
+FT13300PR,Organooxygen compounds,Mangiferdesmethylursanone
+FT15123PR,Fatty Acyls,"(7E,10E,13E,16E)-3-Hydroxydocosa-7,10,13,16-tetraenoylcarnitine"
+FT14967NR,Glycerophospholipids,PE(P-16:0/18:1)
+FT15376PR,Steroids and steroid derivatives,Cholylhistidine
+FT02259PR,Piperidines,methyl 1-methylpiperidine-3-carboxylate
+FT13246NR,Prenol lipids,Ganoweberianic acid F
+FT04696NR,Prenol lipids,Canin
+FT06148NR,Carboxylic acids and derivatives,Glu-Asn-Gly
+FT08977NR,Fatty Acyls,5-trans-PGE2
+FT14531PR,Glycerophospholipids,LysoPE(0:0/20:5)
+FT09006PR,Fatty Acyls,11R-HEPE
+FT02981NR,Furofurans,"D-Glucurono-6,3-lactone"
+FT01961NR,Tetralins,"1,2-Dihydroxy-3,4-epoxy-1,2,3,4-tetrahydronaphthalene"
+FT09761NR,Phenol ethers,ortho-hydroxyrosiglitazone
+FT12794PR,Fatty Acyls,(10Z)-Heptadec-10-enoylcarnitine
+FT09987NR,Fatty Acyls,FAHFA(3:0/2-O-23:0)
+FT04464PR,Carboxylic acids and derivatives,L-Glutamic acid 5-phosphate
+FT02215NR,Keto acids and derivatives,"3,7-dideoxy-D-threo-hepto-2,6-diuolosonic acid"
+FT12056PR,Prenol lipids,Malyngamide H
+FT08667PR,Carboxylic acids and derivatives,Val-Thr-Asn
+FT09169PR,Steroids and steroid derivatives,Cortisol
+FT09951PR,Naphthofurans,Himbacine
+FT07202PR,Prenol lipids,5-(1-hydroxybutan-2-yl)isolongifol-4-ene
+FT11922NR,Steroids and steroid derivatives,Cholylsarcosine
+FT07293NR,Coumarins and derivatives,7-Hydroxy-5-methoxy-4-methyl-3-(4-methylpiperazin-1-yl)-2H-chromen-2-one
+FT07413NR,Carboxylic acids and derivatives,N-Palmitoyl Proline
+FT01863NR,Organooxygen compounds,Octanal
+FT03351NR,Indoles and derivatives,Indole-3-methyl acetate
+FT04903PR,Carboxylic acids and derivatives,Lysylalanine
+FT03377PR,Pyrimidine nucleosides,"2',3'-Dideoxyuridine"
+FT06019NR,Prenol lipids,"6,10,14-Trimethyl-2-pentadecanone"
+FT14028NR,Glycerophospholipids,PC(O-18:0/O-1:0)
+FT04021PR,Phenols,5-Hydroxyconiferyl alcohol
+FT00440PR,Benzene and substituted derivatives,Benzyl alcohol
+FT10778NR,Carboxylic acids and derivatives,Trp-Met-Ile
+FT10140NR,Steroids and steroid derivatives,"24-methylene-cholest-5-en-3beta,17alpha,22S-triol"
+FT01232NR,Pyrrolines,(R)-Dihydromaleimide
+FT11179PR,Fatty Acyls,"15-hydroxy-tetracosa-6,9,12,16,18-pentaenoic acid"
+FT04161NR,Benzene and substituted derivatives,Dehydroxymethylepoxyquinomicin
+FT00949PR,Carboxylic acids and derivatives,L-cis-3-Amino-2-pyrrolidinecarboxylic acid
+FT12475NR,Carboxylic acids and derivatives,N-Arachidonoyl Phenylalanine
+FT07275PR,Epoxides,"9R,10S-Epoxy-3Z,6Z-nonadecadiene"
+FT09416PR,Fatty Acyls,9-F1-phytoprostane
+FT05949NR,Phenols,Moupinamide
+FT07165NR,Carboxylic acids and derivatives,Gly-Pro-Gln
+FT02414NR,Carboxylic acids and derivatives,Cyclo(gly-pro)
+FT07646PR,Organooxygen compounds,Fumagillol
+FT04060NR,Carboxylic acids and derivatives,Idrapril
+FT04027NR,Prenol lipids,Ethyl menthane carboxamide
+FT04514NR,Organic sulfuric acids and derivatives,6-Hydroxyindoxyl sulfate
+FT11682PR,Fatty Acyls,Ustusoic acid A
+FT06482NR,Benzothiazines,Methotrimeprazine
+FT07604PR,Nucleoside and nucleotide analogues,Abacavir
+FT11112NR,Prenol lipids,Epibetulinic acid
+FT03808PR,Benzene and substituted derivatives,ISOPROTURON
+FT11296NR,Indoles and derivatives,Pactimibe
+FT05319NR,Organooxygen compounds,Ovalicin
+FT05948NR,Cinnamic acids and derivatives,cinnamoyltyramine
+FT11340NR,Glycerophospholipids,1-(2-methoxy-6Z-heptadecenyl)-sn-glycero-3-phosphoethanolamine
+FT10451PR,Prenol lipids,(-)-Ceriferol 1
+FT04937NR,Benzimidazoles,Albendazole-2-aminosulfone
+FT07116NR,Fatty Acyls,6-methyl-octadecanoic acid
+FT09849PR,Fatty Acyls,N-propyl alpha-methyl arachidonoyl amine
+FT05194NR,Benzene and substituted derivatives,Dodecylbenzene
+FT02871NR,Carboxylic acids and derivatives,Cysteinyl-Proline
+FT08287PR,Furofurans,Ascorbigen
+FT01446NR,Benzene and substituted derivatives,4-Aminophenol
+FT08343NR,Fatty Acyls,Prostaglandin A2
+FT04689PR,Carboxylic acids and derivatives,6-hydroxyoct-5-enoylglycine
+FT10250PR,Carboxylic acids and derivatives,N-Palmitoyl Isoleucine
+FT10709NR,Steroids and steroid derivatives,Drimianin A
+FT07561PR,Prenol lipids,Oryzalide B
+FT02885PR,Organooxygen compounds,beta-D-galactosyl
+FT01199PR,Phenols,Tyrosol
+FT03437NR,Benzene and substituted derivatives,"1-(4-Carboxyphenyl)-3,3-dimethyltriazene"
+FT12978NR,Prenol lipids,Pomonic acid
+FT03654PR,Fatty Acyls,"Tetradecan-7,9-diynoic acid"
+FT05019PR,Carboxylic acids and derivatives,Prilocaine
+FT12881PR,Glycerolipids,DG(8:0/0:0/a-13:0)
+FT07219NR,Flavonoids,"5,7,4'-Trihydroxy-6-methoxyflavanone"
+FT01387NR,Prenol lipids,Carvacrol
+FT04246PR,Organooxygen compounds,D-Iditol
+FT08541PR,Fatty Acyls,Nonadecandioic acid
+FT09130NR,Macrolides and analogues,Macrolactin-A
+FT08705NR,Fatty Acyls,17-HDoHE
+FT02866PR,Phenols,N-Acetyldopamine
+FT11678NR,Prenol lipids,Cinnzeylanine
+FT03993NR,Prenol lipids,"3-methyl-6-(1-methyl-ethyl)-3,9-decadien-1-ol"
+FT08828PR,Organooxygen compounds,2-O-Acetylarbutin
+FT13234NR,Daphniphylline-type alkaloids,Daphniphylline
+FT11693NR,Steroids and steroid derivatives,"(22E,24E)-1alpha,25-dihydroxy-22,23,24,24a-tetradehydro-24a-homovitamin D3"
+FT04907PR,Phenylpropanoic acids,2-Hydroxyibuprofen
+FT15525PR,Glycerophospholipids,PC(0:0/20:4;O2)
+FT05572PR,Carboxylic acids and derivatives,L-Glutamic acid 5-benzyl ester
+FT03745PR,Prenol lipids,Ledene
+FT04711NR,Organooxygen compounds,8-Acetoxy-4-acoren-3-one
+FT07071PR,Organooxygen compounds,D-Sedoheptulose 7-phosphate
+FT13356NR,Prenol lipids,Ganoweberianic acid C
+FT03227PR,Carboxylic acids and derivatives,Lanthionine ketimine
+FT12189PR,Steroids and steroid derivatives,Ximaosteroid C
+FT04113NR,Organooxygen compounds,5-Methylthioribulose 1-phosphate
+FT13153NR,Steroids and steroid derivatives,Dolicholide
+FT10530NR,Carboxylic acids and derivatives,Leu-Thr-Tyr
+FT01345NR,Fatty Acyls,Mevalonic acid
+FT08663NR,Carboxylic acids and derivatives,Ile-Glu-Glu
+FT00963NR,Keto acids and derivatives,3-Methyl-2-oxovaleric acid
+FT04827NR,Carboxylic acids and derivatives,3-[[(2R)-2-Acetamido-2-carboxyethyl]disulfanyl]-2-aminopropanoic acid
+FT15524PR,Organooxygen compounds,TMC-1D
+FT01411NR,Benzene and substituted derivatives,"3,4-Dihydroxyphenylacetaldehyde"
+FT11807NR,Prenol lipids,Lucidenic acid H
+FT07524PR,Carboxylic acids and derivatives,Leu-Leu-Gly
+FT05320PR,Fatty Acyls,12-hydroxyjasmonic acid
+FT06287NR,Prenol lipids,Sugeonyl acetate
+FT07858PR,Fatty Acyls,Methyl 8-[3-(2-hydroxyoctyl)oxiran-2-yl]octanoate
+FT03608PR,Oxolanes,Linalool oxide (cis-pyran)
+FT11292PR,Carboxylic acids and derivatives,alpha-N-(3-hydroxy-13-methyl-tetradecanoyl)-ornithine
+FT03350NR,Pyrrolidines,Phensuximide
+FT11504PR,Steroids and steroid derivatives,cholest-5-en-23-yn-3beta-ol
+FT10006PR,Unclassified,"(7R*,8R*)-3-Methoxy-3',4,7,9,9'-pentahydroxy-8,4'-oxyneolignan"
+FT07676PR,Carboxylic acids and derivatives,N-jasmonoyl-isoleucine
+FT01935NR,Carboxylic acids and derivatives,Canavanine sulfate
+FT14204PR,Prenol lipids,alpha-Tocopherolquinone
+FT09322PR,Carboxylic acids and derivatives,Enalaprilat
+FT03606PR,Pyrrolines,"1-Hydroxy-2,2,5,5-tetramethyl-2,5-dihydro-1h-pyrrole-3-carboxamide"
+FT01980NR,Benzene and substituted derivatives,Aspirin
+FT05462NR,Carboxylic acids and derivatives,Pyrraline
+FT04454PR,Fatty Acyls,Panaxydol
+FT01061NR,Organooxygen compounds,5-Deoxy-D-ribose
+FT07179NR,Fatty Acyls,13-(3-methyl-5-pentylfuran-2-yl)-tridecanoic acid
+FT05566NR,Glycerolipids,1-Monomyristin
+FT09491PR,Epoxides,"6,7-Epoxy-3Z,9Z-tricosadiene"
+FT03719NR,Organooxygen compounds,Perseitol
+FT07259NR,Unclassified,Riddelline
+FT06516NR,Fatty Acyls,17-octadecenoic acid
+FT07612NR,Aporphines,Laurelliptine
+FT00983PR,Carboxylic acids and derivatives,3-Amino-4-methylpentanoic acid
+FT02660PR,Phenols,"3,4-Dihydroxyphenyl ethanol"
+FT14130PR,Steroids and steroid derivatives,"3alpha,7alpha,12alpha,26-Tetrahydroxy-5beta-cholest-23E-en-27-oic acid"
+FT11753NR,Steroids and steroid derivatives,3-Hydroxystigmaster-5-en-7-one
+FT04170PR,Fatty Acyls,4Z-Decenedioic acid
+FT08143NR,Prenol lipids,7-O-Acetylhorminone
+FT07844PR,Fatty Acyls,methyl 8-[2-(2-formyl-vinyl)-3-hydroxy-5-oxo-cyclopentyl]-octanoate
+FT15198PR,Glycerophospholipids,Butanoyl PAF
+FT01883NR,Isoquinolines and derivatives,Isoquinoline
+FT05082NR,Fatty Acyls,"3,16-dihydroxypalmitic acid"
+FT14955PR,Peptidomimetics,Tumonoic Acid H
+FT10674PR,Carboxylic acids and derivatives,Ile-Leu-Ile
+FT04288NR,Organic sulfuric acids and derivatives,3-Methylgallic acid 5-sulfate
+FT04258NR,Glycerolipids,"2,3-Dihydroxypropyl octanoate"
+FT07562PR,Steroids and steroid derivatives,11-Beta-hydroxyandrostenedione
+FT12708PR,Prenol lipids,onternabez
+FT10056NR,Steroids and steroid derivatives,"1alpha,25-dihydroxyvitamin D2"
+FT05192PR,Hydroxy acids and derivatives,Gallicynoic acid G
+FT01627NR,Organooxygen compounds,Mycarose
+FT05188NR,Fatty Acyls,4-[5]-ladderane-butanoic acid
+FT10637PR,Prenol lipids,1-Formylneogrifolin
+FT11208NR,Steroids and steroid derivatives,5beta-hydroxybufotalin
+FT10269NR,Glycerophospholipids,LysoPA(0:0/18:2)
+FT14195PR,Glycerophospholipids,LysoPG(16:0/0:0)
+FT04682PR,Kavalactones,Dihydrokavain
+FT13119PR,Fatty Acyls,11-Hydroxyoctadecanoylcarnitine
+FT04136PR,Prenol lipids,artemisic acid
+FT12222NR,Steroids and steroid derivatives,2-deoxy-20-hydroxy-5alpha-ecdysone 3-acetate
+FT07704PR,Tetrahydroisoquinolines,"5-(8-Amino-1,2,3,4-tetrahydro-2-methyl-4-isoquinolinyl)-2-methoxyphenol"
+FT09908PR,Carboxylic acids and derivatives,Leu-Val-Met
+FT04796NR,Organooxygen compounds,4-nonenal
+FT02516PR,Carboxylic acids and derivatives,"3-Aminopiperidine-2,6-dione"
+FT03873NR,Phenol esters,Cuelure
+FT09386NR,Organonitrogen compounds,5(6)-EpETrE-EA
+FT07414NR,Carboxylic acids and derivatives,N-Oleoyl Alanine
+FT12930PR,Flavin nucleotides,Flavin mononucleotide
+FT05077PR,Prenol lipids,"4,5-Dihydrovomifoliol"
+FT05071NR,Benzopyrans,5'-Carboxy-gamma-chromanol
+FT11618NR,Steroids and steroid derivatives,Withanolide A
+FT09384PR,Steroids and steroid derivatives,Ganaxolone
+FT11846PR,Fatty Acyls,"5Z,9Z,21Z-hexacosatrienoic acid"
+FT12809PR,Steroids and steroid derivatives,(22alpha)-hydroxy-campesterol
+FT01338NR,Azolines,D-Cycloserine
+FT04518NR,Organooxygen compounds,N-(1-Deoxy-1-fructosyl)glycine
+FT13286PR,Tetralins,Bedoradrine
+FT08154NR,Prenol lipids,retinylacetate
+FT14353PR,Fatty Acyls,(11Z)-eicoseneoylcarnitine
+FT06538PR,Organonitrogen compounds,Obscuraminol E
+FT03880NR,Fatty Acyls,"8-hydroxy-3E,5E,10E,12-tridecatetraen-2-one"
+FT07299NR,Fatty Acyls,"5,15-diHPETE"
+FT03893NR,Carboxylic acids and derivatives,"2-(1,2,3,4-Tetrahydroxybutyl)thiazolidine-4-carboxylic acid"
+FT01927NR,Carboxylic acids and derivatives,Ureidosuccinic acid
+FT07397NR,Carboxylic acids and derivatives,Ala-Tyr-Thr
+FT09039NR,Benzofurans,Phenolsulfonphthalein
+FT02176NR,Cinnamic acids and derivatives,alpha-Cyano-4-hydroxycinnamate
+FT13301NR,Prenol lipids,Ganoderic acid theta
+FT05843PR,Organooxygen compounds,5-Azacytidine
+FT00628NR,Fatty Acyls,Isocaproic acid
+FT08895NR,Carboxylic acids and derivatives,Ser-Tyr-Gln
+FT03517NR,Carboxylic acids and derivatives,Serylhistidine
+FT10084NR,Carboxylic acids and derivatives,N-Docosahexaenoyl Threonine
+FT09688PR,Diazines,Alinamin
+FT01648NR,Benzene and substituted derivatives,p-Acetaminobenzaldehyde
+FT08713PR,Lactones,Topsentolide A1
+FT11425NR,Carboxylic acids and derivatives,N-oleoyl histidine
+FT10370PR,Prenol lipids,9'-Carboxy-gamma-tocotrienol
+FT15166PR,Glycerophospholipids,PC(O-18:1/2:0)
+FT11368NR,Prenol lipids,Judeol
+FT02333NR,Non-metal oxoanionic compounds,Sulfate
+FT07221PR,Carboxylic acids and derivatives,N-(1-Deoxy-1-fructosyl)proline
+FT02659PR,Lactones,HOOA lactone
+FT02409PR,Fatty Acyls,"10-hydroxy-(2E,8E)-decadien-4-ynoic Acid"
+FT15931PR,Glycerophospholipids,PI(18:1/0:0)
+FT09609PR,Fatty Acyls,11-Epi-PGF2a
+FT10134PR,Carboxylic acids and derivatives,Ile-Thr-Leu
+FT09158PR,Organooxygen compounds,(E)-5-O-Cinnamoylquinic acid
+FT03419PR,Carboxylic acids and derivatives,N-Acetylisoleucine
+FT07170NR,Fatty Acyls,Heterofibrin A2
+FT08310PR,Quinolizines,Clavepictine B
+FT09622PR,Glycerolipids,DG(8:0/0:0/10:0)
+FT03801NR,Carboxylic acids and derivatives,gamma-Glutamylcysteine
+FT08057PR,Fatty Acyls,19-HOME(9Z)
+FT05650NR,Prenol lipids,Ximaosarcophytol B
+FT09879PR,Fatty Acyls,"9-deoxy-9-methylene-16,16-dimethyl -PGE2"
+FT00519NR,Azoles,5-Ethyl-4-methyloxazole
+FT08522NR,Fatty Acyls,"(3E,5E,8Z)-Deca-3,5,8-trienedioylcarnitine"
+FT08400PR,Carboxylic acids and derivatives,Iprofenin
+FT01516PR,Indoles and derivatives,"5,6-Dihydroxyindole"
+FT10393NR,Flavonoids,Morusinol
+FT10440PR,Steroids and steroid derivatives,"(1S)-1-hydroxy-23,24-didehydro-25,26,27-trinorcalciol"
+FT07917NR,Steroids and steroid derivatives,Dehydroepiandrosterone sulfate
+FT06095NR,Fatty Acyls,Pelargonic acid
+FT13254PR,Prenol lipids,"3S-squalene-2,3-epoxide"
+FT10880NR,Prenol lipids,"4,4'-Diapo-7,8,11,12-tetrahydrolycopene"
+FT12729PR,Glycerolipids,"2-(14,15-Epoxyeicosatrienoyl) Glycerol"
+FT03439PR,Carboxylic acids and derivatives,Glycylvaline
+FT10663NR,Prenol lipids,Strophasterol A
+FT11954NR,Prenol lipids,beta-Citraurol
+FT16197PR,Glycerophospholipids,PA(13:0/20:5-3OH)
+FT05417PR,Fatty Acyls,"(1R,2R)-3-oxo-2-pentyl-cyclopentanehexanoic acid"
+FT09682NR,Steroids and steroid derivatives,Bufotalidin
+FT08004NR,Fatty Acyls,"8,12-dihydroxy-11-chloro-5Z,9Z,14Z,17Z-eicosatetraenoic acid"
+FT08698NR,Pteridines and derivatives,riboflavin thiamine
+FT15464PR,Glycerophospholipids,LysoPE(22:4/0:0)
+FT07239NR,Prenol lipids,"ent-16b,19-Kauranediol 19-acetate"
+FT07901PR,Fatty Acyls,Palmitoyl Serinol
+FT11675NR,"Linear 1,3-diarylpropanoids","2',4',6',3,4-Pentahydroxy- 3',5-diprenyldihydrochalcone"
+FT14373NR,Carboxylic acids and derivatives,Metkephamid
+FT11152PR,Carboxylic acids and derivatives,Portulacaxanthin II
+FT09193PR,Benzene and substituted derivatives,bergenin
+FT15094PR,Glycerophospholipids,PC(20:3/0:0)
+FT02300NR,Fatty Acyls,6-(Pyridin-3-YL)hexanoic acid
+FT13593PR,Glycerophospholipids,PC(O-16:1/0:0)
+FT02260PR,Fatty Acyls,"(E,E)-2-methyl-6-oxohepta-2,4-dienol"
+FT09685NR,Steroids and steroid derivatives,"3-Oxochola-1,4-dien-24-oic Acid"
+FT08161PR,Steroids and steroid derivatives,2-Methoxyestriol
+FT09979PR,Sphingolipids,N-acetylsphingosine
+FT03254NR,Organic sulfuric acids and derivatives,Methyl-4-hydroxybenzoate sulfate
+FT08821NR,Isoflavonoids,Rotenone
+FT05182PR,Benzene and substituted derivatives,Bisphenol A
+FT01846PR,Carboxylic acids and derivatives,Isoputreanine
+FT10186PR,Steroids and steroid derivatives,Bufalin
+FT15811PR,Glycerophospholipids,PS-PC
+FT11933NR,Flavonoids,Hemiphloin
+FT09945PR,Fatty Acyls,6-((Z)-14-hydroxypentadec-8-en-1-yl)salicylic acid
+FT05420NR,Quinolines and derivatives,Cridanimod
+FT11469NR,Steroids and steroid derivatives,"1alpha,2alpha,25-trihydroxy-19-norvitamin D3"
+FT06227NR,Fatty Acyls,"(10Z,14E,16E)-10,14,16-Octadecatrien-12-ynoic acid"
+FT08765NR,Aryltetralin lignans,Isotaxiresinol
+FT07888NR,Carboxylic acids and derivatives,Thr-Thr-Phe
+FT12424PR,Carboxylic acids and derivatives,"14-carboxy-15,16,17,18,19,20-hexanor-leukotriene E3"
+FT11230NR,Prenol lipids,alpha-Amyrone
+FT03570PR,Prenol lipids,Valerenal
+FT10039NR,Coumarins and derivatives,3'-(1''-(3-Methylbutanoyl))-angeloyl vaginidiol
+FT11632NR,Fatty Acyls,"32:5(17Z,20Z,23Z,26Z,29Z)"
+FT11537PR,Fatty Acyls,"N-benzyl-9-oxo-12Z,15Z-octadecadienamide"
+FT11303NR,Fatty Acyls,Dokdolipid A
+FT07041PR,Carboxylic acids and derivatives,Ala-Phe-Ala
+FT07780PR,Fatty Acyls,9-hydroxy-16-oxo-hexadecanoic acid
+FT14461PR,Fatty Acyls,"14,15-LTD4"
+FT10636NR,Lactams,Cilligen
+FT02549PR,Benzoxazepines,"4,1-Benzoxazepine"
+FT13981PR,Steroids and steroid derivatives,2-Methoxyestrone 3-glucuronide
+FT04960PR,Indoles and derivatives,Indole carboxylic acid sulfate
+FT12101NR,Prenol lipids,26-Methyl nigranoate
+FT15008PR,Steroids and steroid derivatives,"(5alpha,6beta,14alpha,20R,22R)-5,6,14,20,27-Pentahydroxy-1-oxowith-24-enolide"
+FT08894PR,Prenol lipids,Isocupressic acid
+FT15832PR,Glycerophospholipids,PC(2:0/20:5-OH)
+FT10109NR,Carboxylic acids and derivatives,Gln-Phe-Thr
+FT12224PR,Steroids and steroid derivatives,Varanic acid
+FT02328PR,Naphthalenes,1-Amino-2-naphthol
+FT10710PR,Fatty Acyls,"1a,1b-dihomo-PGD2"
+FT03540NR,Carboxylic acids and derivatives,S-Phenyl-L-cysteine
+FT03980NR,Fatty Acyls,"2-Hydroxy-cis-hex-2,4-dienoate"
+FT10728NR,Glycerolipids,MG(21:0/0:0)
+FT09098PR,Fatty Acyls,"14R,15S-EpETrE"
+FT07227NR,Organooxygen compounds,"2-(3,7-Dimethyl-2,6-octadienyl)-4-hydroxy-6-methoxyacetophenone"
+FT08264NR,Flavonoids,Quercetagetin 3-methyl ether
+FT08263NR,Flavonoids,Gossypetin 3-methyl ether
+FT07899NR,Fatty Acyls,"(2E,4E)-Tetradecadienoylcarnitine"
+FT01416NR,Organooxygen compounds,"(3S),7-Dimethylocta-1,5-dien-3,7-diol"
+FT06211NR,Kavalactones,11-Methoxynoryangonin
+FT05374NR,Flavonoids,Himalaflavone A
+FT03297NR,Azoles,1-(2-Hydroxyethyl)-2-hydroxymethyl-5-nitroimidazole
+FT06949PR,Quinolines and derivatives,Zanthodioline
+FT09161PR,Organooxygen compounds,(-)-erythro-Anethole glycol 1-glucoside
+FT15404PR,Glycerophospholipids,PC(6:0/6:0)
+FT07276PR,Fatty Acyls,R-Palmitoyl-(2-methyl) Ethanolamide
+FT07174PR,Carboxylic acids and derivatives,Domoic acid
+FT14432PR,Steroids and steroid derivatives,4-Hydroxyandrostenedione glucuronide
+FT15573PR,Glycerophospholipids,PE(21:0/0:0)
+FT07951PR,Fatty Acyls,Arachidic acid
+FT10933NR,Steroids and steroid derivatives,Norselic acid A
+FT08208NR,Prenol lipids,Yucalexin P15
+FT09575NR,Fatty Acyls,6-MethylHexadecanoylcarnitine
+FT09238PR,Prenol lipids,Gibberellin A37
+FT03884NR,Macrolides and analogues,D6-Ambrettolide
+FT15599PR,Steroids and steroid derivatives,Cholylarginine
+FT08638NR,Prenol lipids,Sinulobatin A
+FT13603PR,Fatty Acyls,"(13Z,16Z)-docosadienoylcarnitine"
+FT06212NR,Flavonoids,Afzelechin
+FT12307NR,Tetrapyrroles and derivatives,Deuteroporphyrin IX
+FT02484PR,Imidazopyrimidines,2-Amino-6-methoxypurine
+FT02754NR,Triazines,Atrazine
+FT12329PR,Fatty Acyls,"27:3(5Z,9Z,20Z)"
+FT09905NR,Glycerophospholipids,LPA 17:0
+FT03991PR,Carboxylic acids and derivatives,2-Amino-2-deoxy-D-gluconic acid
+FT12760NR,Benzene and substituted derivatives,Helilupolone
+FT08978NR,Fatty Acyls,12-epi-12-iso-LGD2
+FT08274NR,Fatty Acyls,"PGE3 1,15-lactone"
+FT11482NR,Carboxylic acids and derivatives,10-EdAM
+FT09850NR,Flavonoids,Sanggenol L
+FT02016NR,Imidazopyrimidines,1-Methyluric acid
+FT14610PR,Steroids and steroid derivatives,N-Choloylglycine
+FT09164NR,Carboxylic acids and derivatives,N-Eicosapentaenoyl Threonine
+FT06591NR,Benzothiazines,Promethazine
+FT05918NR,Steroids and steroid derivatives,Ethisterone
+FT10204NR,Fatty Acyls,Butyl butyryllactate
+FT02668NR,Hydroxy acids and derivatives,Ieodomycin C
+FT08086PR,Cinnamic acids and derivatives,Isopulegone caffeate
+FT02760PR,Organooxygen compounds,Erythronic acid
+FT08909NR,Fatty Acyls,PGF2alpha isopropyl ester
+FT12360NR,Steroids and steroid derivatives,Deoxycholylthreonine
+FT13199NR,Steroids and steroid derivatives,24-epi-brassinolide
+FT02230NR,Organooxygen compounds,"5S,6S-epoxy-15R-hydroxy-ETE"
+FT11858PR,Organooxygen compounds,Mangalkanyl glucoside
+FT07979PR,Fatty Acyls,"13-Hydroxyoctadeca-2,4-dienoic acid"
+FT14053NR,Steroids and steroid derivatives,Cholyltyrosine
+FT06418NR,Fatty Acyls,19-oxo-eicosanoic acid
+FT03275NR,Carboxylic acids and derivatives,"N,N-dimethyl-beta-alanine"
+FT06637PR,Pyrimidine nucleosides,2'-O-Methyluridine
+FT05397PR,Ergoline and derivatives,(+)-Lysergic acid
+FT10409PR,Carboxylic acids and derivatives,Val-Ser-Phe
+FT00885NR,Organic sulfonic acids and derivatives,2-Hydroxyethanesulfonate
+FT05855NR,Fatty Acyls,9-F1-PhytoP
+FT14144PR,Steroids and steroid derivatives,"(22E,24R)-3beta,5alpha,9alpha-trihydroxyergosta-7,22-dien-6-one"
+FT07627NR,Carboxylic acids and derivatives,N-Eicosapentaenoyl Glycine
+FT05631NR,Organooxygen compounds,D-Arabitol
+FT03219PR,Piperidines,"1-Hydroxy-2,2,6,6-tetramethyl-4-piperidinone"
+FT02342NR,Oxocins,Curvulalide
+FT10327NR,Corynanthean-type alkaloids,Reserpic acid
+FT12280PR,Prenol lipids,Drophiobiolin B
+FT13846PR,Steroids and steroid derivatives,"5beta-Cholestane-2beta,3alpha,7alpha,12alpha,26-pentol"
+FT10792NR,Steroids and steroid derivatives,Doxercalciferol
+FT04439NR,Benzoxazines,"2-Hydroxy-4,7-dimethoxy-2H-1,4-benzoxazin-3(4H)-one"
+FT09341PR,Fatty Acyls,2-oxo-eicosanoic acid
+FT06258PR,Stilbenes,trans-4-methoxy-4'-nitrostilbene oxide
+FT02521NR,Organooxygen compounds,beta-D-Glucopyranosylurea
+FT05329PR,Prenol lipids,Parthenolide
+FT10657NR,Steroids and steroid derivatives,"(23S,25R)-25-hydroxyvitamin D3 26,23-peroxylactone"
+FT02141NR,Dihydrofurans,ethyl-4-hydroxymethyl- 3(2H)-Furanone
+FT03864NR,Flavonoids,5-Methoxyflavone
+FT09306NR,Carboxylic acids and derivatives,N-linolenoyl glutamic acid
+FT10147PR,Fatty Acyls,N-Benzyllinolenamide
+FT13523NR,Indoles and derivatives,Silodosin
+FT09051PR,Carboxylic acids and derivatives,Met-Val-Ala
+FT08223PR,Cinnamic acids and derivatives,4-coumaroylshikimate
+FT06042PR,Coumarins and derivatives,Suberenone
+FT10512NR,Prenol lipids,Camelledionol
+FT04131NR,Benzene and substituted derivatives,Diaveridine
+FT08260PR,Cinnamic acids and derivatives,N-trans-p-Coumaroyloctopamine
+FT02669PR,Prenol lipids,p-Menth-1-en-5-ol
+FT13073NR,Steroids and steroid derivatives,Deoxycholyllysine
+FT02967NR,Benzodioxoles,Ethylone
+FT02057PR,Imidazopyrimidines,3-Methyladenine
+FT02055NR,Phenols,"3,4,5-Trimethoxyphenol"
+FT05466PR,Fatty Acyls,"7Z,11Z,13E-Hexadecatrienal"
+FT03457NR,Organooxygen compounds,Pectin
+FT06885PR,Imidazodiazepines,Pentostatin
+FT01194NR,Naphthalenes,1-Naphthylamine
+FT03133NR,Organooxygen compounds,ascaroside C6
+FT02573NR,Coumarins and derivatives,"6,7-Dimethoxycoumarin"
+FT07253NR,Carboxylic acids and derivatives,S-(Formylmethyl)glutathione
+FT03506PR,Carboxylic acids and derivatives,N-Formyl-L-methionine
+FT09816PR,5'-deoxyribonucleosides,Capecitabine
+FT07300PR,Fatty Acyls,3-Hydroxytetradecanedioic acid
+FT09409PR,Fatty Acyls,Puna'auic acid
+FT04797NR,Fatty Acyls,12-octadecynoic acid
+FT10332NR,Glycerophospholipids,LysoPA(18:1/0:0)
+FT02254NR,Benzimidazoles,Carbendazim
+FT01234PR,Diazines,4-Amino-5-hydroxymethyl-2-methylpyrimidine
+FT04448NR,Benzopyrans,"5,6-Dihydroxy-3-phenyl-1-aminomethylisochroman"
+FT02195PR,Fatty Acyls,Acrylamide-sodium acrylate resin
+FT06882PR,Isoquinolines and derivatives,Coclaurine
+FT08277NR,Prenol lipids,Petasitin
+FT07647PR,Prenol lipids,Lactapiperanol C
+FT11409PR,Fatty Acyls,3-hydroxyhexadecanoyl carnitine
+FT01800NR,Indoles and derivatives,6-Hydroxy-1H-indole-3-acetamide
+FT04209NR,Cinnamaldehydes,3-[4-Hydroxy-3-(3-methyl-2-butenyl)phenyl]-2-propenal
+FT15920PR,Flavonoids,6-Hydroxyluteolin 7-xylosyl-(1->6)-glucoside
+FT04666PR,Organooxygen compounds,Curvulinic acid
+FT02562NR,Organonitrogen compounds,TILETAMINE
+FT12020PR,Steroids and steroid derivatives,Amasterol
+FT12886PR,Glycerolipids,MG(0:0/22:0)
+FT10204PR,Prenol lipids,C25:3 Highly branched isoprenoid D
+FT04389NR,Benzene and substituted derivatives,Riparin III
+FT08454PR,Benzodiazepines,Clozapine
+FT01195NR,Naphthalenes,2-Aminonaphthalene
+FT10409NR,Glycerophospholipids,LysoPA(18:0/0:0)
+FT05467NR,Organooxygen compounds,"Palitantin, (+)-"
+FT10079PR,Indoles and derivatives,Tryptophan 2-C-mannoside
+FT12945PR,Prenol lipids,Smilagenin
+FT12198NR,Phenols,Dihomo-gamma-linolenoyl dopamine
+FT14888PR,Prenol lipids,Neoandrographolide
+FT09051NR,Prenol lipids,4alpha-Phorbol
+FT03055PR,Epoxides,Panaquinquecol 5
+FT05926NR,Epoxides,"6,7-Epoxy-9Z-octadecene"
+FT04850PR,Prenol lipids,"(3R)-3-Methyl-5-(2,6,6-trimethylcyclohexen-1-yl)pent-1-yn-3-ol"
+FT02280NR,Organooxygen compounds,Sedoheptulose
+FT10589NR,Carboxylic acids and derivatives,N-Oleoyl Asparagine
+FT07563PR,Phenols,"3,17-dihydroxy-9,10-seco-androsta-1,3,5(10)-triene-9-one"
+FT01033NR,Organonitrogen compounds,2-(1-Aziridinyl)ethanol
+FT12389PR,Steroids and steroid derivatives,Telocinobufagin
+FT09098NR,Benzene and substituted derivatives,Nicanartine
+FT11394PR,Fatty Acyls,"16,16-dimethyl-PGD2"
+FT09589NR,Flavonoids,Epoxycandidone
+FT09829PR,Benzene and substituted derivatives,Anacardic acid
+FT06485NR,Prenol lipids,Isorosmanol
+FT16592PR,Steroids and steroid derivatives,Russelioside B
+FT08253PR,Fatty Acyls,(Z)-3-Hexenyl hexadecanoate
+FT08513NR,Fatty Acyls,Cerebronic acid
+FT04202PR,Fatty Acyls,Lycocasuarinen acid E
+FT08368PR,Fatty Acyls,Siegesbeckin G
+FT06075PR,Carboxylic acids and derivatives,Melanostatin
+FT02998PR,Carboxylic acids and derivatives,Acetylhomoserine
+FT08536PR,Fatty Acyls,"9-hydroperoxy-12,13-dihydroxy-10-octadecenoic acid"
+FT10200NR,Glycerophospholipids,LysoPA(18:3/0:0)
+FT03100NR,Benzene and substituted derivatives,"5-Phenyl-1,3-oxazinane-2,4-dione"
+FT04973PR,Pteridines and derivatives,Tetrahydrobiopterin
+FT01062PR,Benzene and substituted derivatives,4-Ethylbenzaldehyde
+FT15663PR,Glycerophospholipids,PC(16:0/3:1)
+FT06936PR,Fatty Acyls,8-[1]-ladderane octanoic acid
+FT08362PR,Carboxylic acids and derivatives,"L-Prolinamide, 5-oxo-L-prolyl-L-norvalyl-"
+FT11098NR,Steroids and steroid derivatives,6-Ethylchenodeoxycholic acid
+FT03196PR,Benzene and substituted derivatives,Amidinophenylpyruvic acid
+FT02889PR,Carboxylic acids and derivatives,L-alpha-Amino-1H-pyrrole-1-hexanoic acid
+FT11047NR,Furofurans,Erythroskyrin
+FT04831NR,Flavonoids,"5,7-Dimethoxyflavone"
+FT02724NR,Fatty Acyls,"(2S,3S,4S)-5,7,9,11-Tridecatetrayne-1,2,3,4-tetrol"
+FT01385NR,Organooxygen compounds,4-Hydroxy-3-methylacetophenone
+FT13114PR,Steroids and steroid derivatives,"(25S)-3-oxo-cholest-1,4-dien-26-oic acid"
+FT02254PR,Lactones,HOHA lactone
+FT04982NR,Prenol lipids,Valerenolic acid
+FT03528NR,Fatty Acyls,14-hydroxy-5Z-tetradecenoic acid
+FT05713NR,Pyrimidine nucleosides,4-Thiouridine
+FT02587PR,Organonitrogen compounds,Amantadine
+FT06004PR,Furans,Furylfuramide
+FT06683NR,Organooxygen compounds,3-Hydroxy-1-(4-hydroxyphenyl)-1-propanone
+FT08225PR,Prenol lipids,Anguidol
+FT08342PR,Fatty Acyls,"eicosa-5Z,8Z,14Z-trienoic acid"
+FT06357PR,Harmala alkaloids,"1-(9H-Pyrido[3,4-b]indol-1-yl)-1,4-butanediol"
+FT14154NR,Fatty Acyls,DG(PGD2/10:0/0:0)
+FT02730PR,Fatty Acyls,"2,3-Methyleneglutaric acid"
+FT08207NR,Steroids and steroid derivatives,Diflucortolone
+FT03181PR,Prenol lipids,"2,6-Dimethylocta-cis-2,7-diene-1,6-diol"
+FT06145NR,Carboxylic acids and derivatives,3-Hydroxymugineic acid
+FT07373PR,Epoxides,"2-methyl-7R,8S-Epoxy-17-octadecene"
+FT02410NR,Organooxygen compounds,L-Rhamnose
+FT11362PR,Prenol lipids,delta-tocotrienol
+FT05537PR,Carboxylic acids and derivatives,Arginylproline
+FT08077NR,Ibogan-type alkaloids,Catharanthine
+FT12270NR,Glycerophospholipids,PA(22:2/0:0)
+FT00920NR,Organooxygen compounds,"Heptan-2,5-dione"
+FT13008PR,Steroids and steroid derivatives,"5beta-cholest-25-ene-3alpha,7alpha-diol"
+FT05114PR,Stilbenes,Batatasin ¢ó
+FT02936NR,Carboxylic acids and derivatives,Tyrosylglycine
+FT01432NR,Azolidines,Hydantoin-5-propionic acid
+FT12003PR,Steroids and steroid derivatives,6-methylprednisolone
+FT04917PR,Prenol lipids,"3S,7,11-Trimethyl-6E,10-dodecadienal"
+FT02819PR,Benzene and substituted derivatives,1-Benzoylpyrrolidine
+FT02846PR,Benzene and substituted derivatives,"[2-(2-Methylphenyl)-1,3-dioxolan-4-yl]methanol"
+FT14108PR,Glycerophospholipids,PS(15:1/0:0)
+FT11688NR,Steroids and steroid derivatives,Ixocarpanolide
+FT07321PR,Fatty Acyls,Linoleamide
+FT15557PR,Glycerophospholipids,PC(O-18:0/1:0)
+FT14726PR,Steroids and steroid derivatives,"24-methylencycloartan-12-oxo-3beta,22R-diol"
+FT08356PR,Carboxylic acids and derivatives,Ile-Gly-Asn
+FT04299NR,Flavonoids,Thevetiaflavone
+FT14193PR,Prenol lipids,Cepagenin
+FT04842NR,Carboxylic acids and derivatives,Hydroxy-lacosamide
+FT11242NR,Carboxylic acids and derivatives,Ser-Tyr-Phe
+FT00736NR,Organooxygen compounds,2-Hydroxyacetophenone
+FT13781NR,Prenol lipids,Ganoderic acid H
+FT04449PR,Fatty Acyls,2-methyl-dodecanedioic acid
+FT03320NR,Carboxylic acids and derivatives,"but-1-ene-1,2,4-tricarboxylic acid"
+FT00528NR,Keto acids and derivatives,"2,5-dioxopentanoic acid"
+FT07486PR,Prenol lipids,Steviol
+FT03278NR,Prenol lipids,"1-Hydroxy-4(15),11(13)-eudesmadien-12,6-olide"
+FT12170NR,Fatty Acyls,"30:6(12Z,15Z,18Z,21Z,24Z,27Z)"
+FT07977NR,Fatty Acyls,N-Benzyllinoleamide
+FT08279PR,Epoxides,"9S,10R-Epoxy-1,3Z,6Z-heneicosatriene"
+FT06976NR,Fatty Acyls,3-methyl-5-pentyl-2-furanoctanoic acid
+FT01522NR,Indoles and derivatives,3-(2-Hydroperoxyethyl)-1H-indole
+FT09526NR,Steroids and steroid derivatives,"4a-Formyl-5a-cholesta-8,24-dien-3b-ol"
+FT05380NR,Carboxylic acids and derivatives,Methionyl-Isoleucine
+FT13218PR,Fatty Acyls,17-phenyl-trinor-PGF2alpha isopropyl ester
+FT13471PR,Steroids and steroid derivatives,"(22E,24R)-6alpha-methoxy-7alpha,15beta-dihydroxyergosta-4,8(14),22-triene-3-one"
+FT10214NR,Prenol lipids,Gitogenin
+FT00541NR,Carboxylic acids and derivatives,5-Aminolevulinic acid
+FT10426NR,Prenol lipids,Momordicinin
+FT11060NR,Glycerophospholipids,1-(2-methoxy-pentadecanyl)-sn-glycero-3-phosphoethanolamine
+FT13007PR,Prenol lipids,delta-Tocopherol
+FT03376NR,Fatty Acyls,methyl 4-[2-(2-formyl-vinyl)-3-hydroxy-5-oxo-cyclopentyl]-butanoate
+FT09450NR,Carboxylic acids and derivatives,Ser-Pro-Tyr
+FT15291PR,Steroids and steroid derivatives,"(25R)-3alpha,7alpha,12alpha-trihydroxy-5beta-cholestan-27-oyl taurine"
+FT08230PR,Ergoline and derivatives,Fumigaclavine A
+FT11866NR,Benzofurans,Colupdox a
+FT13857PR,Steroids and steroid derivatives,"3alpha,7alpha-Dihydroxy-5beta-cholest-23-en-26-oic acid"
+FT10141NR,Steroids and steroid derivatives,3-ketocholesterol
+FT02572NR,Phenols,"5-(3',4',5'-Trihydroxyphenyl)-gamma-valerolactone"
+FT10416NR,Steroids and steroid derivatives,alpha-Hyodeoxycholic acid
+FT10921NR,Fatty Acyls,"(R)-1-O-[b-D-Glucopyranosyl-(1->6)-b-D-glucopyranoside]-1,3-octanediol"
+FT08645NR,Prenol lipids,Annocherin A
+FT04030PR,Azoles,7-(1-Imidazolyl)heptanoic acid
+FT10170PR,Organooxygen compounds,"3,4,5-Trimethoxyphenyl glucoside"
+FT04660NR,Indoles and derivatives,7-Hydroxyheptaphylline
+FT15930PR,Glycerophospholipids,LysoPI(18:1/0:0)
+FT01382NR,Hydroxy acids and derivatives,(S)-3-Hydroxybutyric acid
+FT08119NR,Carboxylic acids and derivatives,N-Eicosapentaenoyl Alanine
+FT15934PR,Fatty Acyls,DG(10:0/0:0/TXB2)
+FT05112PR,Carboxylic acids and derivatives,Pretyrosine
+FT04123NR,Organooxygen compounds,3-Furanmethanol glucoside
+FT06514PR,Organooxygen compounds,Indoxyl-beta-D-glucoside
+FT04935PR,Hydroxy acids and derivatives,5-Hydroxysebacate
+FT09092PR,Benzopyrans,alpha-carboxymethylbutylhydroxychroman
+FT08118NR,Carboxylic acids and derivatives,N-arachidonoyl L-serine
+FT09903NR,Benzopyrans,Dulxanthone C
+FT08035PR,Indoles and derivatives,10-Acetoxydecarbamoylmitomycin C
+FT06436NR,Phenylpropanoic acids,3-{4-[2-Hydroxy-3-(propan-2-ylamino)propoxy]phenyl}propanoic acid
+FT12273NR,Prenol lipids,Micromeric acid
+FT01193PR,Carboxylic acids and derivatives,N-Formylglycine
+FT02877PR,Organic phosphoric acids and derivatives,Phosphoglycolic acid
+FT08085PR,Fatty Acyls,"2,3-dimethylidenepentanedioylcarnitine"
+FT04787PR,Carboxylic acids and derivatives,L-Agaridoxin
+FT03752NR,Benzene and substituted derivatives,Sulfapyridine
+FT06460PR,Benzopyrans,Galaxolide
+FT04422NR,Steroids and steroid derivatives,Dehydroepiandrosterone
+FT11229NR,Fatty Acyls,"28:5(10Z,13Z,16Z,19Z,22Z)"
+FT03234PR,Unclassified,3-Dehydroshikimate
+FT08187NR,Carboxylic acids and derivatives,N-Linoleoyl Leucine
+FT04333PR,Organooxygen compounds,Tetraglyme
+FT10689PR,Fatty Acyls,5-(11S-hydroxy-8Z-heptadecenyl) resorcinol
+FT06811PR,Fatty Acyls,"2E,13Z-octadecadien-1-ol"
+FT01988NR,Carboxylic acids and derivatives,Homocysteine
+FT08633PR,Carboxylic acids and derivatives,Ile-Phe-Ala
+FT01412NR,Triazolopyrimidines,8-Azaguanine
+FT09983PR,Benzene and substituted derivatives,6-((Z)-pentadec-10-en-1-yl)salicylic acid
+FT04701PR,Benzene and substituted derivatives,"2-Phenyl-1,3-propanediol monocarbamate"
+FT04950PR,Carboxylic acids and derivatives,Leu-leu-ome
+FT07348PR,Isoflavonoids,Ipriflavone
+FT02355PR,Pyridines and derivatives,6-Hydroxynicotinamide
+FT08610PR,Prenol lipids,Sclareol
+FT05002PR,Carboxylic acids and derivatives,Carboxy methyl lysine
+FT08825NR,Carboxylic acids and derivatives,Lys-Glu-His
+FT01675NR,Organooxygen compounds,4'-Nitroacetophenone
+FT14142PR,Steroids and steroid derivatives,Hydrocortisone caproate
+FT06787NR,Fatty Acyls,"(4Z,6Z)-3-Hydroxyocta-4,6-dienoylcarnitine"
+FT10770NR,Naphthalenes,2-Naphthol sulfate
+FT05399PR,Benzopyrans,delta-CEHC
+FT13726PR,Fatty Acyls,5-Methylheptadecanoylcarnitine
+FT13083PR,Fatty Acyls,"24:3(5Z,9Z,17Z)(15Me,19Me,23Me)"
+FT13982NR,Benzene and substituted derivatives,Batrachotoxinin A 20-alpha-benzoate
+FT00030NR,Organooxygen compounds,Glycerol
+FT01747NR,Organooxygen compounds,"trans-4,5-epoxy-2(E)-decenal"
+FT13797PR,Flavonoids,Swertisin
+FT11817PR,Epoxides,Semiplenamide F
+FT07638PR,Carboxylic acids and derivatives,Asn-Thr-Ala
+FT04119PR,Phenols,Zingerone
+FT13358NR,Prenol lipids,Ganoderic acid I
+FT11030NR,Prenol lipids,alpha-Tocopherol acetate
+FT10957PR,Benzene and substituted derivatives,Methyl-[10]-gingerol
+FT02188PR,Carboxylic acids and derivatives,Azaserine
+FT07136PR,Pyridines and derivatives,voxtalisib
+FT07257PR,Benzimidazole ribonucleosides and ribonucleotides,"N1-(alpha-D-ribosyl)-5,6-dimethyl-benzimidazole"
+FT02953PR,Carboxylic acids and derivatives,(2S)-2-(4-Chloroanilino)propanoic acid
+FT09852NR,Organooxygen compounds,Macrophorin C
+FT13082PR,Steroids and steroid derivatives,(22alpha)-hydroxy-cholestanol
+FT06521NR,Steroids and steroid derivatives,Rosterolone
+FT02994NR,Fatty Acyls,"(1R,2R,2'E)-2-[5'-(hydroxy)-2-penten-1-yl]-3-oxocyclopentane acetic acid methyl ester"
+FT04004PR,Carboxylic acids and derivatives,Valylisoleucine
+FT10886PR,Steroids and steroid derivatives,"1alpha,25-dihydroxy-24-norvitamin D3"
+FT15992PR,Glycerophospholipids,PS(12:0/13:0)
+FT06601NR,Steroids and steroid derivatives,"11b,21-Dihydroxy-5b-pregnane-3,20-dione"
+FT12912PR,Carboxylic acids and derivatives,N-Eicosapentaenoyl Isoleucine
+FT13347NR,Steroids and steroid derivatives,Desglucocheirotoxin
+FT04480NR,Hydroxy acids and derivatives,"4-Hydroxy-(3',4'-dihydroxyphenyl)-valeric acid"
+FT09792NR,Benzene and substituted derivatives,N-(5-Amino-2-hydroxybenzoyl)glycine
+FT00662NR,Organooxygen compounds,2-Aminoacetophenone
+FT08371PR,Fatty Acyls,"methyl 9,12-dihydroxy-13-oxo-10-octadecenoate"
+FT13650NR,Glycerophospholipids,PE(20:4/0:0)
+FT06397NR,Carboxylic acids and derivatives,S-Methyl-L-methioninate
+FT12400PR,Fatty Acyls,Ascorbyl stearate
+FT09799NR,Carboxylic acids and derivatives,Trp-Val-Ala
+FT02031PR,Prenol lipids,"4,8-Dimethyl-3,7-nonadien-2-one, cis-"
+FT05080NR,Fatty Acyls,"Methyl 8-hydroxy-11E,17-Octadecadien-9-ynoate"
+FT11626NR,Steroids and steroid derivatives,Secoisobryononic acid
+FT01589NR,Pyridines and derivatives,Fusaric acid
+FT14149PR,Steroids and steroid derivatives,Conicasterol D
+FT00162NR,Organooxygen compounds,Glyceric acid
+FT06987PR,Phenols,4-Hydroxy-5-(dihydroxyphenyl)-valeric acid-O-sulphate
+FT08418NR,Fatty Acyls,Prostaglandin A1
+FT06960NR,Benzene and substituted derivatives,Sulfametomidine
+FT11352PR,Imidazopyrimidines,Griseolic acid
+FT00244PR,Fatty Acyls,3-Butynoic acid
+FT01700NR,Benzene and substituted derivatives,3-Methoxygallic acid
+FT04210NR,Prenol lipids,Armexifolin
+FT13325NR,Ergoline and derivatives,Dhesn
+FT03489PR,Benzene and substituted derivatives,"3,4-Dimethoxyphenylethylamine"
+FT07550NR,Benzodioxoles,Dihydroretrofractamide B
+FT07971NR,Carboxylic acids and derivatives,N-palmitoyl methionine
+FT03923PR,Carboxylic acids and derivatives,Alanylvaline
+FT07274PR,Heteroaromatic compounds,2-Pentadecylfuran
+FT15216NR,Glycerophospholipids,PC(20:4/20:0)
+FT04964PR,Carboxylic acids and derivatives,Cysteinyl-Cysteine
+FT12019NR,Flavonoids,catechin 3-tetradecanoate
+FT00012NR,Organooxygen compounds,Dihydroxyacetone
+FT00847NR,Diazines,"1,3-Dimethyluracil"
+FT13136NR,Glycerophospholipids,PE(10:0/10:0)
+FT06008NR,Fatty Acyls,Leukotriene A4 methyl ester
+FT11590NR,Glycerophospholipids,1-(2-methoxy-13-methyl-pentadecanyl)-sn-glycero-3-phosphoethanolamine
+FT07159PR,Organooxygen compounds,Heptadecan-2-one
+FT12298NR,Glycerophospholipids,1-O-(2-methoxy-4Z-hexadecenyl)-sn-glycero-3-phosphocholine
+FT02040PR,Carboxylic acids and derivatives,Baikiain
+FT04514PR,Phenylpropanoic acids,Methyldopa
+FT02283PR,Naphthalenes,"1,4,5-Naphthalenetriol"
+FT12311NR,Benzofurans,5-Hydroxy-2-(1-hydroxy-5-methyl-4-hexenyl)benzofuran
+FT12741PR,Carboxylic acids and derivatives,N-Docosahexaenoyl Serine
+FT01344NR,Organooxygen compounds,Hydroxyacetone
+FT14290PR,Sphingolipids,Sphinganine-1-phosphocholine
+FT16057PR,Carboxylic acids and derivatives,Cefoperazone A
+FT11874PR,Steroids and steroid derivatives,zymosterol intermediate 1c
+FT07706NR,Prenol lipids,Heliangin
+FT14921PR,Glycerophospholipids,LysoPC(19:0/0:0)
+FT01968NR,Carboxylic acids and derivatives,S-Carboxymethyl-L-cysteine
+FT11359PR,Glycerolipids,MG(20:3-OH/0:0/0:0)
+FT05244PR,Prenol lipids,"12-methoxyherbertene-1,2-diol"
+FT05324NR,Steroids and steroid derivatives,Progesterone
+FT01431PR,Organic sulfuric acids and derivatives,Methyl sulfate
+FT02626PR,Pyridines and derivatives,Nornicotine
+FT10280PR,Steroids and steroid derivatives,3alpha-Hydroxy-7-oxo-5beta-chol-11-en-24-oic Acid
+FT14429PR,Glycerophospholipids,LysoPE(18:4/0:0)
+FT07839PR,Carboxylic acids and derivatives,Phenylalanyltyrosine
+FT07791NR,Purine nucleotides,Cyclic AMP
+FT06481PR,Benzene and substituted derivatives,"Methyl 3-(2,3-dihydroxy-3-methylbutyl)-4-hydroxybenzoate"
+FT05901NR,Homoisoflavonoids,7-Hydroxy-3-(3-hydroxy-4-methoxybenzyl)-5-methoxy-4-chromanone
+FT11821NR,Steroids and steroid derivatives,"20(17->12beta)-abeo-1alpha,25-dihydroxy-24-dihomo-21-norvitamin D3"
+FT11578NR,Glycerophospholipids,LysoPE(0:0/14:1)
+FT06150NR,Indanes,Camonagrel
+FT04363NR,Carboxylic acids and derivatives,Phenylalanyl-Glycine
+FT06389NR,Flavonoids,"6-C-Methylquercetin 3,3'-dimethyl ether"
+FT07156PR,Fatty Acyls,Heptadecanal
+FT07231NR,Prenol lipids,Neoabietic acid
+FT04811NR,Purine nucleosides,8-Oxoguanosine
+FT02564PR,Pyridines and derivatives,6-Methylnicotinamide
+FT08487NR,Benzene and substituted derivatives,"3'-Carbamoyl-[1,1'-biphenyl]-3-yl cyclohexylcarbamate"
+FT01103NR,Phenols,Vanillyl alcohol
+FT08327PR,Phenols,Capsiate
+FT11168NR,Steroids and steroid derivatives,"3beta-hydroxyergosta-7,22-diene-6-one"
+FT09509NR,Fatty Acyls,Arbaprostil
+FT11965NR,Glycerolipids,TG(10:0/8:0/8:0)
+FT15552PR,Steroids and steroid derivatives,Cortolone-3-glucuronide
+FT06262PR,Benzopyrans,"(4Ar,10bR)-rel-4-Propyl-2,3,4,4a,5,10b-hexahydrochromeno[4,3-b][1,4]oxazin-9-ol"
+FT09612NR,Steroids and steroid derivatives,"5beta-Cholane-3alpha,7alpha,12alpha-triol"
+FT08712PR,Prenol lipids,Phytocassane D
+FT11082PR,Carboxylic acids and derivatives,N-oleoyl GABA
+FT06687NR,Prenol lipids,Methyl dihydrophaseate
+FT14466PR,Prenol lipids,"(3beta,17alpha,23S)-17,23-Epoxy-3,29-dihydroxy-27-norlanost-8-en-24-one"
+FT14244NR,Glycerolipids,DG(20:4+=O/i-13:0/0:0)
+FT05015NR,Carboxylic acids and derivatives,Asp-Pro-Gly
+FT00413NR,Organonitrogen compounds,Tromethamine
+FT01588NR,Benzodioxoles,"3,4-Methylenedioxyamphetamine"
+FT14314PR,Prenol lipids,Hederagenin
+FT11536PR,Steroids and steroid derivatives,"1alpha,25-dihydroxy-23-oxavitamin D3"
+FT02230PR,Tropones,"(R)-11,12,13-Trinor-1(5),6,9-guaiatrien-8-one"
+FT03075NR,Stilbenes,Oxyresveratrol
+FT08644NR,Steroids and steroid derivatives,"3alpha,12beta-Dihydroxy-11-oxo-5beta-cholan-24-oic Acid"
+FT15023PR,Prenol lipids,R1-Barrigenol
+FT07818NR,Carboxylic acids and derivatives,N-oleoyl threonine
+FT04838NR,Fatty Acyls,3-carboxy-4-methyl-5-(4-oxopentyl)-2-furanpropanoic acid
+FT09017PR,Fatty Acyls,"9,12-dimethoxy-13-hydroxy-10-octadecenoic acid"
+FT07158PR,Fatty Acyls,8Z-Heptadecen-2S-ol
+FT12751NR,Isoflavonoids,Genistein 4'-glucuronide-7-sulfate
+FT10142PR,Organonitrogen compounds,"N-(2-Hydroxyethyl)icosa-2,4,6,8,10-pentaenamide"
+FT03663NR,Diazines,Pyrazinecarboxamide
+FT08866NR,Fatty Acyls,"(10Z,12E)-Hexadecadienoylcarnitine"
+FT06098PR,Fatty Acyls,dimethylidenebutanedioylcarnitine
+FT03901NR,Fatty Acyls,O-propanoyl-carnitine
+FT09276PR,Purine nucleosides,Kinetin riboside
+FT14619PR,Glycerophospholipids,PC(18:1/0:0)[rac]
+FT01484NR,Carboxylic acids and derivatives,N-Carboxyethyl-g-aminobutyric acid
+FT08731PR,Benzene and substituted derivatives,Enilconazole
+FT02746NR,Carboxylic acids and derivatives,Fudosteine
+FT10593NR,Prenol lipids,all-trans-Carophyll yellow
+FT04551NR,Benzene and substituted derivatives,2-hydroxyflutamide
+FT12367PR,Fatty Acyls,(5E)-8-Hydroxytetradec-5-enoylcarnitine
+FT09370PR,Carboxylic acids and derivatives,N-Myristoyl Valine
+FT02442PR,Carboxylic acids and derivatives,2-Amino-4-ethoxy-3-hydroxybutanoic acid
+FT06288PR,Tetrahydrofurans,5-Acetoxydihydrotheaespirane
+FT06771NR,Fatty Acyls,13-HpOME(14E)
+FT11893PR,Steroids and steroid derivatives,Paramethasone
+FT04648NR,Benzene and substituted derivatives,N(1)-Acetylsulfamethoxazole
+FT02435PR,Unclassified,Arecaidine
+FT10323NR,Fatty Acyls,Corchoionoside B
+FT09983NR,Steroids and steroid derivatives,"4alpha-formyl-ergosta-7,24(241)-dien-3beta-ol"
+FT13373PR,Carboxylic acids and derivatives,N-Eicosapentaenoyl Glutamic acid
+FT10588NR,Steroids and steroid derivatives,"(22E,24R)-3beta,5alpha-dihydroxy-14beta,15beta-epoxyergosta-7,22-diene-6-one"
+FT09405PR,Carboxylic acids and derivatives,Cabbage identification factor 2
+FT11281PR,Fatty Acyls,Prostaglandin F1a
+FT10436PR,Steroids and steroid derivatives,"5beta-Chola-8(14),11-dien-24-oic Acid"
+FT12878PR,Fatty Acyls,FAHFA(2:0/2-O-22:0)
+FT07314NR,Fatty Acyls,Octadecyl fumarate
+FT10597NR,Steroids and steroid derivatives,Klyflaccisteroid L
+FT06335NR,Carboxylic acids and derivatives,5-hydroxyindole thiazolidine carboxylate
+FT06397PR,Carboxylic acids and derivatives,Phenylbutyrylglutamine
+FT09798NR,Diazines,"3',5'-Dideoxythymidine"
+FT06017PR,Prenol lipids,sporogen-AO-1
+FT02909PR,Fatty Acyls,3-hydroxymethyl-glutaric acid
+FT09552NR,Prenol lipids,Acetyl-S-farnesyl-L-cysteine
+FT01880PR,Organooxygen compounds,xi-4-Hydroxy-4-methyl-2-cyclohexen-1-one
+FT11769PR,Steroids and steroid derivatives,"3alpha,7alpha,12alpha,16alpha-tetrahydroxy-5beta-cholan-24-oic Acid"
+FT06537NR,Carboxylic acids and derivatives,Asp-Asp-Val
+FT07852NR,Phenols,"2-Methyl-5-(8,11-pentadecadienyl)-1,3-benzenediol"
+FT08666PR,Fatty Acyls,15-hydroxydeltoidin A
+FT10105NR,Organooxygen compounds,"4-Hydroxy-5-(3',4',5'-trihydroxyphenyl)-valeric acid-O-methyl-O-glucuronide"
+FT05916NR,Prenol lipids,"10,11-epoxy-3,7,11-trimethyl-2E,6E-tridecadienoic acid"
+FT10484PR,Endocannabinoids,MG(0:0/20:5-OH/0:0)
+FT07040NR,Fatty Acyls,O-Arachidonoyl Glycidol
+FT06848PR,Steroids and steroid derivatives,2-Hydroxyestradiol-3-methyl ether
+FT08891NR,Benzene and substituted derivatives,"1-(2H-1,3-Benzodioxol-5-yl)-2-[2,6-dimethoxy-4-(prop-2-en-1-yl)phenoxy]propyl acetate"
+FT06752PR,Prenol lipids,Pisumic acid
+FT13884NR,Prenol lipids,"1,10-Epoxy-3,8-dihydroxy-4,11(13)-germacradien-12,6-olide"
+FT13271NR,Steroids and steroid derivatives,Glycochenodeoxycholate-3-sulfate
+FT08561NR,Carboxylic acids and derivatives,Tetraazacyclododecanetetraacetic acid
+FT09093NR,Fatty Acyls,"(4Z,10Z,12E)-Tetradeca-4,10,12-trienoylcarnitine"
+FT07812PR,Fatty Acyls,Undec-3-enoylcarnitine
+FT04058NR,Carboxylic acids and derivatives,Triethyl citrate
+FT06918PR,Organooxygen compounds,Isosalicin
+FT07927PR,Organooxygen compounds,"(2S,3S,4S,5R)-3,4,5-Trihydroxy-6-sulfooxyoxane-2-carboxylic acid"
+FT08467PR,Glycerolipids,1-O-(2-methoxy-4-hexadecenyl)-sn-glycerol
+FT04756PR,Benzene and substituted derivatives,2-(2-Chlorobenzamido)acetic acid
+FT03414PR,Carboxylic acids and derivatives,Acivicin
+FT04667NR,Fatty Acyls,"Nona-2,4,6-trienoylcarnitine"
+FT08827PR,"Linear 1,3-diarylpropanoids",Dihydronaringenin-O-sulphate
+FT13563PR,Steroids and steroid derivatives,Lobophysterol C
+FT00780PR,Organooxygen compounds,3-Mercaptolactic acid
+FT12427PR,Organooxygen compounds,"N,O-Didesmethylvenlafaxine glucuronide"
+FT00809NR,Pyridines and derivatives,4-Hydroxynicotinamide
