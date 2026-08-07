@@ -1,23 +1,20 @@
-#Figure 1a
+#Figure 2a
 library(ggplot2)
-
-windowsFonts(
-  Arial = windowsFont("TT Arial")
-)
+setwd("D:/PMI_Project/Figure 2/Figure 2a")
 
 data_file <- "metabolite_matrix.csv"
 metadata_file <- "Group.csv"
-output_file <- "Figure1a_PCA.tiff"
+output_file <- "Figure2a_PCA.tiff"
 
 data <- read.csv(
-  file.choose(),
+  "metabolite_matrix.csv",
   row.names = 1,
   check.names = FALSE,
   stringsAsFactors = FALSE
 )
 
 metadata <- read.csv(
-  file.choose(),
+  "Group.csv",
   row.names = 1,
   check.names = FALSE,
   stringsAsFactors = FALSE
@@ -95,8 +92,6 @@ p <- ggplot(axes, aes(x = Axis.1, y = Axis.2, colour = Day2, shape = Bodysite)) 
     legend.position = "right",
     panel.grid = element_blank()
   )
-
-print(p)
 
 ggsave(
   filename = output_file,

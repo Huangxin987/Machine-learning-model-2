@@ -1,36 +1,12 @@
-############################################################
-## Figure 4: Multi-Omics Joint Analysis
-## Analyses included:
-##   - Procrustes Analysis (metabolome vs microbiome)
-##   - Mantel & Partial Mantel Tests
-##   - Metabolite-Microbiome Bipartite Correlation Network
-## Inputs:
-##   - Metabolite feature table (samples x metabolites)
-##   - Species-level relative abundance table (samples x species)
-##   - Previous metabolomics output directory
-##     (containing assoc_spearman_gam_full_*.csv files)
-## Output: timestamped directory on Desktop
-############################################################
+args <- commandArgs(trailingOnly = TRUE)
 
-# =========================================================
-# Section 0: Output directory setup
-# =========================================================
-desktop_path <- ifelse(
-  Sys.info()["sysname"] == "Windows",
-  file.path(Sys.getenv("USERPROFILE"), "Desktop"),
-  file.path(Sys.getenv("HOME"), "Desktop")
-)
-output_dir <- file.path(
-  desktop_path,
-  paste0("MultiOmics_Joint_", format(Sys.time(), "%Y%m%d_%H%M%S"))
-)
+output_dir <- if (length(args) >= 1) args[1] else getwd()
+
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
-# =========================================================
-# Section 1: Load required packages
-# ragg is used for all figure output to support Arial font
-# via the system font engine (bypasses PostScript database)
-# =========================================================
+message("Output directory: ", normalizePath(output_dir))
+
+
 suppressPackageStartupMessages({
   library(dplyr)
   library(tidyr)
@@ -46,109 +22,75 @@ suppressPackageStartupMessages({
 margin       <- ggplot2::margin
 element_text <- ggplot2::element_text
 
-# =========================================================
-# Section 2: Analysis parameters
-# =========================================================
-PMI_MIN_JOINT    <- 2      # Minimum PMI for joint analysis
-TOP_N_METAB      <- 30     # Top metabolites per tissue for joint analysis
-SPEARMAN_RHO     <- 0.40   # |rho| threshold for network edges
-SPEARMAN_FDR     <- 0.05   # FDR threshold for network edges
-MANTEL_PERM      <- 999    # Permutations for Mantel tests
-CLR_PSEUDO       <- 1e-6   # Pseudocount for CLR transformation
-SPECIES_RHO_CUT  <- 0.35   # |rho| threshold for species-PMI association
-SPECIES_FDR_CUT  <- 0.05   # FDR threshold for species-PMI association
-SPECIES_PREV_CUT <- 0.20   # Prevalence filter: species present in >= 20% samples
 
-# =========================================================
-# Section 3: Load input data
-# =========================================================
+PMI_MIN_JOINT    <- 2     
+TOP_N_METAB      <- 30     
+SPEARMAN_RHO     <- 0.40  
+SPEARMAN_FDR     <- 0.05   
+MANTEL_PERM      <- 999    
+CLR_PSEUDO       <- 1e-6   
+SPECIES_RHO_CUT  <- 0.35  
+SPECIES_FDR_CUT  <- 0.05   
+SPECIES_PREV_CUT <- 0.20   
+
 # Locate previous metabolomics output directory
 prev_output_dir <- dirname(file.choose())
 
-# Select: (1) metabolite feature table CSV
-#   Required columns: SampleID, Organ, PMI, AnimalID + metabolite columns
-metab_raw <- read.csv(file.choose(), check.names = FALSE)
 
-# Select: (2) species-level relative abundance table CSV
-#   Required columns: SampleID, Organ, PMI, AnimalID + species columns
-micro_raw <- read.csv(file.choose(), check.names = FALSE)
-
-# Select: (3) metabolite ID-to-name mapping table CSV
-#   Column 1: metabolite_id | Column 2: metabolite_name
-metab_name_map <- read.csv(file.choose(), check.names = FALSE) %>%
+metab_raw <- read.csv("metabolite_matrix.csv", check.names = FALSE)
+micro_raw <- read.csv("species-level relative abundance.csv", check.names = FALSE)
+metab_name_map <- read.csv("metabolite mapping.csv", check.names = FALSE) %>%
   rename(metabolite_id   = 1,
          metabolite_name = 2) %>%
   distinct(metabolite_id, .keep_all = TRUE)
 
-# Standardize first column as SampleID
+
 metab_raw <- metab_raw %>% rename(SampleID = 1)
 micro_raw <- micro_raw %>% rename(SampleID = 1)
-
-# Validate required columns
-stopifnot(all(c("SampleID", "Organ", "PMI", "AnimalID") %in% colnames(metab_raw)))
-stopifnot(all(c("SampleID", "Organ", "PMI", "AnimalID") %in% colnames(micro_raw)))
-
-# Separate metadata from feature matrices
 meta_cols  <- c("SampleID", "Organ", "PMI", "AnimalID")
 meta_metab <- metab_raw %>% select(all_of(meta_cols))
 X_metab    <- metab_raw %>% select(-all_of(meta_cols))
 meta_micro <- micro_raw %>% select(all_of(meta_cols))
 X_micro    <- micro_raw %>% select(-all_of(meta_cols))
 
-cat("Metabolomics: n =", nrow(meta_metab), "samples |",
-    ncol(X_metab), "metabolites\n")
-cat("Microbiomics: n =", nrow(meta_micro), "samples |",
-    ncol(X_micro), "species\n")
-cat("Name mapping: n =", nrow(metab_name_map), "entries\n")
-
-# =========================================================
-# Section 4: Function definitions
-# =========================================================
-
-# ----------------------------------------------------------
-# 4.1 CLR transformation (row-wise, with pseudocount)
-# ----------------------------------------------------------
+#  LR transformation
 clr_transform <- function(X, pseudo = CLR_PSEUDO) {
   X_ps  <- as.matrix(X) + pseudo
   log_X <- log(X_ps)
   sweep(log_X, 1, rowMeans(log_X), "-")
 }
 
-# ----------------------------------------------------------
-# 4.2 Load top metabolites from previous association results
-# ----------------------------------------------------------
+#  Load top metabolites from previous association results
+
 get_top_metabolites <- function(assoc_file, top_n = TOP_N_METAB) {
-  if (!file.exists(assoc_file)) {
-    warning("Association file not found: ", assoc_file)
-    return(character(0))
-  }
-  assoc <- read.csv(assoc_file, check.names = FALSE)
   
-  needed <- c("metabolite", "rho", "fdr_spearman", "sig_any", "fdr_min")
-  if (!all(needed %in% colnames(assoc))) {
-    warning("Missing required columns in association file.")
-    return(character(0))
-  }
-  
-  sig <- assoc %>% filter(sig_any == TRUE)
+  assoc <- read.csv(assoc_file,check.names = FALSE)
+    sig <- assoc %>%
+    filter(sig_any == TRUE)
   
   if ("r2_gam" %in% colnames(sig)) {
     sig <- sig %>%
-      mutate(r2_gam = ifelse(is.na(r2_gam), 0, r2_gam)) %>%
-      arrange(fdr_min, desc(abs(rho) + r2_gam))
+      mutate(
+        r2_gam = ifelse(is.na(r2_gam), 0, r2_gam)
+      ) %>%
+      arrange(
+        fdr_min,
+        desc(abs(rho) + r2_gam)
+      )
   } else {
-    sig <- sig %>% arrange(fdr_min, desc(abs(rho)))
+    sig <- sig %>%
+      arrange(
+        fdr_min,
+        desc(abs(rho))
+      )
   }
-  
-  top_mets <- sig %>% slice_head(n = top_n) %>%
-    pull(metabolite) %>% unique()
-  cat("  Top metabolites n =", length(top_mets), "\n")
-  top_mets
+  sig %>%
+    slice_head(n = top_n) %>%
+    pull(metabolite) %>%
+    unique()
 }
 
-# ----------------------------------------------------------
-# 4.3 Species-PMI Spearman association (per tissue)
-# ----------------------------------------------------------
+# Species-PMI Spearman association 
 get_pmi_related_species <- function(meta_t, X_clr_t,
                                     rho_cut = SPECIES_RHO_CUT,
                                     fdr_cut = SPECIES_FDR_CUT) {
@@ -167,28 +109,13 @@ get_pmi_related_species <- function(meta_t, X_clr_t,
   res
 }
 
-# ----------------------------------------------------------
-# 4.4 Procrustes + Mantel + Partial Mantel (per tissue)
-#
-# Partial Mantel interpretation:
-#   pmantel_micro_indep: microbiome independent contribution
-#     to PMI variation, controlling for metabolome distance
-#   pmantel_metab_indep: metabolome independent contribution
-#     to PMI variation, controlling for microbiome distance
-# ----------------------------------------------------------
+# Procrustes + Mantel + Partial Mantel 
 run_procrustes_mantel <- function(meta_t, X_met_t, X_mic_t,
                                   top_mets, top_species,
                                   perm        = MANTEL_PERM,
                                   tissue_name = "") {
   use_mets    <- intersect(top_mets,    colnames(X_met_t))
   use_species <- intersect(top_species, colnames(X_mic_t))
-  
-  if (length(use_mets) < 3 || length(use_species) < 3 ||
-      nrow(meta_t) < 6) {
-    cat("  [skip]", tissue_name, "- insufficient samples or features\n")
-    return(NULL)
-  }
-  
   dist_met <- dist(scale(X_met_t[, use_mets,    drop = FALSE]))
   dist_mic <- dist(      X_mic_t[, use_species,  drop = FALSE])
   dist_pmi <- dist(meta_t$PMI)
@@ -224,9 +151,8 @@ run_procrustes_mantel <- function(meta_t, X_met_t, X_mic_t,
   )
 }
 
-# ----------------------------------------------------------
-# 4.5 Plot Procrustes overlay (per tissue panel)
-# ----------------------------------------------------------
+
+#  Plot Procrustes overlay 
 plot_procrustes <- function(proc_res, tissue_name) {
   if (is.null(proc_res))
     return(ggplot() + theme_void(base_family = "Arial") +
@@ -282,9 +208,9 @@ plot_procrustes <- function(proc_res, tissue_name) {
     )
 }
 
-# ----------------------------------------------------------
-# 4.6 Combined Procrustes plot (all tissues in one figure)
-# ----------------------------------------------------------
+
+#  Combined Procrustes plot 
+
 plot_procrustes_combined <- function(proc_mantel_list, tissues_joint) {
   df_plot_all <- list()
   df_seg_all  <- list()
@@ -364,9 +290,8 @@ plot_procrustes_combined <- function(proc_mantel_list, tissues_joint) {
     )
 }
 
-# ----------------------------------------------------------
-# 4.7 Summarise Procrustes + Mantel results into a table
-# ----------------------------------------------------------
+
+#  Summarise Procrustes + Mantel results into a table
 summarise_procrustes_mantel <- function(pm_list) {
   bind_rows(lapply(pm_list, function(x) {
     if (is.null(x)) return(NULL)
@@ -389,9 +314,8 @@ summarise_procrustes_mantel <- function(pm_list) {
   }))
 }
 
-# ----------------------------------------------------------
-# 4.8 Build bipartite metabolite-microbiome network (per tissue)
-# ----------------------------------------------------------
+#  Build bipartite metabolite-microbiome network (per tissue)
+
 run_bipartite_network <- function(meta_t, X_met_t, X_mic_t,
                                   top_mets, pmi_species_df,
                                   metab_name_map = NULL,
@@ -400,11 +324,8 @@ run_bipartite_network <- function(meta_t, X_met_t, X_mic_t,
                                   rho_cut     = SPEARMAN_RHO,
                                   fdr_cut     = SPEARMAN_FDR,
                                   tissue_name = "") {
-  
-  # Select top metabolites (already ranked by FDR + |rho| + GAM R²)
+ 
   use_mets <- head(intersect(top_mets, colnames(X_met_t)), top_n_met)
-  
-  # Select top species by PMI Spearman |rho|
   use_species <- pmi_species_df %>%
     filter(sig == TRUE) %>%
     arrange(desc(abs(rho))) %>%
@@ -412,12 +333,6 @@ run_bipartite_network <- function(meta_t, X_met_t, X_mic_t,
     pull(species) %>%
     intersect(colnames(X_mic_t))
   
-  if (length(use_mets) < 2 || length(use_species) < 1) {
-    cat("  [skip network]", tissue_name, "- insufficient features\n")
-    return(NULL)
-  }
-  
-  # Compute all pairwise Spearman correlations
   cor_results <- expand.grid(
     metabolite = use_mets,
     species    = use_species,
@@ -442,8 +357,7 @@ run_bipartite_network <- function(meta_t, X_met_t, X_mic_t,
       sig       = abs(rho) >= rho_cut & fdr < fdr_cut,
       direction = ifelse(rho > 0, "positive", "negative")
     )
-  
-  # Metabolite ID to display name mapping
+
   id_to_name <- function(ids) {
     if (is.null(metab_name_map)) return(ids)
     idx <- match(ids, metab_name_map$metabolite_id)
@@ -471,9 +385,8 @@ run_bipartite_network <- function(meta_t, X_met_t, X_mic_t,
   )
 }
 
-# ----------------------------------------------------------
-# 4.9 Plot bipartite network (dual-column layout)
-# ----------------------------------------------------------
+
+# Plot bipartite network
 plot_bipartite_network <- function(net_res, tissue_name) {
   
   if (is.null(net_res)) {
@@ -491,8 +404,6 @@ plot_bipartite_network <- function(net_res, tissue_name) {
   mic_ord <- net_res$use_species
   n_met   <- length(met_ord)
   n_mic   <- length(mic_ord)
-  
-  # Node positions: metabolites on left (x=0), species on right (x=1)
   node_pos <- bind_rows(
     data.frame(name = met_ord, x = 0,
                y = seq(1, 0, length.out = n_met),
@@ -502,7 +413,7 @@ plot_bipartite_network <- function(net_res, tissue_name) {
                type = "Microbe", stringsAsFactors = FALSE)
   )
   
-  # Scale microbe node size by mean |rho| with all metabolites
+
   mic_rho <- net_res$all_cors %>%
     group_by(species) %>%
     summarise(mean_abs_rho = mean(abs(rho)), .groups = "drop")
@@ -518,8 +429,7 @@ plot_bipartite_network <- function(net_res, tissue_name) {
       display_name = ifelse(type == "Microbe",
                             gsub("^s__", "", name), name)
     )
-  
-  # Edge coordinates (significant edges only)
+
   edges_sig <- net_res$edges
   edge_df   <- data.frame()
   
@@ -538,7 +448,7 @@ plot_bipartite_network <- function(net_res, tissue_name) {
   n_sig <- nrow(edge_df)
   
   p <- ggplot() +
-    # Negative correlation edges (blue)
+
     {if (nrow(edge_df) > 0 && any(edge_df$rho < 0))
       geom_segment(
         data = edge_df %>% filter(rho < 0),
@@ -546,7 +456,7 @@ plot_bipartite_network <- function(net_res, tissue_name) {
             alpha = abs_r, linewidth = abs_r),
         color = "#3A7FC1", lineend = "round", show.legend = FALSE
       )} +
-    # Positive correlation edges (orange-red)
+
     {if (nrow(edge_df) > 0 && any(edge_df$rho >= 0))
       geom_segment(
         data = edge_df %>% filter(rho >= 0),
@@ -556,14 +466,12 @@ plot_bipartite_network <- function(net_res, tissue_name) {
       )} +
     scale_alpha_continuous(range = c(0.22, 0.68), guide = "none") +
     scale_linewidth_continuous(range = c(0.5, 2.2), guide = "none") +
-    # Microbe nodes (size proportional to mean |rho|)
     geom_point(
       data = node_pos %>% filter(type == "Microbe"),
       aes(x = x, y = y, size = node_size),
       shape = 21, fill = "#5BA8D4", color = "#2C6EA0",
       stroke = 0.8, alpha = 0.90, show.legend = FALSE
     ) +
-    # Metabolite nodes
     geom_point(
       data = node_pos %>% filter(type == "Metabolite"),
       aes(x = x, y = y, size = node_size),
@@ -571,20 +479,17 @@ plot_bipartite_network <- function(net_res, tissue_name) {
       stroke = 0.6, alpha = 0.92, show.legend = FALSE
     ) +
     scale_size_identity() +
-    # Species labels (right, italic)
     geom_text(
       data = node_pos %>% filter(type == "Microbe"),
       aes(x = x + 0.04, y = y, label = display_name),
       hjust = 0, size = 3.6, color = "grey10",
       fontface = "italic", family = "Arial"
     ) +
-    # Metabolite labels (left)
     geom_text(
       data = node_pos %>% filter(type == "Metabolite"),
       aes(x = x - 0.04, y = y, label = display_name),
       hjust = 1, size = 3.6, color = "grey10", family = "Arial"
     ) +
-    # Column header labels
     annotate("text", x = 0,  y = -0.13, label = "Metabolites",
              hjust = 0.5, size = 4.2, fontface = "bold",
              color = "#A02820", family = "Arial") +
@@ -616,19 +521,15 @@ plot_bipartite_network <- function(net_res, tissue_name) {
   p
 }
 
-# =========================================================
-# Section 5: Main analysis pipeline
-# =========================================================
 
-# ----------------------------------------------------------
-# 5.1 Build joint analysis sample set (PMI >= PMI_MIN_JOINT)
-# ----------------------------------------------------------
+
+
+# Build joint analysis sample set 
+
 common_ids_joint <- intersect(
   meta_metab %>% filter(PMI >= PMI_MIN_JOINT) %>% pull(SampleID),
   meta_micro %>% filter(PMI >= PMI_MIN_JOINT) %>% pull(SampleID)
 )
-cat("\nJoint analysis sample count (PMI >=", PMI_MIN_JOINT, "d):",
-    length(common_ids_joint), "\n")
 
 meta_joint <- meta_metab %>%
   filter(SampleID %in% common_ids_joint) %>%
@@ -644,29 +545,28 @@ X_mic_joint_raw <- X_micro[meta_micro$SampleID %in% common_ids_joint, ]
 X_mic_joint_raw <- X_mic_joint_raw[
   match(meta_joint$SampleID, meta_mic_joint$SampleID), ]
 
-# CLR transformation
+
 X_mic_clr <- as.data.frame(clr_transform(X_mic_joint_raw))
 
-# Prevalence filter: retain species present in >= 20% of samples
+
 prev_count   <- apply(X_mic_joint_raw > 0, 2, sum)
 keep_species <- names(prev_count)[
   prev_count >= SPECIES_PREV_CUT * nrow(X_mic_joint_raw)]
 X_mic_clr <- X_mic_clr[, keep_species, drop = FALSE]
-cat("Species retained after prevalence filter:", ncol(X_mic_clr), "\n")
+
 
 write.csv(meta_joint,
           file.path(output_dir, "joint_sample_info.csv"),
           row.names = FALSE)
 
-# Identify tissues with >= 6 samples
+
 tissue_n      <- meta_joint %>% count(Organ) %>% filter(n >= 6)
 tissues_joint <- sort(tissue_n$Organ)
-cat("Tissues included:", paste(tissues_joint, collapse = ", "), "\n")
 
-# ----------------------------------------------------------
-# 5.2 Load top metabolites from previous association files
-# ----------------------------------------------------------
-cat("\n--- Loading top metabolites per tissue ---\n")
+
+
+#  Load top metabolites from previous association files
+
 top_mets_per_tissue <- list()
 
 for (tis in tissues_joint) {
@@ -686,12 +586,9 @@ write.csv(top_met_df,
           file.path(output_dir, "top_metabolites_per_tissue.csv"),
           row.names = FALSE)
 
-# ----------------------------------------------------------
-# 5.3 Species-PMI Spearman association (per tissue)
-# ----------------------------------------------------------
-cat("\n--- Species-PMI Spearman association ---\n")
-species_pmi_list <- list()
 
+#  Species-PMI Spearman association 
+species_pmi_list <- list()
 for (tis in tissues_joint) {
   idx     <- meta_joint$Organ == tis
   meta_t  <- meta_joint[idx, , drop = FALSE]
@@ -708,12 +605,11 @@ for (tis in tissues_joint) {
       sum(sp_res$sig, na.rm = TRUE), "\n")
 }
 
-# ----------------------------------------------------------
-# 5.4 Procrustes + Mantel + Partial Mantel (per tissue)
-# ----------------------------------------------------------
-cat("\n--- Procrustes / Mantel analysis ---\n")
-proc_mantel_list <- list()
 
+#  Procrustes + Mantel + Partial Mantel 
+
+
+proc_mantel_list <- list()
 for (tis in tissues_joint) {
   cat("[", tis, "]\n")
   idx     <- meta_joint$Organ == tis
@@ -734,13 +630,13 @@ pm_summary <- summarise_procrustes_mantel(proc_mantel_list)
 write.csv(pm_summary,
           file.path(output_dir, "Procrustes_Mantel_summary.csv"),
           row.names = FALSE)
-cat("\n[Procrustes + Mantel summary]\n")
-print(pm_summary)
 
-# ----------------------------------------------------------
-# 5.5 Figure 4a: Procrustes plots
-# ----------------------------------------------------------
-cat("\n--- Plotting Procrustes panels ---\n")
+
+
+
+#  Figure 4a: Procrustes plots
+
+
 proc_plots <- lapply(tissues_joint, function(tis)
   plot_procrustes(proc_mantel_list[[tis]], tis))
 names(proc_plots) <- tissues_joint
@@ -768,9 +664,6 @@ ggsave(
   units  = "in", dpi = 300,
   device = ragg::agg_png
 )
-cat("[Saved] Fig4A_Procrustes_per_tissue.png\n")
-
-# Combined all-tissue Procrustes
 fig_proc_combined <- plot_procrustes_combined(proc_mantel_list,
                                               tissues_joint)
 ggsave(
@@ -780,12 +673,10 @@ ggsave(
   units = "in", dpi = 300,
   device = ragg::agg_png
 )
-cat("[Saved] Fig4A_Procrustes_combined.png\n")
 
-# ----------------------------------------------------------
-# 5.6 Figure 4b: Mantel & Partial Mantel bubble plot
-# ----------------------------------------------------------
-cat("\n--- Plotting Mantel bubble chart ---\n")
+
+
+# Figure 4b: Mantel & Partial Mantel bubble plot
 
 if (!is.null(pm_summary) && nrow(pm_summary) > 0) {
   
@@ -899,15 +790,12 @@ if (!is.null(pm_summary) && nrow(pm_summary) > 0) {
     units = "in", dpi = 300,
     device = ragg::agg_png
   )
-  cat("[Saved] Fig4C_Mantel_bubble.png\n")
+
 }
 
-# ----------------------------------------------------------
-# 5.7 Bipartite metabolite-microbiome network (per tissue)
-# ----------------------------------------------------------
-cat("\n--- Building bipartite networks ---\n")
-network_list <- list()
 
+# Bipartite metabolite-microbiome network (per tissue)
+network_list <- list()
 for (tis in tissues_joint) {
   cat("[", tis, "]\n")
   idx     <- meta_joint$Organ == tis
@@ -937,10 +825,8 @@ for (tis in tissues_joint) {
   }
 }
 
-# ----------------------------------------------------------
-# 5.8 Figure 4c: Bipartite network multi-panel plot
-# ----------------------------------------------------------
-cat("\n--- Plotting bipartite network panels ---\n")
+
+#  Figure 4c: Bipartite network multi-panel plot
 net_plots <- lapply(tissues_joint, function(tis)
   plot_bipartite_network(network_list[[tis]], tis))
 names(net_plots) <- tissues_joint
@@ -979,11 +865,10 @@ ggsave(
   units = "in", dpi = 300,
   device = ragg::agg_png
 )
-cat("[Saved] Fig4B_Bipartite_Network_all_tissues.png\n")
 
-# ----------------------------------------------------------
-# 5.9 Network summary statistics
-# ----------------------------------------------------------
+
+
+#  Network summary statistics
 net_stats <- bind_rows(lapply(tissues_joint, function(tis) {
   net <- network_list[[tis]]
   if (is.null(net))
@@ -1003,12 +888,10 @@ net_stats <- bind_rows(lapply(tissues_joint, function(tis) {
 write.csv(net_stats,
           file.path(output_dir, "network_statistics_all_tissues.csv"),
           row.names = FALSE)
-cat("\n[Network statistics]\n")
-print(net_stats)
 
-# ----------------------------------------------------------
-# 5.10 Cross-tissue shared metabolite-species pairs (>= 2 tissues)
-# ----------------------------------------------------------
+
+
+#  Cross-tissue shared metabolite-species pairs 
 all_edges <- bind_rows(lapply(tissues_joint, function(tis) {
   if (is.null(network_list[[tis]])) return(NULL)
   network_list[[tis]]$edges %>% mutate(tissue = tis)
@@ -1036,9 +919,9 @@ if (nrow(all_edges) > 0) {
   if (nrow(shared_pairs) > 0) print(head(shared_pairs, 10))
 }
 
-# ----------------------------------------------------------
-# 5.11 PMI-related species cross-tissue overlap
-# ----------------------------------------------------------
+
+#  PMI-related species cross-tissue overlap
+
 sig_species_sets <- lapply(tissues_joint, function(tis)
   species_pmi_list[[tis]] %>% filter(sig == TRUE) %>% pull(species))
 names(sig_species_sets) <- tissues_joint
@@ -1053,18 +936,7 @@ write.csv(species_overlap,
           file.path(output_dir,
                     "PMI_related_species_tissue_overlap.csv"),
           row.names = FALSE)
-cat("\nPMI-related species cross-tissue distribution (Top 10):\n")
-print(head(species_overlap, 10))
 
-# =========================================================
-# Analysis complete
-# =========================================================
-cat("\n============================\n")
-cat("Multi-omics joint analysis complete.\n")
-cat("Output directory:\n", output_dir, "\n")
-cat("============================\n")
 
-cat("\nOutput file list:\n")
-out_files <- list.files(output_dir, full.names = FALSE)
-cat(paste(" -", out_files, collapse = "\n"), "\n")
+
 

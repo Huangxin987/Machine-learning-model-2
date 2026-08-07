@@ -4,7 +4,9 @@ library(RColorBrewer)
 library(ggplot2)
 library(vegan)
 
-setwd("path/to/your/directory")
+setwd("D:/PMI_Project/Figure 3")
+output_dir <- file.path(getwd(), "results")
+dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 data <- read.csv("ASV.csv", row.names = 1, stringsAsFactors = FALSE)
 data <- t(data)

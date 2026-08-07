@@ -1,22 +1,4 @@
-## Figure 1bcd: PMI-related Metabolite Cluster Heatmap with
-##           Representative Time-Series Line Plots
-## Five-tissue postmortem metabolomics analysis
-
-
-# =========================================================
-# Section 0: Output directory setup
-# =========================================================
-desktop_path <- ifelse(Sys.info()["sysname"] == "Windows",
-                       file.path(Sys.getenv("USERPROFILE"), "Desktop"),
-                       file.path(Sys.getenv("HOME"), "Desktop"))
-output_dir <- file.path(desktop_path,
-                        paste0("PMI_Project_Output_",
-                               format(Sys.time(), "%Y%m%d_%H%M%S")))
-dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
-
-# =========================================================
-# Section 1: Load required packages
-# =========================================================
+## Figure 2bcd: PMI-related Metabolite pattern Heatmap with Representative Time-Series Line Plots
 suppressPackageStartupMessages({
   library(dplyr)
   library(tidyr)
@@ -28,20 +10,19 @@ suppressPackageStartupMessages({
   library(cowplot)
   library(grid)
   library(gtable)
-  library(ragg)      # Arial font support via system font engine
+  library(ragg)     
 })
 
-# Explicitly bind to ggplot2 namespace to avoid conflicts
 margin       <- ggplot2::margin
 element_text <- ggplot2::element_text
 
-# =========================================================
-# Section 2: Load input data
-# =========================================================
-# Select: (1) metabolite intensity matrix CSV
-# Select: (2) sample metadata CSV (columns: SampleID, Tissue, AnimalID, PMI_day)
-metab <- read.csv(file.choose(), check.names = FALSE)
-meta  <- read.csv(file.choose(), check.names = FALSE)
+setwd("D:/PMI_Project/Figure 2/Figure 2bcd")
+output_dir <- file.path(getwd(), "results")
+dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+
+
+metab <- read.csv("metabolite_matrix.CSV", check.names = FALSE)
+meta  <- read.csv("sample metadata.CSV", check.names = FALSE)
 
 metab <- metab %>% rename(SampleID = 1)
 common_ids <- intersect(metab$SampleID, meta$SampleID)
@@ -53,16 +34,8 @@ X_all   <- metab2 %>% select(-SampleID)
 tissues <- sort(unique(meta2$Tissue))
 stopifnot(all(c("SampleID", "Tissue", "AnimalID", "PMI_day") %in% colnames(meta2)))
 
-# Select: (3) metabolite class annotation CSV
-#   Column 1: metabolite ID | Column 2: chemical class | Column 3 (optional): display name
-metab_class_df <- read.csv(file.choose(), check.names = FALSE)
+metab_class_df <- read.csv("metabolite class annotation.CSV", check.names = FALSE)
 colnames(metab_class_df)[1:2] <- c("metabolite", "metab_class")
-
-if (ncol(metab_class_df) >= 3) {
-  colnames(metab_class_df)[3] <- "metab_name"
-} else {
-  metab_class_df$metab_name <- NA_character_
-}
 
 metab_class_df <- metab_class_df %>%
   select(metabolite, metab_class, metab_name) %>%
@@ -74,32 +47,28 @@ metab_class_df <- metab_class_df %>%
                          metabolite, metab_name)
   )
 
-# =========================================================
-# Section 3: Analysis parameters
-# =========================================================
+
+# Analysis parameters
 gam_k           <- 4
 global_pct_cut  <- 2.0
-cluster_pct_cut <- 3.0
+pattern_pct_cut <- 3.0
 min_count_cut   <- 3L
 PLOT_HEATMAP    <- TRUE
 N_REP           <- 1
-ERROR_TYPE      <- "se"   # "se" = standard error; "sd" = standard deviation
+ERROR_TYPE      <- "se"   
 
-# =========================================================
-# Section 4: Function definitions
-# =========================================================
 
-# ----------------------------------------------------------
-# 4.1 Variance-based feature filtering
-# ----------------------------------------------------------
+
+
+# Variance-based feature filtering
+
 filter_features <- function(X_mat) {
   keep <- apply(X_mat, 2, function(v) sd(v, na.rm = TRUE) > 0)
   colnames(X_mat)[keep]
 }
 
-# ----------------------------------------------------------
-# 4.2 Spearman correlation + GAM association test
-# ----------------------------------------------------------
+
+# Spearman correlation + GAM association test
 assoc_full_spearman_gam <- function(meta_df, X_df, gam_k = 4) {
   PMI  <- meta_df$PMI_day
   mets <- colnames(X_df)
@@ -140,13 +109,10 @@ assoc_full_spearman_gam <- function(meta_df, X_df, gam_k = 4) {
   list(assoc = assoc, feats_PMI_related_full = feats_PMI_related_full)
 }
 
-# ----------------------------------------------------------
-# 4.3 Three-cluster classification
-#     Cluster 1: Monotone Increase
-#     Cluster 2: Monotone Decrease
-#     Cluster 3: Non-Monotone
-# ----------------------------------------------------------
-classify_three_clusters <- function(assoc_tbl, meta_df, X_df,
+
+# 4.3 Three-patterns classification
+
+classify_three_patterns <- function(assoc_tbl, meta_df, X_df,
                                     gam_k = 4) {
   PMI      <- meta_df$PMI_day
   sig_mets <- assoc_tbl %>% filter(sig_any) %>% pull(metabolite)
@@ -158,7 +124,7 @@ classify_three_clusters <- function(assoc_tbl, meta_df, X_df,
     rho        <- row$rho[1]
     
     if (is_sig_sp) {
-      cluster <- if (!is.na(rho) && rho > 0) "Monotone_Increase"
+      pattern <- if (!is.na(rho) && rho > 0) "Monotone_Increase"
       else "Monotone_Decrease"
       if (is_sig_gam && m %in% colnames(X_df)) {
         y   <- X_df[[m]]
@@ -175,16 +141,16 @@ classify_three_clusters <- function(assoc_tbl, meta_df, X_df,
           neg_ratio <- sum(diffs < 0) / length(diffs)
           if ((rho > 0 && neg_ratio > 0.6) ||
               (rho < 0 && pos_ratio > 0.6))
-            cluster <- "Non_Monotone"
+            pattern <- "Non_Monotone"
         }
       }
     } else if (is_sig_gam) {
-      cluster <- "Non_Monotone"
+      pattern <- "Non_Monotone"
     } else {
-      cluster <- "Non_Monotone"
+      pattern <- "Non_Monotone"
     }
     
-    data.frame(metabolite   = m, cluster = cluster, rho = rho,
+    data.frame(metabolite   = m, pattern = pattern, rho = rho,
                sig_spearman = is_sig_sp, sig_gam = is_sig_gam,
                fdr_spearman = row$fdr_spearman[1],
                fdr_gam      = row$fdr_gam[1],
@@ -192,20 +158,19 @@ classify_three_clusters <- function(assoc_tbl, meta_df, X_df,
   }
   
   result <- bind_rows(lapply(sig_mets, classify_one))
-  result$cluster <- factor(result$cluster,
+  result$pattern <- factor(result$pattern,
                            levels = c("Monotone_Increase",
                                       "Monotone_Decrease",
                                       "Non_Monotone"))
   result
 }
 
-# ----------------------------------------------------------
-# 4.4 Select representative metabolites per cluster
-# ----------------------------------------------------------
-select_representative_metabolites <- function(cluster_df, assoc_tbl,
+
+# Select representative metabolites per pattern
+select_representative_metabolites <- function(pattern_df, assoc_tbl,
                                               metab_class_df,
-                                              n_per_cluster = 1) {
-  scored <- cluster_df %>%
+                                              n_per_pattern = 1) {
+  scored <- pattern_df %>%
     left_join(assoc_tbl %>% select(metabolite, r2_gam),
               by = "metabolite") %>%
     left_join(metab_class_df %>%
@@ -219,24 +184,23 @@ select_representative_metabolites <- function(cluster_df, assoc_tbl,
       r2_gam      = ifelse(is.na(r2_gam), 0, r2_gam),
       abs_rho     = abs(rho),
       sort_key    = case_when(
-        cluster == "Non_Monotone" ~ r2_gam,
+        pattern == "Non_Monotone" ~ r2_gam,
         TRUE                     ~ abs_rho
       )
     )
   
   scored %>%
-    group_by(cluster) %>%
+    group_by(pattern) %>%
     arrange(desc(sort_key), .by_group = TRUE) %>%
-    slice_head(n = n_per_cluster) %>%
+    slice_head(n = n_per_pattern) %>%
     ungroup() %>%
-    select(metabolite, metab_name, cluster,
+    select(metabolite, metab_name, pattern,
            abs_rho, r2_gam, metab_class, sort_key)
 }
 
-# =========================================================
-# 4.5 Figure 1b: Heatmap + bridge + time-series composite
-# =========================================================
-plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
+
+# Figure 1b: Heatmap + bridge + time-series composite
+plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
                                          assoc_tbl, metab_class_df,
                                          tissue_name,
                                          n_rep      = 1,
@@ -246,11 +210,11 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
                                          fig_height = 9,
                                          res_dpi    = 300) {
   
-  CLUSTER_ORDER  <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
-  CLUSTER_COLORS <- c(Monotone_Increase = "#C0392B",
+  pattern_ORDER  <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
+  pattern_COLORS <- c(Monotone_Increase = "#C0392B",
                       Monotone_Decrease = "#2980B9",
                       Non_Monotone      = "#27AE60")
-  CLUSTER_LABELS <- c(Monotone_Increase = "Monotone Increase",
+  pattern_LABELS <- c(Monotone_Increase = "Monotone Increase",
                       Monotone_Decrease = "Monotone Decrease",
                       Non_Monotone      = "Non-Monotone")
   PMI_PALETTE <- c("#B39DFF", "#FF9A8B", "#FF59D1",
@@ -259,7 +223,7 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
   
   # Step 1: Representative metabolites
   rep_mets_df <- select_representative_metabolites(
-    cluster_df, assoc_tbl, metab_class_df, n_per_cluster = n_rep
+    pattern_df, assoc_tbl, metab_class_df, n_per_pattern = n_rep
   )
   if (!is.null(save_path))
     write.csv(rep_mets_df,
@@ -267,13 +231,13 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
               row.names = FALSE)
   
   # Step 2: Heatmap matrix (Z-scored, ordered by PMI)
-  cluster_df_plot <- cluster_df %>%
+  pattern_df_plot <- pattern_df %>%
     filter(metabolite %in% colnames(X_t)) %>%
-    mutate(cluster = factor(as.character(cluster),
-                            levels = CLUSTER_ORDER)) %>%
-    arrange(cluster)
+    mutate(pattern = factor(as.character(pattern),
+                            levels = pattern_ORDER)) %>%
+    arrange(pattern)
   
-  feats    <- cluster_df_plot$metabolite
+  feats    <- pattern_df_plot$metabolite
   ord      <- order(meta_t$PMI_day, meta_t$AnimalID)
   meta_ord <- meta_t[ord, , drop = FALSE]
   mat      <- as.matrix(X_t[ord, feats, drop = FALSE])
@@ -282,7 +246,7 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
   sds  <- apply(mat, 2, sd, na.rm = TRUE)
   keep <- is.finite(sds) & sds > 0
   mat  <- mat[, keep, drop = FALSE]
-  cluster_df_plot <- cluster_df_plot %>% filter(metabolite %in% colnames(mat))
+  pattern_df_plot <- pattern_df_plot %>% filter(metabolite %in% colnames(mat))
   if (ncol(mat) < 2) { return(invisible(NULL)) }
   
   mat_t <- t(mat)
@@ -294,16 +258,16 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
   mat_z[mat_z >  3] <-  3
   mat_z[mat_z < -3] <- -3
   
-  met_order    <- cluster_df_plot$metabolite
+  met_order    <- pattern_df_plot$metabolite
   met_order    <- met_order[met_order %in% rownames(mat_z)]
   n_mets       <- length(met_order)
   sample_order <- meta_ord$SampleID
   n_samples    <- length(sample_order)
   
-  cl_sizes <- cluster_df_plot %>%
+  cl_sizes <- pattern_df_plot %>%
     filter(metabolite %in% met_order) %>%
-    mutate(cluster = factor(cluster, levels = CLUSTER_ORDER)) %>%
-    group_by(cluster, .drop = FALSE) %>%
+    mutate(pattern = factor(pattern, levels = pattern_ORDER)) %>%
+    group_by(pattern, .drop = FALSE) %>%
     summarise(n = n(), .groups = "drop") %>%
     filter(n > 0)
   
@@ -330,7 +294,7 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
     PMI_day = factor(paste0("Day", meta_ord$PMI_day), levels = pmi_labels)
   )
   
-  cluster_ann_df <- cluster_df_plot %>%
+  pattern_ann_df <- pattern_df_plot %>%
     filter(metabolite %in% met_order) %>%
     mutate(row_idx = met_idx[metabolite])
   
@@ -350,9 +314,9 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
               aes(x = col_idx, y = -1.5, fill = NULL),
               fill = pmi_colors[as.character(ann_bar_df$PMI_day)],
               width = 1, height = 2, color = NA) +
-    geom_tile(data = cluster_ann_df,
+    geom_tile(data = pattern_ann_df,
               aes(x = -2, y = row_idx, fill = NULL),
-              fill = CLUSTER_COLORS[as.character(cluster_ann_df$cluster)],
+              fill = pattern_COLORS[as.character(pattern_ann_df$pattern)],
               width = 3, height = 1, color = NA) +
     {if (length(gap_positions) > 0)
       geom_hline(yintercept = gap_positions,
@@ -363,7 +327,7 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
                        limits = c(-3.5, n_mets + 0.5),
                        trans  = "reverse") +
     labs(title = paste0(tissue_name,
-                        ": PMI-related metabolites (3 clusters)")) +
+                        ": PMI-related metabolites (3 patterns)")) +
     theme_void(base_size = 10, base_family = "Arial") +
     theme(
       text            = element_text(family = "Arial"),
@@ -382,9 +346,9 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
   TS_MARGIN   <- ggplot2::margin(t = 6, r = 8, b = 6, l = 6)
   
   ts_plots <- lapply(seq_len(n_plots), function(i) {
-    cl_name  <- as.character(cl_nz$cluster[i])
-    sub_rep  <- rep_mets_ok %>% filter(cluster == cl_name)
-    cl_color <- CLUSTER_COLORS[cl_name]
+    cl_name  <- as.character(cl_nz$pattern[i])
+    sub_rep  <- rep_mets_ok %>% filter(pattern == cl_name)
+    cl_color <- pattern_COLORS[cl_name]
     
     if (nrow(sub_rep) == 0) {
       return(
@@ -470,14 +434,14 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
       x   = c(0, 0, 1, 1),
       y   = c(left_bottoms[i], left_tops[i],
               right_tops[i],   right_bottoms[i]),
-      grp = as.character(cl_nz$cluster[i]),
+      grp = as.character(cl_nz$pattern[i]),
       stringsAsFactors = FALSE
     )
   }))
   
   side_df <- bind_rows(lapply(seq_len(n_plots), function(i) {
     data.frame(
-      grp     = as.character(cl_nz$cluster[i]),
+      grp     = as.character(cl_nz$pattern[i]),
       y_top_l = left_tops[i],    y_bot_l = left_bottoms[i],
       y_top_r = right_tops[i],   y_bot_r = right_bottoms[i],
       stringsAsFactors = FALSE
@@ -496,8 +460,8 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
                  aes(x = 1, xend = 1,
                      y = y_bot_r, yend = y_top_r, color = grp),
                  linewidth = 1.2) +
-    scale_fill_manual(values  = CLUSTER_COLORS, guide = "none") +
-    scale_color_manual(values = CLUSTER_COLORS, guide = "none") +
+    scale_fill_manual(values  = pattern_COLORS, guide = "none") +
+    scale_color_manual(values = pattern_COLORS, guide = "none") +
     scale_x_continuous(limits = c(-0.1, 1.1), expand = c(0, 0)) +
     scale_y_continuous(limits = c(0, 1),       expand = c(0, 0)) +
     theme_void(base_family = "Arial") +
@@ -508,8 +472,8 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
   legend_panel <- build_legend_panel_v2(
     pmi_levels     = pmi_levels,
     pmi_palette    = PMI_PALETTE,
-    cluster_labels = CLUSTER_LABELS,
-    cluster_colors = CLUSTER_COLORS
+    pattern_labels = pattern_LABELS,
+    pattern_colors = pattern_COLORS
   )
   
   # Step 7: Assemble and save with ragg device
@@ -537,18 +501,16 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, cluster_df,
       height   = fig_height,
       units    = "in",
       dpi      = res_dpi,
-      device   = ragg::agg_png
+      device   = ragg::agg_tiff
     )
   }
   
   invisible(rep_mets_df)
 }
 
-# ----------------------------------------------------------
 # Legend panel builder
-# ----------------------------------------------------------
 build_legend_panel_v2 <- function(pmi_levels, pmi_palette,
-                                  cluster_labels, cluster_colors) {
+                                  pattern_labels, pattern_colors) {
   
   grad_df <- data.frame(y = seq(-3, 3, length.out = 100), x = 1)
   p_zscore <- ggplot(grad_df, aes(x = x, y = y, fill = y)) +
@@ -575,20 +537,20 @@ build_legend_panel_v2 <- function(pmi_levels, pmi_palette,
     )
   
   cl_df <- data.frame(
-    label = unname(cluster_labels),
-    color = unname(cluster_colors),
-    y     = rev(seq_along(cluster_labels)),
+    label = unname(pattern_labels),
+    color = unname(pattern_colors),
+    y     = rev(seq_along(pattern_labels)),
     stringsAsFactors = FALSE
   )
-  p_cluster <- ggplot(cl_df) +
+  p_pattern <- ggplot(cl_df) +
     geom_tile(aes(x = 1, y = y), fill = cl_df$color,
               width = 0.6, height = 0.7) +
     geom_text(aes(x = 1.55, y = y, label = label),
               hjust = 0, size = 3.8, color = "grey15",
               family = "Arial") +
     scale_x_continuous(limits = c(0.5, 5.5)) +
-    scale_y_continuous(limits = c(0.2, length(cluster_labels) + 0.8)) +
-    labs(title = "Cluster") +
+    scale_y_continuous(limits = c(0.2, length(pattern_labels) + 0.8)) +
+    labs(title = "pattern") +
     theme_void(base_family = "Arial") +
     theme(
       text       = element_text(family = "Arial"),
@@ -625,7 +587,7 @@ build_legend_panel_v2 <- function(pmi_levels, pmi_palette,
     p_zscore, "guide-box-right", return_all = FALSE
   )
   cowplot::plot_grid(
-    legend_zscore, p_cluster, p_pmi,
+    legend_zscore, p_pattern, p_pmi,
     ncol        = 1,
     rel_heights = c(0.28, 0.22, 0.50),
     align       = "v",
@@ -633,48 +595,47 @@ build_legend_panel_v2 <- function(pmi_levels, pmi_palette,
   )
 }
 
-# ----------------------------------------------------------
-# 4.6 Per-tissue metabolite class composition analysis
-# ----------------------------------------------------------
-analyze_class_composition_csv <- function(cluster_df, metab_class_df,
+
+# Per-tissue metabolite class composition analysis
+analyze_class_composition_csv <- function(pattern_df, metab_class_df,
                                           tissue_name, output_dir) {
-  CLUSTER_ORDER <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
+  pattern_ORDER <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
   
-  df <- cluster_df %>%
+  df <- pattern_df %>%
     left_join(metab_class_df %>% select(metabolite, metab_class),
               by = "metabolite") %>%
     mutate(
       metab_class = ifelse(is.na(metab_class) | metab_class == "",
                            "Unknown", metab_class),
-      cluster     = factor(cluster, levels = CLUSTER_ORDER)
+      pattern     = factor(pattern, levels = pattern_ORDER)
     )
   
-  write.csv(df %>% arrange(cluster, metab_class, metabolite),
+  write.csv(df %>% arrange(pattern, metab_class, metabolite),
             file.path(output_dir,
-                      paste0("ClusterAssignment_", tissue_name, ".csv")),
+                      paste0("patternAssignment_", tissue_name, ".csv")),
             row.names = FALSE)
   
   comp_tbl <- df %>%
-    group_by(cluster, metab_class) %>%
+    group_by(pattern, metab_class) %>%
     summarise(n = n(), .groups = "drop") %>%
-    group_by(cluster) %>%
+    group_by(pattern) %>%
     mutate(pct = n / sum(n) * 100, total = sum(n)) %>%
     ungroup()
   
   write.csv(comp_tbl,
             file.path(output_dir,
-                      paste0("ClusterClassCounts_", tissue_name, ".csv")),
+                      paste0("patternClassCounts_", tissue_name, ".csv")),
             row.names = FALSE)
   
-  fisher_res <- expand.grid(cluster     = CLUSTER_ORDER,
+  fisher_res <- expand.grid(pattern     = pattern_ORDER,
                             metab_class = unique(df$metab_class),
                             stringsAsFactors = FALSE) %>%
     rowwise() %>%
     mutate(
-      a = sum(df$cluster == cluster & df$metab_class == metab_class),
-      b = sum(df$cluster == cluster & df$metab_class != metab_class),
-      c = sum(df$cluster != cluster & df$metab_class == metab_class),
-      d = sum(df$cluster != cluster & df$metab_class != metab_class),
+      a = sum(df$pattern == pattern & df$metab_class == metab_class),
+      b = sum(df$pattern == pattern & df$metab_class != metab_class),
+      c = sum(df$pattern != pattern & df$metab_class == metab_class),
+      d = sum(df$pattern != pattern & df$metab_class != metab_class),
       p_fisher = tryCatch(
         fisher.test(matrix(c(a, b, c, d), 2, 2),
                     alternative = "greater")$p.value,
@@ -685,23 +646,22 @@ analyze_class_composition_csv <- function(cluster_df, metab_class_df,
     ) %>%
     ungroup() %>%
     mutate(fdr_fisher = p.adjust(p_fisher, "BH")) %>%
-    arrange(cluster, fdr_fisher)
+    arrange(pattern, fdr_fisher)
   
   write.csv(fisher_res,
             file.path(output_dir,
-                      paste0("ClusterClass_FisherTest_",
+                      paste0("patternClass_FisherTest_",
                              tissue_name, ".csv")),
             row.names = FALSE)
   
   invisible(comp_tbl)
 }
 
-# ----------------------------------------------------------
-# 4.7 Figure 1c: Five-tissue integrated class composition bar plot
-# ----------------------------------------------------------
+
+#  Figure 1c: Five-tissue integrated class composition bar plot
 plot_combined_class_composition <- function(all_comp_list, output_dir) {
-  CLUSTER_ORDER  <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
-  CLUSTER_LABELS <- c(Monotone_Increase = "Monotone Increase",
+  pattern_ORDER  <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
+  pattern_LABELS <- c(Monotone_Increase = "Monotone Increase",
                       Monotone_Decrease = "Monotone Decrease",
                       Non_Monotone      = "Non-Monotone")
   TISSUE_ORDER   <- c("Heart", "Liver", "Lung", "Muscle", "Spleen")
@@ -719,22 +679,22 @@ plot_combined_class_composition <- function(all_comp_list, output_dir) {
     filter(global_pct >= global_pct_cut,
            global_n   >= min_count_cut) %>%
     pull(metab_class)
-  keep_cluster <- combined %>%
-    filter(pct >= cluster_pct_cut) %>%
+  keep_pattern <- combined %>%
+    filter(pct >= pattern_pct_cut) %>%
     pull(metab_class) %>% unique()
-  keep_classes <- union(keep_global, keep_cluster)
+  keep_classes <- union(keep_global, keep_pattern)
   
   plot_df <- combined %>%
     mutate(class_plot = ifelse(metab_class %in% keep_classes,
                                metab_class, "Other")) %>%
-    group_by(tissue, cluster, class_plot) %>%
+    group_by(tissue, pattern, class_plot) %>%
     summarise(n = sum(n), .groups = "drop") %>%
-    group_by(tissue, cluster) %>%
+    group_by(tissue, pattern) %>%
     mutate(pct = n / sum(n) * 100, total = sum(n)) %>%
     ungroup() %>%
     mutate(
-      cluster       = factor(cluster, levels = CLUSTER_ORDER),
-      cluster_label = CLUSTER_LABELS[as.character(cluster)],
+      pattern       = factor(pattern, levels = pattern_ORDER),
+      pattern_label = pattern_LABELS[as.character(pattern)],
       tissue        = factor(tissue,
                              levels = intersect(TISSUE_ORDER,
                                                 unique(tissue)))
@@ -745,13 +705,13 @@ plot_combined_class_composition <- function(all_comp_list, output_dir) {
   names(pal_use) <- unique(plot_df$class_plot)
   
   p <- ggplot(plot_df,
-              aes(x = cluster_label, y = pct, fill = class_plot)) +
+              aes(x = pattern_label, y = pct, fill = class_plot)) +
     geom_bar(stat = "identity", position = "stack",
              width = 0.7, color = "white", linewidth = 0.15) +
     facet_wrap(~ tissue, nrow = 1) +
     scale_fill_manual(values = pal_use, name = "Metabolite Class") +
     scale_y_continuous(expand = c(0, 0), limits = c(0, 101)) +
-    labs(title = "Metabolite class composition across tissues and clusters",
+    labs(title = "Metabolite class composition across tissues and patterns",
          x = NULL, y = "Percentage (%)") +
     theme_bw(base_size = 12, base_family = "Arial") +
     theme(
@@ -777,15 +737,14 @@ plot_combined_class_composition <- function(all_comp_list, output_dir) {
     height = 6,
     units  = "in",
     dpi    = 300,
-    device = ragg::agg_png
+    device = ragg::agg_tiff
   )
   
   invisible(p)
 }
 
-# =========================================================
+
 # Section 3b: Global class color palette
-# =========================================================
 all_classes_global <- metab_class_df %>%
   pull(metab_class) %>% unique() %>% sort()
 n_cls <- length(all_classes_global)
@@ -805,12 +764,9 @@ GLOBAL_CLASS_COLORS <- setNames(soft_palette[seq_len(n_cls)],
 GLOBAL_CLASS_COLORS["Other"]   <- "#D8D8D8"
 GLOBAL_CLASS_COLORS["Unknown"] <- "#E8E8E8"
 
-# =========================================================
-# Section 5: Main analysis loop (per tissue)
-# =========================================================
+#Main analysis loop 
 all_out       <- setNames(vector("list", length(tissues)), tissues)
 all_comp_list <- list()
-
 for (tis in tissues) {
   cat("\n=============================\n")
   cat("Tissue:", tis, "\n")
@@ -838,19 +794,19 @@ for (tis in tissues) {
                       paste0("PMI_related_", tis, ".csv")),
             row.names = FALSE)
   
-  cluster_df <- classify_three_clusters(assoc_tbl, meta_t,
+  pattern_df <- classify_three_patterns(assoc_tbl, meta_t,
                                         as.data.frame(X_full),
                                         gam_k = gam_k)
-  write.csv(cluster_df,
+  write.csv(pattern_df,
             file.path(output_dir,
-                      paste0("ClusterAssignment_raw_", tis, ".csv")),
+                      paste0("patternAssignment_raw_", tis, ".csv")),
             row.names = FALSE)
   
   if (PLOT_HEATMAP) {
     plot_heatmap_with_timeseries(
       meta_t         = meta_t,
       X_t            = X_full,
-      cluster_df     = cluster_df,
+      pattern_df     = pattern_df,
       assoc_tbl      = assoc_tbl,
       metab_class_df = metab_class_df,
       tissue_name    = tis,
@@ -865,21 +821,19 @@ for (tis in tissues) {
     )
   }
   
-  comp_tbl <- analyze_class_composition_csv(cluster_df, metab_class_df,
+  comp_tbl <- analyze_class_composition_csv(pattern_df, metab_class_df,
                                             tis, output_dir)
   all_comp_list[[tis]] <- comp_tbl
   all_out[[tis]] <- list(PMI_related_full = feats_full,
-                         cluster_df       = cluster_df)
+                         pattern_df       = pattern_df)
 }
 
-# =========================================================
-# Section 5b: Five-tissue class composition plot
-# =========================================================
+
+# Five-tissue class composition plot
+
 plot_combined_class_composition(all_comp_list, output_dir)
 
-# =========================================================
-# Section 6: Figure 1d - Five-set Venn diagram (ragg device)
-# =========================================================
+# Figure 2d - Five-set Venn diagram 
 PMI_related_full_sets <- lapply(tissues,
                                 function(tis) all_out[[tis]]$PMI_related_full)
 names(PMI_related_full_sets) <- tissues
@@ -892,7 +846,7 @@ M  <- PMI_related_full_sets[["Muscle"]]
 
 venn_file <- file.path(output_dir, "FigureS_Venn_PMIrelated_5tissues.TIFF")
 
-ragg::agg_png(venn_file,
+ragg::agg_tiff(venn_file,
               width  = 2200,
               height = 1800,
               units  = "px",
@@ -930,7 +884,7 @@ VennDiagram::draw.quintuple.venn(
 )
 dev.off()
 
-# Export shared and tissue-specific metabolite lists
+
 shared_full_5of5 <- Reduce(intersect, PMI_related_full_sets)
 write.csv(data.frame(metabolite = shared_full_5of5),
           file.path(output_dir, "Shared_PMIrelated_5of5tissues.csv"),
@@ -952,5 +906,267 @@ for (tis in tissues) {
   )
 }
 
-cat("\nAnalysis complete. All outputs saved to:", output_dir, "\n")
+
+
+#  Per-tissue trend table of the 382 shared core
+#            + up/down COUNT figure (supplementary, no baseline)
+
+
+class_lookup <- metab_class_df %>%
+  dplyr::select(metabolite, metab_class) %>% distinct() %>%
+  mutate(metab_class = ifelse(is.na(metab_class) | metab_class == "",
+                              "Unknown", metab_class))
+
+dir_by_tissue <- bind_rows(lapply(tissues, function(tis){
+  all_out[[tis]]$pattern_df %>%
+    filter(metabolite %in% shared_full_5of5) %>%
+    transmute(metabolite,
+              tissue = tis,
+              call = dplyr::recode(as.character(pattern),
+                                   "Monotone_Increase" = "Increase",
+                                   "Monotone_Decrease" = "Decrease",
+                                   "Non_Monotone"      = "Non-monotone"))
+}))
+
+dir_wide <- dir_by_tissue %>%
+  tidyr::pivot_wider(names_from = tissue, values_from = call) %>%
+  right_join(tibble::tibble(metabolite = shared_full_5of5),
+             by = "metabolite") %>%
+  left_join(class_lookup, by = "metabolite")
+
+
+# Per-tissue trend table of the 382 shared core
+#            + strict five-tissue concordance direction figure
+strict_order <- c("Unanimous increase",
+                  "Unanimous decrease",
+                  "Mixed / non-concordant")
+
+dir_summary <- dir_by_tissue %>%
+  group_by(metabolite) %>%
+  summarise(
+    n_inc     = sum(call == "Increase",     na.rm = TRUE),
+    n_dec     = sum(call == "Decrease",     na.rm = TRUE),
+    n_nonmono = sum(call == "Non-monotone", na.rm = TRUE),
+    n_tissue  = n_distinct(tissue),
+    .groups   = "drop"
+  ) %>%
+  mutate(
+    strict_direction = dplyr::case_when(
+      n_tissue == length(tissues) & n_inc == length(tissues) ~ "Unanimous increase",
+      n_tissue == length(tissues) & n_dec == length(tissues) ~ "Unanimous decrease",
+      TRUE                                                   ~ "Mixed / non-concordant"
+    ),
+    strict_direction = factor(strict_direction, levels = strict_order)
+  ) %>%
+  left_join(class_lookup, by = "metabolite")
+
+dir_out <- dir_wide %>%
+  left_join(
+    dir_summary %>%
+      dplyr::select(metabolite,
+                    n_inc, n_dec, n_nonmono, n_tissue,
+                    strict_direction),
+    by = "metabolite"
+  ) %>%
+  arrange(strict_direction, metab_class, metabolite)
+
+write.csv(
+  dir_out,
+  file.path(output_dir, "SharedCore_DirectionByTissue_StrictConcordance.csv"),
+  row.names = FALSE
+)
+
+
+n_total    <- length(shared_full_5of5)
+n_unan_inc <- sum(dir_summary$strict_direction == "Unanimous increase")
+n_unan_dec <- sum(dir_summary$strict_direction == "Unanimous decrease")
+n_unan     <- n_unan_inc + n_unan_dec
+n_mixed    <- sum(dir_summary$strict_direction == "Mixed / non-concordant")
+
+cat(sprintf(
+  paste0(
+    "Shared core = %d metabolites\n\n",
+    "Strict five-tissue concordance:\n",
+    "  Concordant directional metabolites: %d\n",
+    "    Unanimous increase: %d\n",
+    "    Unanimous decrease: %d\n",
+    "  Mixed / non-concordant: %d\n"
+  ),
+  n_total,
+  n_unan,
+  n_unan_inc,
+  n_unan_dec,
+  n_mixed
+))
+
+
+COUNT_MIN <- 3L
+
+dir_strict <- dir_summary %>%
+  filter(
+    strict_direction %in% c("Unanimous increase",
+                            "Unanimous decrease"),
+    metab_class != "Unknown"
+  ) %>%
+  mutate(
+    direction = dplyr::recode(
+      as.character(strict_direction),
+      "Unanimous increase" = "Increase",
+      "Unanimous decrease" = "Decrease"
+    )
+  ) %>%
+  add_count(metab_class, name = "class_total") %>%
+  mutate(
+    class_show = ifelse(class_total >= COUNT_MIN,
+                        metab_class,
+                        "Other classes (<3)")
+  )
+
+class_counts <- dir_strict %>%
+  count(class_show, direction, name = "n") %>%
+  tidyr::pivot_wider(
+    names_from  = direction,
+    values_from = n,
+    values_fill = 0
+  )
+
+if (!"Increase" %in% names(class_counts)) class_counts$Increase <- 0L
+if (!"Decrease" %in% names(class_counts)) class_counts$Decrease <- 0L
+
+class_counts <- class_counts %>%
+  mutate(total = Increase + Decrease) %>%
+  # Put "Other classes (<3)" at the bottom; other classes are ordered by total count.
+  arrange(class_show != "Other classes (<3)", total) %>%
+  rename(metab_class = class_show)
+
+write.csv(
+  class_counts,
+  file.path(output_dir, "SharedCore_StrictConcordant_ClassCounts.csv"),
+  row.names = FALSE
+)
+
+plot_long <- class_counts %>%
+  transmute(
+    metab_class,
+    Increase =  Increase,
+    Decrease = -Decrease
+  ) %>%
+  tidyr::pivot_longer(
+    c(Increase, Decrease),
+    names_to  = "direction",
+    values_to = "count"
+  ) %>%
+  mutate(
+    metab_class = factor(metab_class,
+                         levels = class_counts$metab_class)
+  )
+
+lim <- max(abs(plot_long$count), na.rm = TRUE)
+if (!is.finite(lim) || lim == 0) lim <- 1
+
+p_counts <- ggplot(plot_long,
+                   aes(x = count, y = metab_class, fill = direction)) +
+  geom_col(width = 0.72, color = "white", linewidth = 0.2) +
+  geom_vline(xintercept = 0, color = "grey40", linewidth = 0.5) +
+  geom_text(
+    aes(label = ifelse(count == 0, "", abs(count)),
+        hjust = ifelse(count >= 0, -0.35, 1.35)),
+    size = 3.2,
+    family = "Arial",
+    color = "grey25"
+  ) +
+  scale_fill_manual(
+    values = c(Increase = "#C0392B",
+               Decrease = "#2980B9"),
+    breaks = c("Increase", "Decrease"),
+    labels = c("Increase in all five tissues",
+               "Decrease in all five tissues"),
+    name = NULL
+  ) +
+  scale_x_continuous(
+    limits = c(-lim * 1.28, lim * 1.28),
+    breaks = pretty(c(-lim, lim)),
+    labels = function(x) abs(x),
+    expand = c(0, 0)
+  ) +
+  labs(
+    title = "Shared PMI-related core: strict five-tissue directional concordance",
+    subtitle = paste0(
+      n_unan, " of ", n_total,
+      " shared metabolites showed the same monotonic direction in all five tissues",
+      " (", n_unan_inc, " increase; ", n_unan_dec, " decrease)"
+    ),
+    x = "Number of metabolites",
+    y = NULL,
+    caption = "Only metabolites with identical monotonic direction across all five tissues are shown."
+  ) +
+  theme_classic(base_size = 12, base_family = "Arial") +
+  theme(
+    text          = element_text(family = "Arial"),
+    plot.title    = element_text(face = "bold", size = 13),
+    plot.subtitle = element_text(size = 9, color = "grey40"),
+    plot.caption  = element_text(size = 8, color = "grey45", hjust = 0),
+    axis.text.y   = element_text(size = 10, color = "grey15"),
+    legend.position = "bottom"
+  )
+
+ggsave(
+  file.path(output_dir, "FigureS_SharedCore_StrictConcordant_UpDownCounts.png"),
+  p_counts,
+  width  = 8.5,
+  height = 6,
+  units  = "in",
+  dpi    = 300,
+  device = ragg::agg_tiff
+)
+
+
+#  Descriptive chemical-class composition of the
+#                 382 shared PMI-related core  (panel e)
+class_lookup <- metab_class_df %>%
+  dplyr::select(metabolite, metab_class) %>% distinct() %>%
+  mutate(metab_class = ifelse(is.na(metab_class) | metab_class == "",
+                              "Unknown", metab_class))
+
+comp_core <- tibble::tibble(metabolite = shared_full_5of5) %>%
+  left_join(class_lookup, by = "metabolite") %>%
+  mutate(metab_class = ifelse(is.na(metab_class), "Unknown", metab_class)) %>%
+  count(metab_class, name = "n") %>%
+  mutate(pct = 100 * n / sum(n)) %>%
+  arrange(desc(pct))
+
+LUMP <- 2
+comp_plot <- comp_core %>%
+  mutate(class_show = ifelse(pct >= LUMP, metab_class, "Other (<2% each)")) %>%
+  group_by(class_show) %>%
+  summarise(n = sum(n), pct = sum(pct), .groups = "drop") %>%
+  arrange(pct) %>%
+  mutate(class_show = factor(class_show, levels = class_show))
+
+write.csv(comp_core,
+          file.path(output_dir, "SharedCore_ClassComposition.csv"),
+          row.names = FALSE)
+
+bar_cols <- GLOBAL_CLASS_COLORS[as.character(comp_plot$class_show)]
+bar_cols[is.na(bar_cols)] <- "#BBBBBB"; names(bar_cols) <- as.character(comp_plot$class_show)
+
+p_comp <- ggplot(comp_plot, aes(x = pct, y = class_show, fill = class_show)) +
+  geom_col(width = 0.72, color = "white", linewidth = 0.2) +
+  geom_text(aes(label = sprintf("%.1f%%  (n=%d)", pct, n)),
+            hjust = -0.08, size = 3.4, family = "Arial", color = "grey20") +
+  scale_fill_manual(values = bar_cols, guide = "none") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.22))) +
+  labs(title = "Chemical-class composition of the 382 shared PMI-related metabolites",
+       subtitle = "Shared across all five tissues; classes <2% grouped as 'Other'",
+       x = "Percentage of shared metabolites (%)", y = NULL) +
+  theme_classic(base_size = 12, base_family = "Arial") +
+  theme(text = element_text(family = "Arial"),
+        plot.title = element_text(face = "bold", size = 13),
+        plot.subtitle = element_text(size = 9, color = "grey40"),
+        axis.text.y = element_text(size = 10, color = "grey15"))
+
+ggsave(file.path(output_dir, "Figure2e_SharedCore_ClassComposition.png"),
+       p_comp, width = 8.5, height = 5.5, units = "in",
+       dpi = 300, device = ragg::agg_tiff)
+
 
