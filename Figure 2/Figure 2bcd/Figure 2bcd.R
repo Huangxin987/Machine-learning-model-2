@@ -16,7 +16,7 @@ suppressPackageStartupMessages({
 margin       <- ggplot2::margin
 element_text <- ggplot2::element_text
 
-setwd("D:/PMI_Project/Figure 2/Figure 2bcd")
+setwd("")
 output_dir <- file.path(getwd(), "results")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
