@@ -4,7 +4,7 @@ library(RColorBrewer)
 library(ggplot2)
 library(vegan)
 
-setwd("D:/PMI_Project/Figure 3")
+setwd("")
 output_dir <- file.path(getwd(), "results")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
