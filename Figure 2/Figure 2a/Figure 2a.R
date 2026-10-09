@@ -1,6 +1,6 @@
 #Figure 2a
 library(ggplot2)
-setwd("D:/PMI_Project/Figure 2/Figure 2a")
+setwd("")
 
 data_file <- "metabolite_matrix.csv"
 metadata_file <- "Group.csv"
