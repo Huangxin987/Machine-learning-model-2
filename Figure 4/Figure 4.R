@@ -34,7 +34,7 @@ SPECIES_FDR_CUT  <- 0.05
 SPECIES_PREV_CUT <- 0.20   
 
 # Locate previous metabolomics output directory
-prev_output_dir <- dirname(file.choose())
+prev_output_dir <- file.path(getwd(), "previous_metabolomics_output")
 
 
 metab_raw <- read.csv("metabolite_matrix.csv", check.names = FALSE)
