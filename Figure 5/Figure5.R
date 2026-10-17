@@ -1,4 +1,4 @@
-setwd("D:/PMI_Project/Figure 5")
+setwd("")
 output_dir <- file.path(getwd(), "results")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -30,7 +30,8 @@ EF_ALGORITHM <- "ElasticNet"
 ALPHA <- 0.5
 K_METAB_PRIMARY <- 10L
 K_MICRO_PRIMARY <- 5L
-
+LODO_DAYS <- c(0, 1, 2, 3, 5, 7)
+LODO_DAYS_2TO7 <- c(2, 3, 5, 7)
 INNER_FOLDS <- 3L
 INNER_REPEATS <- 3L
 STACK_FOLDS <- 3L
@@ -45,6 +46,7 @@ BOOT_B <- 2000L
 SINGLE_MULTI_COMPARISON_B <- 9999L
 SINGLE_MULTI_ALPHA <- 0.05
 SINGLE_MULTI_P_ADJUST <- "holm"
+SINGLE_MULTI_ACROSS_TISSUE_P_ADJUST <- "holm"
 
 MULTI_ORGAN_COMPARISON_B <- 1000L
 
@@ -65,9 +67,20 @@ ALL_BENCHMARK_MODELS <- c(
   "Stacking_ALL"
 )
 
+BASELINE_MODELS <- c(
+  "Intercept_Only"
+)
+
+CORE_MODELS <- c(
+  BASELINE_MODELS,
+  PRIMARY_MODELS,
+  ALL_BENCHMARK_MODELS
+)
+
 CORE_MODELS <- c(PRIMARY_MODELS, ALL_BENCHMARK_MODELS)
 
 MODEL_LABELS <- c(
+  "Intercept_Only" = "Intercept-only baseline",
   "Metab_FixedK" = "Metabolomics: fixed K",
   "Micro_FixedK" = "Microbiome: fixed K",
   "EF_FixedK" = "Early fusion: fixed K",
@@ -93,12 +106,12 @@ calc_r2 <- function(observed, predicted) {
   ok <- is.finite(observed) & is.finite(predicted)
   observed <- observed[ok]
   predicted <- predicted[ok]
-
+  
   if (length(observed) < 2L) return(NA_real_)
-
+  
   den <- sum((observed - mean(observed))^2)
   if (!is.finite(den) || den <= 0) return(NA_real_)
-
+  
   1 - sum((observed - predicted)^2) / den
 }
 
@@ -126,14 +139,14 @@ stable_seed <- function(...) {
     paste(..., collapse = "__")
   )
   values <- utf8ToInt(txt)
-
+  
   
   hash <- as.double(SEED_BASE)
-
+  
   for (value in values) {
     hash <- (hash * 131 + as.double(value)) %% 2147483646
   }
-
+  
   as.integer(hash) + 1L
 }
 
@@ -143,10 +156,10 @@ id_set_key <- function(ids) {
 }
 
 model_partition_seed <- function(
-  stage,
-  tissue,
-  train_ids,
-  test_ids
+    stage,
+    tissue,
+    train_ids,
+    test_ids
 ) {
   stable_seed(
     stage,
@@ -157,15 +170,15 @@ model_partition_seed <- function(
 }
 
 select_min_rmse <- function(
-  summary_df,
-  rmse_col = "PooledRMSE",
-  tie_cols = character()
+    summary_df,
+    rmse_col = "PooledRMSE",
+    tie_cols = character()
 ) {
   valid <- summary_df %>%
     filter(is.finite(.data[[rmse_col]]))
-
+  
   order_cols <- c(rmse_col, tie_cols)
-
+  
   valid %>%
     arrange(!!!rlang::syms(order_cols)) %>%
     slice(1)
@@ -179,10 +192,10 @@ make_outer_splits <- function(meta) {
       as.character(meta[[COL_ANIMAL]])
     )
   )
-
+  
   lapply(seq_along(animals), function(i) {
     test_id <- animals[i]
-
+    
     list(
       OuterFold = i,
       Seed = stable_seed(
@@ -196,41 +209,41 @@ make_outer_splits <- function(meta) {
 }
 
 make_group_folds <- function(
-  groups,
-  y,
-  kfold = 3L,
-  seed = 42L
+    groups,
+    y,
+    kfold = 3L,
+    seed = 42L
 ) {
   groups <- as.character(groups)
   y <- as.numeric(y)
-
+  
   split_y <- split(y, groups)
   n_unique_y <- vapply(
     split_y,
     function(z) length(unique(round(z, 8))),
     integer(1)
   )
-
-   group_y <- vapply(
+  
+  group_y <- vapply(
     split_y,
     function(z) z[1],
     numeric(1)
   )
-
+  
   n_groups <- length(group_y)
   kfold <- min(as.integer(kfold), n_groups)
-
   
-
+  
+  
   set.seed(seed)
   ord <- order(group_y, runif(n_groups))
   group_fold <- integer(n_groups)
-
+  
   blocks <- split(
     ord,
     ceiling(seq_along(ord) / kfold)
   )
-
+  
   for (b in blocks) {
     group_fold[b] <- sample(
       seq_len(kfold),
@@ -238,35 +251,35 @@ make_group_folds <- function(
       replace = FALSE
     )
   }
-
+  
   names(group_fold) <- names(group_y)
   foldid <- unname(group_fold[groups])
-
+  
   check <- tapply(
     foldid,
     groups,
     function(z) length(unique(z))
   )
-
+  
   if (any(check != 1L)) {
     stop(
       "An AnimalID was assigned to more than one inner fold."
     )
   }
-
+  
   foldid
 }
 
 make_repeated_group_folds <- function(
-  groups,
-  y,
-  kfold = INNER_FOLDS,
-  repeats = INNER_REPEATS,
-  seed = 42L
+    groups,
+    y,
+    kfold = INNER_FOLDS,
+    repeats = INNER_REPEATS,
+    seed = 42L
 ) {
   groups <- as.character(groups)
   y <- as.numeric(y)
-
+  
   plans <- lapply(
     seq_len(as.integer(repeats)),
     function(r) {
@@ -276,7 +289,7 @@ make_repeated_group_folds <- function(
         kfold = kfold,
         seed = seed + r * 1009L
       )
-
+      
       tibble(
         RowIndex = seq_along(groups),
         AnimalID = groups,
@@ -285,7 +298,7 @@ make_repeated_group_folds <- function(
       )
     }
   )
-
+  
   bind_rows(plans)
 }
 
@@ -293,18 +306,18 @@ make_repeated_group_folds <- function(
 #  Leakage-safe preprocessing
 impute_numeric_matrix <- function(X, medians) {
   X <- as.data.frame(X)
-
+  
   for (nm in names(medians)) {
     bad <- !is.finite(X[[nm]])
     if (any(bad)) X[[nm]][bad] <- medians[[nm]]
   }
-
+  
   X
 }
 
 preprocess_metab <- function(X_train_raw) {
   X_train_raw <- as.data.frame(X_train_raw)
-
+  
   medians <- vapply(
     X_train_raw,
     function(z) {
@@ -313,31 +326,31 @@ preprocess_metab <- function(X_train_raw) {
     },
     numeric(1)
   )
-
+  
   X_imp <- impute_numeric_matrix(
     X_train_raw,
     medians
   )
-
+  
   vars <- vapply(X_imp, var, numeric(1))
-
+  
   keep <- names(vars)[
     is.finite(vars) & vars > 0
   ]
-
+  
   if (length(keep) == 0L) {
     stop(
       "No non-zero-variance metabolite features remain."
     )
   }
-
+  
   X_keep <- X_imp[, keep, drop = FALSE]
   medians <- medians[keep]
-
+  
   mu <- vapply(X_keep, mean, numeric(1))
   sdv <- vapply(X_keep, sd, numeric(1))
   sdv[!is.finite(sdv) | sdv == 0] <- 1
-
+  
   X_scaled <- sweep(
     sweep(
       as.matrix(X_keep),
@@ -349,7 +362,7 @@ preprocess_metab <- function(X_train_raw) {
     sdv,
     "/"
   )
-
+  
   list(
     feats = keep,
     medians = medians,
@@ -367,12 +380,12 @@ apply_metab <- function(prep, X_test_raw) {
   X_test <- X_test_raw[
     , prep$feats, drop = FALSE
   ]
-
+  
   X_test <- impute_numeric_matrix(
     X_test,
     prep$medians
   )
-
+  
   as.data.frame(
     sweep(
       sweep(
@@ -394,7 +407,7 @@ clr_mat <- function(X) {
   mat[!is.finite(mat)] <- 0
   mat[mat < 0] <- 0
   mat <- mat + PSEUDO
-
+  
   log_mat <- log(mat)
   sweep(
     log_mat,
@@ -406,7 +419,7 @@ clr_mat <- function(X) {
 
 preprocess_micro <- function(X_train_raw) {
   X_train_raw <- as.data.frame(X_train_raw)
-
+  
   X_train_raw[] <- lapply(
     X_train_raw,
     function(z) {
@@ -414,24 +427,24 @@ preprocess_micro <- function(X_train_raw) {
       z
     }
   )
-
+  
   prevalence <- vapply(
     X_train_raw,
     function(z) mean(z > 0),
     numeric(1)
   )
-
+  
   abundance <- vapply(
     X_train_raw,
     mean,
     numeric(1)
   )
-
+  
   keep <- names(prevalence)[
     prevalence >= PREV_CUT &
       abundance > ABUND_CUT
   ]
-
+  
   if (length(keep) == 0L) {
     ord <- order(
       prevalence,
@@ -442,23 +455,23 @@ preprocess_micro <- function(X_train_raw) {
       keep <- names(prevalence)[ord[1]]
     }
   }
-
+  
   if (length(keep) == 0L) {
     stop(
       "No microbiome features remain after filtering."
     )
   }
-
+  
   X_keep <- X_train_raw[, keep, drop = FALSE]
   X_clr <- as.data.frame(
     clr_mat(X_keep),
     check.names = FALSE
   )
-
+  
   mu <- vapply(X_clr, mean, numeric(1))
   sdv <- vapply(X_clr, sd, numeric(1))
   sdv[!is.finite(sdv) | sdv == 0] <- 1
-
+  
   X_scaled <- sweep(
     sweep(
       as.matrix(X_clr),
@@ -470,7 +483,7 @@ preprocess_micro <- function(X_train_raw) {
     sdv,
     "/"
   )
-
+  
   list(
     feats = keep,
     mu = mu,
@@ -487,7 +500,7 @@ apply_micro <- function(prep, X_test_raw) {
   X_test <- X_test_raw[
     , prep$feats, drop = FALSE
   ]
-
+  
   X_test[] <- lapply(
     X_test,
     function(z) {
@@ -495,12 +508,12 @@ apply_micro <- function(prep, X_test_raw) {
       z
     }
   )
-
+  
   X_clr <- as.data.frame(
     clr_mat(X_test),
     check.names = FALSE
   )
-
+  
   as.data.frame(
     sweep(
       sweep(
@@ -518,22 +531,22 @@ apply_micro <- function(prep, X_test_raw) {
 }
 
 prepare_omics <- function(
-  X_train_raw,
-  X_test_raw,
-  omics_type
+    X_train_raw,
+    X_test_raw,
+    omics_type
 ) {
   prep <- if (omics_type == "metab") {
     preprocess_metab(X_train_raw)
   } else {
     preprocess_micro(X_train_raw)
   }
-
+  
   X_test <- if (omics_type == "metab") {
     apply_metab(prep, X_test_raw)
   } else {
     apply_micro(prep, X_test_raw)
   }
-
+  
   list(
     prep = prep,
     X_train = prep$X_train,
@@ -544,23 +557,23 @@ prepare_omics <- function(
 
 #  Fixed algorithms
 fit_enet_processed <- function(
-  X_train,
-  y_train,
-  X_test,
-  groups = NULL,
-  seed = 42L,
-  alpha = ALPHA
+    X_train,
+    y_train,
+    X_test,
+    groups = NULL,
+    seed = 42L,
+    alpha = ALPHA
 ) {
   X_train <- as.data.frame(X_train)
   X_test <- as.data.frame(X_test)
   y_train <- as.numeric(y_train)
-
+  
   set.seed(seed)
-
+  
   if (
     !is.null(groups) &&
-      length(groups) == nrow(X_train) &&
-      length(unique(groups)) >= 3L
+    length(groups) == nrow(X_train) &&
+    length(unique(groups)) >= 3L
   ) {
     foldid <- make_group_folds(
       groups,
@@ -571,7 +584,7 @@ fit_enet_processed <- function(
       ),
       seed = seed
     )
-
+    
     cvfit <- cv.glmnet(
       as.matrix(X_train),
       y_train,
@@ -584,7 +597,7 @@ fit_enet_processed <- function(
       5L,
       nrow(X_train)
     )
-
+    
     cvfit <- cv.glmnet(
       as.matrix(X_train),
       y_train,
@@ -593,7 +606,7 @@ fit_enet_processed <- function(
       standardize = FALSE
     )
   }
-
+  
   pred_train <- drop(
     predict(
       cvfit,
@@ -601,7 +614,7 @@ fit_enet_processed <- function(
       s = "lambda.1se"
     )
   )
-
+  
   pred_test <- drop(
     predict(
       cvfit,
@@ -609,42 +622,42 @@ fit_enet_processed <- function(
       s = "lambda.1se"
     )
   )
-
+  
   cm <- coef(
     cvfit,
     s = "lambda.1se"
   )
-
+  
   coef_values <- setNames(
     as.numeric(cm)[-1],
     rownames(cm)[-1]
   )
-
+  
   marginal <- vapply(
     X_train,
     function(z) abs(safe_cor(z, y_train)),
     numeric(1)
   )
-
+  
   importance <- abs(coef_values)
-
+  
   if (
     all(!is.finite(importance)) ||
-      max(importance, na.rm = TRUE) <= 0
+    max(importance, na.rm = TRUE) <= 0
   ) {
     importance <- marginal[names(coef_values)]
   } else {
     marginal <- marginal[names(coef_values)]
     marginal[!is.finite(marginal)] <- 0
     importance[!is.finite(importance)] <- 0
-
+    
     importance <- importance +
       1e-9 * marginal / max(
         1,
         max(marginal)
       )
   }
-
+  
   list(
     pred_train = pred_train,
     pred_test = pred_test,
@@ -659,26 +672,26 @@ fit_enet_processed <- function(
 }
 
 fit_rf_processed <- function(
-  X_train,
-  y_train,
-  X_test,
-  mtry,
-  seed = 42L
+    X_train,
+    y_train,
+    X_test,
+    mtry,
+    seed = 42L
 ) {
   X_train <- as.data.frame(X_train)
   X_test <- as.data.frame(X_test)
   y_train <- as.numeric(y_train)
-
+  
   p <- ncol(X_train)
   if (p < 1L) {
     stop("Random Forest received no predictors.")
   }
-
+  
   mtry <- max(
     1L,
     min(as.integer(mtry), p)
   )
-
+  
   set.seed(seed)
   fit <- suppressWarnings(
     randomForest(
@@ -690,50 +703,50 @@ fit_rf_processed <- function(
       importance = TRUE
     )
   )
-
+  
   imp_obj <- importance(
     fit,
     type = 1
   )
-
+  
   importance_values <- if (is.matrix(imp_obj)) {
     imp_obj[, 1]
   } else {
     as.numeric(imp_obj)
   }
-
+  
   importance_names <- if (is.matrix(imp_obj)) {
     rownames(imp_obj)
   } else {
     names(imp_obj)
   }
-
+  
   if (
     is.null(importance_names) ||
-      length(importance_names) !=
-        length(importance_values)
+    length(importance_names) !=
+    length(importance_values)
   ) {
     importance_names <- colnames(X_train)
   }
-
+  
   names(importance_values) <- importance_names
-
+  
   marginal <- vapply(
     X_train,
     function(z) abs(safe_cor(z, y_train)),
     numeric(1)
   )
-
+  
   importance_values[
     !is.finite(importance_values) |
       importance_values < 0
   ] <- 0
-
+  
   marginal <- marginal[
     names(importance_values)
   ]
   marginal[!is.finite(marginal)] <- 0
-
+  
   if (max(importance_values, na.rm = TRUE) <= 0) {
     importance_values <- marginal
   } else {
@@ -741,7 +754,7 @@ fit_rf_processed <- function(
       1e-9 * marginal /
       max(1, max(marginal))
   }
-
+  
   list(
     pred_train = as.numeric(
       predict(
@@ -762,11 +775,11 @@ fit_rf_processed <- function(
 }
 
 rank_features_processed <- function(
-  algorithm,
-  X_train,
-  y_train,
-  groups,
-  seed
+    algorithm,
+    X_train,
+    y_train,
+    groups,
+    seed
 ) {
   if (algorithm == "ElasticNet") {
     rank_fit <- fit_enet_processed(
@@ -791,13 +804,13 @@ rank_features_processed <- function(
   } else {
     stop("Unknown algorithm: ", algorithm)
   }
-
+  
   rank_fit$importance
 }
 
 fallback_rf_ranking <- function(
-  X_train,
-  y_train
+    X_train,
+    y_train
 ) {
   importance <- vapply(
     as.data.frame(X_train),
@@ -811,7 +824,7 @@ fallback_rf_ranking <- function(
     },
     numeric(1)
   )
-
+  
   importance[!is.finite(importance)] <- 0
   importance
 }
@@ -820,18 +833,18 @@ select_top_features <- function(importance, k) {
   importance <- importance[
     is.finite(importance)
   ]
-
+  
   if (length(importance) == 0L) {
     stop(
       "No valid feature-importance values are available."
     )
   }
-
+  
   k <- min(
     as.integer(k),
     length(importance)
   )
-
+  
   names(
     sort(
       importance,
@@ -851,7 +864,7 @@ RF_MTRY_RULES <- c(
 
 rf_mtry_from_rule <- function(rule, p) {
   p <- max(1L, as.integer(p))
-
+  
   value <- switch(
     as.character(rule),
     one = 1,
@@ -861,7 +874,7 @@ rf_mtry_from_rule <- function(rule, p) {
     all = p,
     stop("Unknown RF mtry rule: ", rule)
   )
-
+  
   max(
     1L,
     min(
@@ -872,14 +885,14 @@ rf_mtry_from_rule <- function(rule, p) {
 }
 
 select_rf_mtry_inner <- function(
-  meta_train,
-  X_train_raw,
-  omics_type,
-  inner_plan,
-  feature_mode,
-  fixed_k = NA_integer_,
-  seed,
-  stage
+    meta_train,
+    X_train_raw,
+    omics_type,
+    inner_plan,
+    feature_mode,
+    fixed_k = NA_integer_,
+    seed,
+    stage
 ) {
   groups <- as.character(
     meta_train[[COL_ANIMAL]]
@@ -888,32 +901,32 @@ select_rf_mtry_inner <- function(
     meta_train[[COL_TARGET]]
   )
   n <- nrow(meta_train)
-
+  
   split_keys <- inner_plan %>%
     distinct(Repeat, InnerFold) %>%
     arrange(Repeat, InnerFold)
-
+  
   rows <- vector(
     "list",
     nrow(split_keys) *
       length(RF_MTRY_RULES)
   )
   pos <- 1L
-
+  
   for (s in seq_len(nrow(split_keys))) {
     repeat_id <- split_keys$Repeat[s]
     fold_id <- split_keys$InnerFold[s]
-
+    
     val_index <- inner_plan %>%
       filter(
         Repeat == repeat_id,
         InnerFold == fold_id
       ) %>%
       pull(RowIndex)
-
+    
     is_val <- seq_len(n) %in% val_index
     is_train <- !is_val
-
+    
     prepared <- tryCatch(
       prepare_omics(
         X_train_raw[
@@ -926,12 +939,12 @@ select_rf_mtry_inner <- function(
       ),
       error = identity
     )
-
+    
     ranking <- NULL
-
+    
     if (
       !inherits(prepared, "error") &&
-        feature_mode == "FixedK"
+      feature_mode == "FixedK"
     ) {
       ranking <- tryCatch(
         rank_features_processed(
@@ -951,15 +964,15 @@ select_rf_mtry_inner <- function(
         }
       )
     }
-
+    
     for (rule_index in seq_along(RF_MTRY_RULES)) {
       rule <- RF_MTRY_RULES[rule_index]
-
+      
       rows[[pos]] <- tryCatch({
         if (inherits(prepared, "error")) {
           stop(conditionMessage(prepared))
         }
-
+        
         selected_features <- if (
           feature_mode == "ALL"
         ) {
@@ -970,34 +983,34 @@ select_rf_mtry_inner <- function(
             fixed_k
           )
         }
-
+        
         mtry_effective <- rf_mtry_from_rule(
           rule,
           length(selected_features)
         )
-
+        
         rf_fit_seed <-
-  seed +
-  repeat_id * 1000000L +
-  fold_id * 10000L +
-  mtry_effective
-
-fit <- fit_rf_processed(
-  prepared$X_train[
-    , selected_features, drop = FALSE
-  ],
-  y[is_train],
-  prepared$X_test[
-    , selected_features, drop = FALSE
-  ],
-  mtry = mtry_effective,
-  seed = rf_fit_seed
-)
-
-
+          seed +
+          repeat_id * 1000000L +
+          fold_id * 10000L +
+          mtry_effective
+        
+        fit <- fit_rf_processed(
+          prepared$X_train[
+            , selected_features, drop = FALSE
+          ],
+          y[is_train],
+          prepared$X_test[
+            , selected_features, drop = FALSE
+          ],
+          mtry = mtry_effective,
+          seed = rf_fit_seed
+        )
+        
+        
         residuals <- y[is_val] -
           fit$pred_test
-
+        
         tibble(
           Stage = stage,
           FeatureMode = feature_mode,
@@ -1036,14 +1049,14 @@ fit <- fit_rf_processed(
           Error = conditionMessage(e)
         )
       })
-
+      
       pos <- pos + 1L
     }
   }
-
+  
   folds <- bind_rows(rows)
   expected_folds <- nrow(split_keys)
-
+  
   summary <- folds %>%
     group_by(
       Stage,
@@ -1056,7 +1069,7 @@ fit <- fit_rf_processed(
       PooledRMSE = {
         ok <- is.finite(SSE) &
           NValidation > 0
-
+        
         if (any(ok)) {
           sqrt(
             sum(SSE[ok]) /
@@ -1078,7 +1091,7 @@ fit <- fit_rf_processed(
       ExpectedFolds = expected_folds,
       .groups = "drop"
     )
-
+  
   selected <- summary %>%
     filter(
       ValidFolds > 0L,
@@ -1090,7 +1103,7 @@ fit <- fit_rf_processed(
       MtryRuleOrder
     ) %>%
     slice(1)
-
+  
   if (nrow(selected) == 0L) {
     selected <- tibble(
       Stage = stage,
@@ -1141,42 +1154,52 @@ fit <- fit_rf_processed(
 }
 
 fit_omics_pipeline <- function(
-  meta_train,
-  X_train_raw,
-  X_test_raw,
-  omics_type,
-  mode = c("FixedK", "ALL"),
-  inner_plan,
-  seed,
-  stage
+    meta_train,
+    X_train_raw,
+    X_test_raw,
+    omics_type,
+    mode = c("FixedK", "ALL"),
+    inner_plan,
+    seed,
+    stage,
+    algorithm_override = NULL
 ) {
   mode <- match.arg(mode)
-
-  algorithm <- if (omics_type == "metab") {
+  
+  default_algorithm <- if (omics_type == "metab") {
     METAB_ALGORITHM
   } else {
     MICRO_ALGORITHM
   }
-
+  
+  algorithm <- if (is.null(algorithm_override)) {
+    default_algorithm
+  } else {
+    match.arg(
+      algorithm_override,
+      c("ElasticNet", "RandomForest")
+    )
+  }
+  
   fixed_k <- if (omics_type == "metab") {
     K_METAB_PRIMARY
   } else {
     K_MICRO_PRIMARY
   }
-
+  
   groups <- as.character(
     meta_train[[COL_ANIMAL]]
   )
   y <- as.numeric(
     meta_train[[COL_TARGET]]
   )
-
+  
   selected_mtry_rule <- NA_character_
   selected_inner_rmse <- NA_real_
   selection_rule <- NA_character_
   inner_summary <- tibble()
   inner_folds <- tibble()
-
+  
   if (algorithm == "RandomForest") {
     tuning <- select_rf_mtry_inner(
       meta_train = meta_train,
@@ -1190,23 +1213,23 @@ fit_omics_pipeline <- function(
       seed = seed + 1000L,
       stage = stage
     )
-
+    
     selected_mtry_rule <-
       tuning$selected$MtryRule[1]
-
+    
     selected_inner_rmse <-
       tuning$selected$PooledRMSE[1]
-
+    
     inner_summary <- tuning$summary
     inner_folds <- tuning$folds
   }
-
+  
   prepared <- prepare_omics(
     X_train_raw,
     X_test_raw,
     omics_type
   )
-
+  
   if (mode == "ALL") {
     selected_features <- colnames(
       prepared$X_train
@@ -1224,27 +1247,27 @@ fit_omics_pipeline <- function(
         if (algorithm != "RandomForest") {
           stop(e)
         }
-
+        
         warning(
           stage,
           ": RF importance was unavailable; ",
           "absolute training-set correlation was used.",
           call. = FALSE
         )
-
+        
         fallback_rf_ranking(
           prepared$X_train,
           y
         )
       }
     )
-
+    
     selected_features <- select_top_features(
       ranking,
       fixed_k
     )
   }
-
+  
   selected_mtry <- if (
     algorithm == "RandomForest"
   ) {
@@ -1255,7 +1278,7 @@ fit_omics_pipeline <- function(
   } else {
     NA_integer_
   }
-
+  
   if (algorithm == "ElasticNet") {
     selection_rule <-
       "Elastic Net lambda selected by grouped cv.glmnet"
@@ -1266,7 +1289,7 @@ fit_omics_pipeline <- function(
         selected_mtry_rule
       )
   }
-
+  
   final_fit <- if (algorithm == "ElasticNet") {
     fit_enet_processed(
       prepared$X_train[
@@ -1293,7 +1316,7 @@ fit_omics_pipeline <- function(
       seed = seed + 3000L
     )
   }
-
+  
   selection <- tibble(
     Stage = stage,
     OmicsType = omics_type,
@@ -1333,7 +1356,7 @@ fit_omics_pipeline <- function(
     SelectedInnerRMSE = selected_inner_rmse,
     SelectionRule = selection_rule
   )
-
+  
   list(
     pred_train = final_fit$pred_train,
     pred_test = final_fit$pred_test,
@@ -1350,32 +1373,32 @@ fit_omics_pipeline <- function(
 
 #  Fusion and stacking
 fit_meta_nnls_matrix <- function(
-  y,
-  predictions
+    y,
+    predictions
 ) {
   y <- as.numeric(y)
   P <- as.matrix(predictions)
-
+  
   if (is.null(colnames(P))) {
     colnames(P) <- paste0(
       "Model",
       seq_len(ncol(P))
     )
   }
-
+  
   ok <- is.finite(y) &
     apply(
       P,
       1,
       function(z) all(is.finite(z))
     )
-
+  
   y <- y[ok]
   P <- P[ok, , drop = FALSE]
-
+  
   y_bar <- mean(y)
   p_bar <- colMeans(P)
-
+  
   yc <- y - y_bar
   Pc <- sweep(
     P,
@@ -1383,13 +1406,13 @@ fit_meta_nnls_matrix <- function(
     p_bar,
     "-"
   )
-
+  
   objective <- function(w) {
     residuals <- yc -
       as.numeric(Pc %*% w)
     sum(residuals^2)
   }
-
+  
   opt <- optim(
     par = rep(
       1 / ncol(P),
@@ -1399,13 +1422,13 @@ fit_meta_nnls_matrix <- function(
     method = "L-BFGS-B",
     lower = rep(0, ncol(P))
   )
-
+  
   weights <- pmax(
     as.numeric(opt$par),
     0
   )
   names(weights) <- colnames(P)
-
+  
   list(
     intercept =
       y_bar -
@@ -1415,21 +1438,21 @@ fit_meta_nnls_matrix <- function(
 }
 
 predict_meta_nnls_matrix <- function(
-  model,
-  predictions
+    model,
+    predictions
 ) {
   P <- as.matrix(predictions)
-
+  
   if (is.null(dim(P))) {
     P <- matrix(P, ncol = 1L)
   }
-
+  
   if (!is.null(colnames(P))) {
     P <- P[
       , names(model$weights), drop = FALSE
     ]
   }
-
+  
   as.numeric(
     model$intercept +
       P %*% model$weights
@@ -1437,11 +1460,11 @@ predict_meta_nnls_matrix <- function(
 }
 
 fit_early_fusion <- function(
-  metab_fit,
-  micro_fit,
-  y_train,
-  groups,
-  seed
+    metab_fit,
+    micro_fit,
+    y_train,
+    groups,
+    seed
 ) {
   Xm_train <- metab_fit$prepared$X_train[
     , metab_fit$selected_features, drop = FALSE
@@ -1449,23 +1472,23 @@ fit_early_fusion <- function(
   Xm_test <- metab_fit$prepared$X_test[
     , metab_fit$selected_features, drop = FALSE
   ]
-
+  
   Xc_train <- micro_fit$prepared$X_train[
     , micro_fit$selected_features, drop = FALSE
   ]
   Xc_test <- micro_fit$prepared$X_test[
     , micro_fit$selected_features, drop = FALSE
   ]
-
+  
   colnames(Xm_train) <- colnames(Xm_test) <-
     paste0("M_", colnames(Xm_train))
-
+  
   colnames(Xc_train) <- colnames(Xc_test) <-
     paste0("C_", colnames(Xc_train))
-
+  
   X_train <- cbind(Xm_train, Xc_train)
   X_test <- cbind(Xm_test, Xc_test)
-
+  
   fit <- fit_enet_processed(
     X_train,
     y_train,
@@ -1474,7 +1497,7 @@ fit_early_fusion <- function(
     seed = seed,
     alpha = ALPHA
   )
-
+  
   list(
     pred_train = fit$pred_train,
     pred_test = fit$pred_test,
@@ -1486,16 +1509,16 @@ fit_early_fusion <- function(
 }
 
 fit_stacking <- function(
-  meta_train,
-  X_metab_train_raw,
-  X_micro_train_raw,
-  X_metab_test_raw,
-  X_micro_test_raw,
-  mode,
-  final_metab_fit,
-  final_micro_fit,
-  seed,
-  inner_repeats = INNER_REPEATS
+    meta_train,
+    X_metab_train_raw,
+    X_micro_train_raw,
+    X_metab_test_raw,
+    X_micro_test_raw,
+    mode,
+    final_metab_fit,
+    final_micro_fit,
+    seed,
+    inner_repeats = INNER_REPEATS
 ) {
   groups <- as.character(
     meta_train[[COL_ANIMAL]]
@@ -1503,32 +1526,32 @@ fit_stacking <- function(
   y <- as.numeric(
     meta_train[[COL_TARGET]]
   )
-
+  
   foldid <- make_group_folds(
     groups,
     y,
     kfold = STACK_FOLDS,
     seed = seed
   )
-
+  
   oof_metab <- rep(NA_real_, length(y))
   oof_micro <- rep(NA_real_, length(y))
-
+  
   for (f in sort(unique(foldid))) {
     is_val <- foldid == f
     is_train <- !is_val
-
+    
     sub_meta <- meta_train[
       is_train, , drop = FALSE
     ]
-
+    
     sub_groups <- as.character(
       sub_meta[[COL_ANIMAL]]
     )
     sub_y <- as.numeric(
       sub_meta[[COL_TARGET]]
     )
-
+    
     sub_inner_plan <- make_repeated_group_folds(
       sub_groups,
       sub_y,
@@ -1536,7 +1559,7 @@ fit_stacking <- function(
       repeats = as.integer(inner_repeats),
       seed = seed + f * 100L
     )
-
+    
     fit_m <- fit_omics_pipeline(
       meta_train = sub_meta,
       X_train_raw = X_metab_train_raw[
@@ -1554,7 +1577,7 @@ fit_stacking <- function(
         mode
       )
     )
-
+    
     fit_c <- fit_omics_pipeline(
       meta_train = sub_meta,
       X_train_raw = X_micro_train_raw[
@@ -1572,45 +1595,45 @@ fit_stacking <- function(
         mode
       )
     )
-
+    
     oof_metab[is_val] <- fit_m$pred_test
     oof_micro[is_val] <- fit_c$pred_test
   }
-
+  
   if (
     any(!is.finite(oof_metab)) ||
-      any(!is.finite(oof_micro))
+    any(!is.finite(oof_micro))
   ) {
     stop(
       "Incomplete OOF predictions were generated ",
       "for within-organ stacking."
     )
   }
-
+  
   oof_matrix <- cbind(
     Metabolomics = oof_metab,
     Microbiome = oof_micro
   )
-
+  
   meta_model <- fit_meta_nnls_matrix(
     y,
     oof_matrix
   )
-
+  
   final_train_matrix <- cbind(
     Metabolomics =
       final_metab_fit$pred_train,
     Microbiome =
       final_micro_fit$pred_train
   )
-
+  
   final_test_matrix <- cbind(
     Metabolomics =
       final_metab_fit$pred_test,
     Microbiome =
       final_micro_fit$pred_test
   )
-
+  
   list(
     pred_train = predict_meta_nnls_matrix(
       meta_model,
@@ -1622,10 +1645,10 @@ fit_stacking <- function(
     ),
     input_features =
       final_metab_fit$input_features +
-        final_micro_fit$input_features,
+      final_micro_fit$input_features,
     effective_features =
       final_metab_fit$effective_features +
-        final_micro_fit$effective_features,
+      final_micro_fit$effective_features,
     meta_model = meta_model,
     oof_metab = oof_metab,
     oof_micro = oof_micro
@@ -1633,14 +1656,14 @@ fit_stacking <- function(
 }
 
 fit_single_organ_fixedk_stack <- function(
-  meta_train,
-  X_metab_train_raw,
-  X_micro_train_raw,
-  X_metab_test_raw,
-  X_micro_test_raw,
-  tissue_label,
-  seed,
-  inner_repeats = INNER_REPEATS
+    meta_train,
+    X_metab_train_raw,
+    X_micro_train_raw,
+    X_metab_test_raw,
+    X_micro_test_raw,
+    tissue_label,
+    seed,
+    inner_repeats = INNER_REPEATS
 ) {
   groups <- as.character(
     meta_train[[COL_ANIMAL]]
@@ -1648,7 +1671,7 @@ fit_single_organ_fixedk_stack <- function(
   y <- as.numeric(
     meta_train[[COL_TARGET]]
   )
-
+  
   inner_plan <- make_repeated_group_folds(
     groups,
     y,
@@ -1656,7 +1679,7 @@ fit_single_organ_fixedk_stack <- function(
     repeats = as.integer(inner_repeats),
     seed = seed + 11L
   )
-
+  
   metab_fit <- fit_omics_pipeline(
     meta_train = meta_train,
     X_train_raw = X_metab_train_raw,
@@ -1670,7 +1693,7 @@ fit_single_organ_fixedk_stack <- function(
       "_Metab_FixedK"
     )
   )
-
+  
   micro_fit <- fit_omics_pipeline(
     meta_train = meta_train,
     X_train_raw = X_micro_train_raw,
@@ -1684,7 +1707,7 @@ fit_single_organ_fixedk_stack <- function(
       "_Micro_FixedK"
     )
   )
-
+  
   stack_fit <- fit_stacking(
     meta_train = meta_train,
     X_metab_train_raw =
@@ -1701,7 +1724,7 @@ fit_single_organ_fixedk_stack <- function(
     seed = seed + 40000L,
     inner_repeats = inner_repeats
   )
-
+  
   list(
     pred_train = stack_fit$pred_train,
     pred_test = stack_fit$pred_test,
@@ -1713,12 +1736,12 @@ fit_single_organ_fixedk_stack <- function(
 
 # Tissue-specific outer LOAO
 prediction_rows <- function(
-  meta_test,
-  predictions,
-  model,
-  label,
-  outer_fold,
-  analysis = "Tissue-specific"
+    meta_test,
+    predictions,
+    model,
+    label,
+    outer_fold,
+    analysis = "Tissue-specific"
 ) {
   tibble(
     Analysis = analysis,
@@ -1756,10 +1779,10 @@ prediction_rows <- function(
 }
 
 feature_rows <- function(
-  fit,
-  label,
-  outer_fold,
-  omics_label
+    fit,
+    label,
+    outer_fold,
+    omics_label
 ) {
   tibble(
     Label = label,
@@ -1779,11 +1802,11 @@ feature_rows <- function(
 }
 
 run_one_outer_loao <- function(
-  meta,
-  X_metab,
-  X_micro,
-  split_info,
-  label
+    meta,
+    X_metab,
+    X_micro,
+    split_info,
+    label
 ) {
   outer_fold <- split_info$OuterFold
   seed <- model_partition_seed(
@@ -1792,16 +1815,16 @@ run_one_outer_loao <- function(
     split_info$TrainIDs,
     split_info$TestIDs
   )
-
+  
   ids <- as.character(
     meta[[COL_ANIMAL]]
   )
-
+  
   is_train <- ids %in%
     split_info$TrainIDs
   is_test <- ids %in%
     split_info$TestIDs
-
+  
   if (!any(is_train) || !any(is_test)) {
     stop(
       "Empty training or test partition for ",
@@ -1811,21 +1834,24 @@ run_one_outer_loao <- function(
       "."
     )
   }
-
+  
   meta_train <- meta[
     is_train, , drop = FALSE
   ]
   meta_test <- meta[
     is_test, , drop = FALSE
   ]
-
+  
   y_train <- as.numeric(
     meta_train[[COL_TARGET]]
   )
   groups_train <- as.character(
     meta_train[[COL_ANIMAL]]
   )
-
+  intercept_only_pred <- rep(
+    mean(y_train, na.rm = TRUE),
+    nrow(meta_test)
+  )
   inner_plan <- make_repeated_group_folds(
     groups_train,
     y_train,
@@ -1833,7 +1859,7 @@ run_one_outer_loao <- function(
     repeats = INNER_REPEATS,
     seed = seed + 11L
   )
-
+  
   metab_fixed <- fit_omics_pipeline(
     meta_train,
     X_metab[is_train, , drop = FALSE],
@@ -1844,7 +1870,7 @@ run_one_outer_loao <- function(
     seed + 10000L,
     "Metab_FixedK"
   )
-
+  
   micro_fixed <- fit_omics_pipeline(
     meta_train,
     X_micro[is_train, , drop = FALSE],
@@ -1855,7 +1881,7 @@ run_one_outer_loao <- function(
     seed + 20000L,
     "Micro_FixedK"
   )
-
+  
   ef_fixed <- fit_early_fusion(
     metab_fixed,
     micro_fixed,
@@ -1863,7 +1889,7 @@ run_one_outer_loao <- function(
     groups_train,
     seed + 30000L
   )
-
+  
   stacking_fixed <- fit_stacking(
     meta_train,
     X_metab[is_train, , drop = FALSE],
@@ -1875,7 +1901,7 @@ run_one_outer_loao <- function(
     micro_fixed,
     seed + 40000L
   )
-
+  
   metab_all <- fit_omics_pipeline(
     meta_train,
     X_metab[is_train, , drop = FALSE],
@@ -1886,7 +1912,7 @@ run_one_outer_loao <- function(
     seed + 50000L,
     "Metab_ALL"
   )
-
+  
   micro_all <- fit_omics_pipeline(
     meta_train,
     X_micro[is_train, , drop = FALSE],
@@ -1897,7 +1923,7 @@ run_one_outer_loao <- function(
     seed + 60000L,
     "Micro_ALL"
   )
-
+  
   ef_all <- fit_early_fusion(
     metab_all,
     micro_all,
@@ -1905,7 +1931,7 @@ run_one_outer_loao <- function(
     groups_train,
     seed + 70000L
   )
-
+  
   stacking_all <- fit_stacking(
     meta_train,
     X_metab[is_train, , drop = FALSE],
@@ -1917,8 +1943,15 @@ run_one_outer_loao <- function(
     micro_all,
     seed + 80000L
   )
-
+  
   predictions <- bind_rows(
+    prediction_rows(
+      meta_test,
+      intercept_only_pred,
+      "Intercept_Only",
+      label,
+      outer_fold
+    ),
     prediction_rows(
       meta_test,
       metab_fixed$pred_test,
@@ -1976,7 +2009,7 @@ run_one_outer_loao <- function(
       outer_fold
     )
   )
-
+  
   selections <- bind_rows(
     metab_fixed$selection,
     micro_fixed$selection,
@@ -2058,7 +2091,7 @@ run_one_outer_loao <- function(
       ),
       .before = 1
     )
-
+  
   stack_weights <- bind_rows(
     tibble(
       Label = label,
@@ -2097,7 +2130,7 @@ run_one_outer_loao <- function(
         ]
     )
   )
-
+  
   features <- bind_rows(
     feature_rows(
       metab_fixed,
@@ -2112,7 +2145,7 @@ run_one_outer_loao <- function(
       "Microbiome"
     )
   )
-
+  
   inner_summary <- bind_rows(
     metab_fixed$inner_summary,
     micro_fixed$inner_summary,
@@ -2124,7 +2157,7 @@ run_one_outer_loao <- function(
       OuterFold = outer_fold,
       .before = 1
     )
-
+  
   inner_folds <- bind_rows(
     metab_fixed$inner_folds,
     micro_fixed$inner_folds,
@@ -2136,7 +2169,7 @@ run_one_outer_loao <- function(
       OuterFold = outer_fold,
       .before = 1
     )
-
+  
   list(
     predictions = predictions,
     selections = selections,
@@ -2146,23 +2179,288 @@ run_one_outer_loao <- function(
     inner_folds = inner_folds
   )
 }
+# ============================================================
+# Algorithm-sensitivity benchmark
+# Both algorithms applied to both omics layers
+# ============================================================
+
+run_one_outer_algorithm_benchmark <- function(
+    meta,
+    X_metab,
+    X_micro,
+    split_info,
+    label
+) {
+  
+  outer_fold <- split_info$OuterFold
+  
+  seed <- model_partition_seed(
+    "AlgorithmSensitivity",
+    label,
+    split_info$TrainIDs,
+    split_info$TestIDs
+  )
+  
+  ids <- as.character(
+    meta[[COL_ANIMAL]]
+  )
+  
+  is_train <- ids %in% split_info$TrainIDs
+  is_test  <- ids %in% split_info$TestIDs
+  
+  if (!any(is_train) || !any(is_test)) {
+    stop(
+      "Empty training or test partition for ",
+      label,
+      ", outer fold ",
+      outer_fold,
+      "."
+    )
+  }
+  
+  meta_train <- meta[
+    is_train, , drop = FALSE
+  ]
+  
+  meta_test <- meta[
+    is_test, , drop = FALSE
+  ]
+  
+  y_train <- as.numeric(
+    meta_train[[COL_TARGET]]
+  )
+  
+  groups_train <- as.character(
+    meta_train[[COL_ANIMAL]]
+  )
+  
+  inner_plan <- make_repeated_group_folds(
+    groups_train,
+    y_train,
+    kfold = INNER_FOLDS,
+    repeats = INNER_REPEATS,
+    seed = seed + 11L
+  )
+  
+  # ----------------------------------------------------------
+  # Metabolomics + Elastic Net
+  # ----------------------------------------------------------
+  
+  metab_en <- fit_omics_pipeline(
+    meta_train = meta_train,
+    X_train_raw = X_metab[
+      is_train, , drop = FALSE
+    ],
+    X_test_raw = X_metab[
+      is_test, , drop = FALSE
+    ],
+    omics_type = "metab",
+    mode = "FixedK",
+    inner_plan = inner_plan,
+    seed = seed + 10000L,
+    stage = "Sensitivity_Metab_EN",
+    algorithm_override = "ElasticNet"
+  )
+  
+  # ----------------------------------------------------------
+  # Metabolomics + Random Forest
+  # ----------------------------------------------------------
+  
+  metab_rf <- fit_omics_pipeline(
+    meta_train = meta_train,
+    X_train_raw = X_metab[
+      is_train, , drop = FALSE
+    ],
+    X_test_raw = X_metab[
+      is_test, , drop = FALSE
+    ],
+    omics_type = "metab",
+    mode = "FixedK",
+    inner_plan = inner_plan,
+    seed = seed + 20000L,
+    stage = "Sensitivity_Metab_RF",
+    algorithm_override = "RandomForest"
+  )
+  
+  # ----------------------------------------------------------
+  # Microbiome + Elastic Net
+  # ----------------------------------------------------------
+  
+  micro_en <- fit_omics_pipeline(
+    meta_train = meta_train,
+    X_train_raw = X_micro[
+      is_train, , drop = FALSE
+    ],
+    X_test_raw = X_micro[
+      is_test, , drop = FALSE
+    ],
+    omics_type = "micro",
+    mode = "FixedK",
+    inner_plan = inner_plan,
+    seed = seed + 30000L,
+    stage = "Sensitivity_Micro_EN",
+    algorithm_override = "ElasticNet"
+  )
+  
+  # ----------------------------------------------------------
+  #Microbiome + Random Forest
+  # ----------------------------------------------------------
+  
+  micro_rf <- fit_omics_pipeline(
+    meta_train = meta_train,
+    X_train_raw = X_micro[
+      is_train, , drop = FALSE
+    ],
+    X_test_raw = X_micro[
+      is_test, , drop = FALSE
+    ],
+    omics_type = "micro",
+    mode = "FixedK",
+    inner_plan = inner_plan,
+    seed = seed + 40000L,
+    stage = "Sensitivity_Micro_RF",
+    algorithm_override = "RandomForest"
+  )
+  
+  # ----------------------------------------------------------
+  # Predictions
+  # ----------------------------------------------------------
+  
+  predictions <- bind_rows(
+    
+    prediction_rows(
+      meta_test,
+      metab_en$pred_test,
+      "Metab_EN",
+      label,
+      outer_fold,
+      analysis = "Algorithm sensitivity"
+    ),
+    
+    prediction_rows(
+      meta_test,
+      metab_rf$pred_test,
+      "Metab_RF",
+      label,
+      outer_fold,
+      analysis = "Algorithm sensitivity"
+    ),
+    
+    prediction_rows(
+      meta_test,
+      micro_en$pred_test,
+      "Micro_EN",
+      label,
+      outer_fold,
+      analysis = "Algorithm sensitivity"
+    ),
+    
+    prediction_rows(
+      meta_test,
+      micro_rf$pred_test,
+      "Micro_RF",
+      label,
+      outer_fold,
+      analysis = "Algorithm sensitivity"
+    )
+  )
+  
+  selections <- bind_rows(
+    metab_en$selection,
+    metab_rf$selection,
+    micro_en$selection,
+    micro_rf$selection
+  ) %>%
+    mutate(
+      Label = label,
+      OuterFold = outer_fold,
+      .before = 1
+    )
+  
+  list(
+    predictions = predictions,
+    selections = selections
+  )
+}
+run_algorithm_benchmark <- function(
+    meta,
+    X_metab,
+    X_micro,
+    label
+) {
+  
+  outer_splits <- make_outer_splits(
+    meta
+  )
+  
+  cat(
+    sprintf(
+      "Algorithm benchmark %-12s animals=%3d rows=%4d  ",
+      label,
+      n_distinct(meta[[COL_ANIMAL]]),
+      nrow(meta)
+    )
+  )
+  
+  outputs <- vector(
+    "list",
+    length(outer_splits)
+  )
+  
+  for (i in seq_along(outer_splits)) {
+    
+    if (i %% 5L == 0L) {
+      cat(".")
+    }
+    
+    outputs[[i]] <-
+      run_one_outer_algorithm_benchmark(
+        meta = meta,
+        X_metab = X_metab,
+        X_micro = X_micro,
+        split_info = outer_splits[[i]],
+        label = label
+      )
+  }
+  
+  cat(" done\n")
+  
+  list(
+    predictions = bind_rows(
+      lapply(
+        outputs,
+        `[[`,
+        "predictions"
+      )
+    ),
+    
+    selections = bind_rows(
+      lapply(
+        outputs,
+        `[[`,
+        "selections"
+      )
+    )
+  )
+}
+
 
 run_loao_analysis <- function(
-  meta,
-  X_metab,
-  X_micro,
-  label
+    meta,
+    X_metab,
+    X_micro,
+    label
 ) {
   n_animals <- n_distinct(
     meta[[COL_ANIMAL]]
   )
-
   
-
+  
+  
   outer_splits <- make_outer_splits(
     meta
   )
-
+  
   cat(
     sprintf(
       "  %-12s animals=%3d rows=%4d  ",
@@ -2171,15 +2469,15 @@ run_loao_analysis <- function(
       nrow(meta)
     )
   )
-
+  
   outputs <- vector(
     "list",
     length(outer_splits)
   )
-
+  
   for (i in seq_along(outer_splits)) {
     if (i %% 5L == 0L) cat(".")
-
+    
     outputs[[i]] <- run_one_outer_loao(
       meta,
       X_metab,
@@ -2188,9 +2486,9 @@ run_loao_analysis <- function(
       label
     )
   }
-
+  
   cat(" done\n")
-
+  
   list(
     predictions = bind_rows(
       lapply(outputs, `[[`, "predictions")
@@ -2213,23 +2511,199 @@ run_loao_analysis <- function(
   )
 }
 
+# metabolomics-only leave-one-PMI-day-out (LODO)
+# ============================================================
+
+run_one_outer_lodo <- function(
+    meta,
+    X_metab,
+    heldout_day,
+    label
+) {
+  
+  pmi <- as.numeric(meta[[COL_TARGET]])
+  
+  is_test <- pmi == heldout_day
+  is_train <- !is_test
+  
+  if (!any(is_train) || !any(is_test)) {
+    stop(
+      "Empty training or test partition for ",
+      label,
+      ", held-out PMI day ",
+      heldout_day,
+      "."
+    )
+  }
+  
+  meta_train <- meta[
+    is_train, , drop = FALSE
+  ]
+  
+  meta_test <- meta[
+    is_test, , drop = FALSE
+  ]
+  
+  X_train <- X_metab[
+    is_train, , drop = FALSE
+  ]
+  
+  X_test <- X_metab[
+    is_test, , drop = FALSE
+  ]
+  
+  y_train <- as.numeric(
+    meta_train[[COL_TARGET]]
+  )
+  
+  groups_train <- as.character(
+    meta_train[[COL_ANIMAL]]
+  )
+  
+  seed <- model_partition_seed(
+    "Metab_LODO",
+    label,
+    as.character(meta_train[[COL_ANIMAL]]),
+    as.character(meta_test[[COL_ANIMAL]])
+  )
+  
+  # Inner CV uses training animals only
+  inner_plan <- make_repeated_group_folds(
+    groups_train,
+    y_train,
+    kfold = INNER_FOLDS,
+    repeats = INNER_REPEATS,
+    seed = seed + 11L
+  )
+  
+  metab_fit <- fit_omics_pipeline(
+    meta_train = meta_train,
+    X_train_raw = X_train,
+    X_test_raw = X_test,
+    omics_type = "metab",
+    mode = "FixedK",
+    inner_plan = inner_plan,
+    seed = seed + 10000L,
+    stage = paste0(
+      label,
+      "_Metab_LODO_Day",
+      heldout_day
+    )
+  )
+  
+  predictions <- tibble(
+    Analysis = "Metabolomics LODO",
+    Label = label,
+    HeldOutDay = heldout_day,
+    AnimalID = as.character(
+      meta_test[[COL_ANIMAL]]
+    ),
+    Observed = as.numeric(
+      meta_test[[COL_TARGET]]
+    ),
+    Predicted = as.numeric(
+      metab_fit$pred_test
+    )
+  ) %>%
+    mutate(
+      Residual = Observed - Predicted,
+      AbsoluteError = abs(Residual),
+      SquaredError = Residual^2
+    )
+  
+  features <- tibble(
+    Analysis = "Metabolomics LODO",
+    Label = label,
+    HeldOutDay = heldout_day,
+    Feature = metab_fit$selected_features,
+    Rank = seq_along(
+      metab_fit$selected_features
+    )
+  )
+  
+  list(
+    predictions = predictions,
+    features = features,
+    selection = metab_fit$selection,
+    inner_summary = metab_fit$inner_summary,
+    inner_folds = metab_fit$inner_folds
+  )
+}
+
+
+run_lodo_metab_analysis <- function(
+    meta,
+    X_metab,
+    label,
+    pmi_days
+) {
+  
+  available_days <- sort(
+    unique(
+      as.numeric(meta[[COL_TARGET]])
+    )
+  )
+  
+  pmi_days <- intersect(
+    pmi_days,
+    available_days
+  )
+  
+  if (length(pmi_days) < 3L) {
+    stop(
+      "Insufficient PMI days for LODO analysis in ",
+      label,
+      "."
+    )
+  }
+  
+  outputs <- lapply(
+    pmi_days,
+    function(day) {
+      run_one_outer_lodo(
+        meta = meta,
+        X_metab = X_metab,
+        heldout_day = day,
+        label = label
+      )
+    }
+  )
+  
+  list(
+    predictions = bind_rows(
+      lapply(outputs, `[[`, "predictions")
+    ),
+    features = bind_rows(
+      lapply(outputs, `[[`, "features")
+    ),
+    selections = bind_rows(
+      lapply(outputs, `[[`, "selection")
+    ),
+    inner_summary = bind_rows(
+      lapply(outputs, `[[`, "inner_summary")
+    ),
+    inner_folds = bind_rows(
+      lapply(outputs, `[[`, "inner_folds")
+    )
+  )
+}
 
 # Performance summaries and comparisons
 bootstrap_metric_ci <- function(
-  observed,
-  predicted,
-  B = BOOT_B,
-  seed = 42L
+    observed,
+    predicted,
+    B = BOOT_B,
+    seed = 42L
 ) {
   ok <- is.finite(observed) &
     is.finite(predicted)
-
+  
   observed <- observed[ok]
   predicted <- predicted[ok]
   n <- length(observed)
-
+  
   set.seed(seed)
-
+  
   idx <- replicate(
     B,
     sample.int(
@@ -2238,7 +2712,7 @@ bootstrap_metric_ci <- function(
       replace = TRUE
     )
   )
-
+  
   rmse_boot <- apply(
     idx,
     2,
@@ -2249,7 +2723,7 @@ bootstrap_metric_ci <- function(
       )
     }
   )
-
+  
   mae_boot <- apply(
     idx,
     2,
@@ -2260,7 +2734,7 @@ bootstrap_metric_ci <- function(
       )
     }
   )
-
+  
   r2_boot <- apply(
     idx,
     2,
@@ -2271,7 +2745,7 @@ bootstrap_metric_ci <- function(
       )
     }
   )
-
+  
   tibble(
     RMSE_lower = quantile(
       rmse_boot,
@@ -2307,8 +2781,8 @@ bootstrap_metric_ci <- function(
 }
 
 summarise_predictions <- function(
-  predictions,
-  group_columns
+    predictions,
+    group_columns
 ) {
   predictions %>%
     group_by(
@@ -2340,12 +2814,12 @@ summarise_predictions <- function(
           na.rm = TRUE
         )
       )
-
+      
       key_text <- paste(
         unlist(key),
         collapse = "__"
       )
-
+      
       ci <- bootstrap_metric_ci(
         df$Observed,
         df$Predicted,
@@ -2355,18 +2829,18 @@ summarise_predictions <- function(
           key_text
         )
       )
-
+      
       bind_cols(point, ci)
     }) %>%
     ungroup()
 }
 
 paired_prediction_comparison <- function(
-  candidate_df,
-  reference_df,
-  comparison_label,
-  B = BOOT_B,
-  seed = 42L
+    candidate_df,
+    reference_df,
+    comparison_label,
+    B = BOOT_B,
+    seed = 42L
 ) {
   paired <- candidate_df %>%
     select(
@@ -2384,9 +2858,9 @@ paired_prediction_comparison <- function(
         ),
       by = "AnimalID"
     )
-
+  
   n <- nrow(paired)
-
+  
   point_delta <-
     calc_rmse(
       paired$Observed,
@@ -2396,16 +2870,16 @@ paired_prediction_comparison <- function(
       paired$Observed,
       paired$PredCandidate
     )
-
+  
   set.seed(seed)
-
+  
   boot_delta <- replicate(B, {
     ii <- sample.int(
       n,
       n,
       replace = TRUE
     )
-
+    
     calc_rmse(
       paired$Observed[ii],
       paired$PredReference[ii]
@@ -2415,26 +2889,26 @@ paired_prediction_comparison <- function(
         paired$PredCandidate[ii]
       )
   })
-
+  
   perm_delta <- replicate(B, {
     swap <- sample(
       c(FALSE, TRUE),
       n,
       replace = TRUE
     )
-
+    
     candidate_perm <- ifelse(
       swap,
       paired$PredReference,
       paired$PredCandidate
     )
-
+    
     reference_perm <- ifelse(
       swap,
       paired$PredCandidate,
       paired$PredReference
     )
-
+    
     calc_rmse(
       paired$Observed,
       reference_perm
@@ -2444,7 +2918,7 @@ paired_prediction_comparison <- function(
         candidate_perm
       )
   })
-
+  
   p_perm <- (
     1 +
       sum(
@@ -2452,7 +2926,7 @@ paired_prediction_comparison <- function(
           abs(point_delta)
       )
   ) / (B + 1)
-
+  
   tibble(
     Comparison = comparison_label,
     NAnimals = n,
@@ -2477,10 +2951,10 @@ paired_prediction_comparison <- function(
 
 # Shared complete-cohort pairwise cross-organ analysis
 build_complete_organ_dataset <- function(
-  meta,
-  X_metab,
-  X_micro,
-  tissues = TISSUES
+    meta,
+    X_metab,
+    X_micro,
+    tissues = TISSUES
 ) {
   id_sets <- lapply(
     tissues,
@@ -2493,30 +2967,30 @@ build_complete_organ_dataset <- function(
       )
     }
   )
-
+  
   common_ids <- sort(
     Reduce(intersect, id_sets)
   )
-
-
+  
+  
   row_index <- list()
   metab_list <- list()
   micro_list <- list()
-
+  
   for (tissue in tissues) {
     idx <- which(
       as.character(meta[[COL_TISSUE]]) ==
         tissue
     )
-
+    
     tissue_ids <- as.character(
       meta[[COL_ANIMAL]][idx]
     )
-
+    
     rows <- idx[
       match(common_ids, tissue_ids)
     ]
-
+    
     if (anyNA(rows)) {
       stop(
         "Five-organ alignment failed for ",
@@ -2524,7 +2998,7 @@ build_complete_organ_dataset <- function(
         "."
       )
     }
-
+    
     row_index[[tissue]] <- rows
     metab_list[[tissue]] <- X_metab[
       rows, , drop = FALSE
@@ -2533,7 +3007,7 @@ build_complete_organ_dataset <- function(
       rows, , drop = FALSE
     ]
   }
-
+  
   y_matrix <- do.call(
     cbind,
     lapply(
@@ -2547,19 +3021,19 @@ build_complete_organ_dataset <- function(
       }
     )
   )
-
+  
   meta_complete <- meta[
     row_index[[tissues[1]]],
     , drop = FALSE
   ]
-
+  
   meta_complete[[COL_ID]] <- paste0(
     common_ids,
     "__FiveOrgan"
   )
   meta_complete[[COL_TISSUE]] <-
     "FiveOrganComplete"
-
+  
   list(
     meta = meta_complete,
     metab = metab_list,
@@ -2582,21 +3056,21 @@ parse_organ_set <- function(label) {
 }
 
 make_pair_and_five_organ_subsets <- function(
-  tissues = TISSUES
+    tissues = TISSUES
 ) {
   single_subsets <- lapply(
     tissues,
     function(tissue) tissue
   )
-
+  
   pair_subsets <- combn(
     tissues,
     2L,
     simplify = FALSE
   )
-
+  
   five_organ_subset <- list(tissues)
-
+  
   c(
     single_subsets,
     pair_subsets,
@@ -2605,50 +3079,50 @@ make_pair_and_five_organ_subsets <- function(
 }
 
 run_one_shared_complete_outer <- function(
-  complete_data,
-  split_info
+    complete_data,
+    split_info
 ) {
   tissues <- complete_data$tissues
   subsets <- make_pair_and_five_organ_subsets(
     tissues
   )
   outer_fold <- split_info$OuterFold
-
+  
   ids <- as.character(
     complete_data$meta[[COL_ANIMAL]]
   )
-
+  
   is_train <- ids %in%
     split_info$TrainIDs
   is_test <- ids %in%
     split_info$TestIDs
-
+  
   meta_train <- complete_data$meta[
     is_train, , drop = FALSE
   ]
   meta_test <- complete_data$meta[
     is_test, , drop = FALSE
   ]
-
+  
   groups <- as.character(
     meta_train[[COL_ANIMAL]]
   )
   y <- as.numeric(
     meta_train[[COL_TARGET]]
   )
-
+  
   train_rows <- which(is_train)
-
+  
   final_fits <- setNames(
     vector("list", length(tissues)),
     tissues
   )
-
+  
   test_organ_predictions <- setNames(
     rep(NA_real_, length(tissues)),
     tissues
   )
-
+  
   for (tissue in tissues) {
     final_fits[[tissue]] <-
       fit_single_organ_fixedk_stack(
@@ -2673,15 +3147,15 @@ run_one_shared_complete_outer <- function(
           split_info$TestIDs
         )
       )
-
+    
     test_organ_predictions[tissue] <-
       mean(
         final_fits[[tissue]]$pred_test,
         na.rm = TRUE
       )
   }
-
-   meta_foldid <- make_group_folds(
+  
+  meta_foldid <- make_group_folds(
     groups,
     y,
     kfold = STACK_FOLDS,
@@ -2691,22 +3165,22 @@ run_one_shared_complete_outer <- function(
       id_set_key(split_info$TestIDs)
     )
   )
-
+  
   oof_matrix <- matrix(
     NA_real_,
     nrow = length(y),
     ncol = length(tissues),
     dimnames = list(NULL, tissues)
   )
-
+  
   for (f in sort(unique(meta_foldid))) {
     is_meta_val <- meta_foldid == f
     is_meta_train <- !is_meta_val
-
+    
     sub_meta <- meta_train[
       is_meta_train, , drop = FALSE
     ]
-
+    
     for (tissue in tissues) {
       sub_fit <- fit_single_organ_fixedk_stack(
         sub_meta,
@@ -2736,24 +3210,24 @@ run_one_shared_complete_outer <- function(
         inner_repeats =
           MULTI_ORGAN_OOF_INNER_REPEATS
       )
-
+      
       oof_matrix[
         is_meta_val,
         tissue
       ] <- sub_fit$pred_test
     }
   }
-
-
+  
+  
   prediction_list <- list()
   weight_list <- list()
   pred_pos <- 1L
   weight_pos <- 1L
-
+  
   for (organs in subsets) {
     n_organs <- length(organs)
     organ_set <- organ_set_label(organs)
-
+    
     analysis_label <- if (
       n_organs == 1L
     ) {
@@ -2765,11 +3239,11 @@ run_one_shared_complete_outer <- function(
     } else {
       "Supplementary five-organ sensitivity analysis"
     }
-
+    
     if (n_organs == 1L) {
       tissue <- organs[1]
       one_prediction <- test_organ_predictions[tissue]
-
+      
       prediction_list[[pred_pos]] <-
         prediction_rows(
           meta_test,
@@ -2788,9 +3262,9 @@ run_one_shared_complete_outer <- function(
           Method = "SingleOrgan",
           .before = 1
         )
-
+      
       pred_pos <- pred_pos + 1L
-
+      
       weight_list[[weight_pos]] <- tibble(
         OuterFold = outer_fold,
         TestAnimal = as.character(
@@ -2803,15 +3277,15 @@ run_one_shared_complete_outer <- function(
         Tissue = tissue,
         Weight = 1
       )
-
+      
       weight_pos <- weight_pos + 1L
       next
     }
-
+    
     equal_prediction <- mean(
       test_organ_predictions[organs]
     )
-
+    
     prediction_list[[pred_pos]] <-
       prediction_rows(
         meta_test,
@@ -2831,9 +3305,9 @@ run_one_shared_complete_outer <- function(
         Method = "EqualWeight",
         .before = 1
       )
-
+    
     pred_pos <- pred_pos + 1L
-
+    
     weight_list[[weight_pos]] <- tibble(
       OuterFold = outer_fold,
       TestAnimal = as.character(
@@ -2849,30 +3323,30 @@ run_one_shared_complete_outer <- function(
         n_organs
       )
     )
-
+    
     weight_pos <- weight_pos + 1L
-
+    
     P_train <- oof_matrix[
       , organs, drop = FALSE
     ]
-
+    
     meta_model <- fit_meta_nnls_matrix(
       y,
       P_train
     )
-
+    
     P_test <- matrix(
       test_organ_predictions[organs],
       nrow = 1L,
       dimnames = list(NULL, organs)
     )
-
+    
     hierarchical_prediction <-
       predict_meta_nnls_matrix(
         meta_model,
         P_test
       )
-
+    
     prediction_list[[pred_pos]] <-
       prediction_rows(
         meta_test,
@@ -2892,9 +3366,9 @@ run_one_shared_complete_outer <- function(
         Method = "HierarchicalNNLS",
         .before = 1
       )
-
+    
     pred_pos <- pred_pos + 1L
-
+    
     weight_list[[weight_pos]] <- tibble(
       OuterFold = outer_fold,
       TestAnimal = as.character(
@@ -2911,10 +3385,10 @@ run_one_shared_complete_outer <- function(
         meta_model$weights
       )
     )
-
+    
     weight_pos <- weight_pos + 1L
   }
-
+  
   oof_predictions <- as_tibble(
     oof_matrix,
     .name_repair = "minimal"
@@ -2936,7 +3410,7 @@ run_one_shared_complete_outer <- function(
       ),
       .before = 1
     )
-
+  
   list(
     predictions = bind_rows(prediction_list),
     weights = bind_rows(weight_list),
@@ -2945,37 +3419,37 @@ run_one_shared_complete_outer <- function(
 }
 
 run_shared_complete_multi_organ_analysis <- function(
-  complete_data
+    complete_data
 ) {
-
+  
   cat(
     sprintf(
       "  Shared pairwise cohort animals=%3d  ",
       complete_data$n_animals
     )
   )
-
+  
   outer_splits <- make_outer_splits(
     complete_data$meta
   )
-
+  
   outputs <- vector(
     "list",
     length(outer_splits)
   )
-
+  
   for (i in seq_along(outer_splits)) {
     if (i %% 5L == 0L) cat(".")
-
+    
     outputs[[i]] <-
       run_one_shared_complete_outer(
         complete_data,
         outer_splits[[i]]
       )
   }
-
+  
   cat(" done\n")
-
+  
   list(
     predictions = bind_rows(
       lapply(outputs, `[[`, "predictions")
@@ -2992,7 +3466,7 @@ run_shared_complete_multi_organ_analysis <- function(
 
 # Shared multi-organ summaries and comparisons
 summarise_shared_multi_organ <- function(
-  predictions_multi
+    predictions_multi
 ) {
   summary <- summarise_predictions(
     predictions_multi,
@@ -3003,29 +3477,29 @@ summarise_shared_multi_organ <- function(
       "Model"
     )
   )
-
+  
   candidate_rows <- summary %>%
     filter(NOrgans >= 2L)
-
+  
   descriptive_list <- list()
   desc_pos <- 1L
-
+  
   for (i in seq_len(nrow(candidate_rows))) {
     candidate <- candidate_rows[i, ]
     organs <- parse_organ_set(
       candidate$OrganSet
     )
-
+    
     constituent_summary <- summary %>%
       filter(
         Method == "SingleOrgan",
         OrganSet %in% organs
       ) %>%
       arrange(RMSE, OrganSet)
-
+    
     best_constituent <- constituent_summary %>%
       slice(1)
-
+    
     descriptive_list[[desc_pos]] <- tibble(
       NOrgans = candidate$NOrgans,
       OrganSet = candidate$OrganSet,
@@ -3042,18 +3516,18 @@ summarise_shared_multi_organ <- function(
         best_constituent$RMSE,
       DeltaRMSE_vs_BestConstituent =
         best_constituent$RMSE -
-          candidate$RMSE,
+        candidate$RMSE,
       LowerRMSE_than_best_constituent_descriptive =
         candidate$RMSE <
-          best_constituent$RMSE
+        best_constituent$RMSE
     )
-
+    
     desc_pos <- desc_pos + 1L
   }
-
+  
   comparison_list <- list()
   comp_pos <- 1L
-
+  
   candidate_keys <- predictions_multi %>%
     filter(NOrgans >= 2L) %>%
     distinct(
@@ -3062,19 +3536,19 @@ summarise_shared_multi_organ <- function(
       Method,
       Model
     )
-
+  
   for (i in seq_len(nrow(candidate_keys))) {
     key <- candidate_keys[i, ]
     organs <- parse_organ_set(
       key$OrganSet
     )
-
+    
     candidate_df <- predictions_multi %>%
       filter(
         OrganSet == key$OrganSet,
         Method == key$Method
       )
-
+    
     for (reference_tissue in organs) {
       reference_df <- predictions_multi %>%
         filter(
@@ -3082,7 +3556,7 @@ summarise_shared_multi_organ <- function(
           Method == "SingleOrgan",
           OrganSet == reference_tissue
         )
-
+      
       comparison_list[[comp_pos]] <-
         paired_prediction_comparison(
           candidate_df,
@@ -3112,21 +3586,21 @@ summarise_shared_multi_organ <- function(
             reference_tissue,
           .before = 1
         )
-
+      
       comp_pos <- comp_pos + 1L
     }
   }
-
+  
   learned_keys <- predictions_multi %>%
     filter(
       NOrgans >= 2L,
       Method == "HierarchicalNNLS"
     ) %>%
     distinct(NOrgans, OrganSet)
-
+  
   for (i in seq_len(nrow(learned_keys))) {
     key <- learned_keys[i, ]
-
+    
     comparison_list[[comp_pos]] <-
       paired_prediction_comparison(
         predictions_multi %>%
@@ -3160,10 +3634,10 @@ summarise_shared_multi_organ <- function(
           "EqualWeight",
         .before = 1
       )
-
+    
     comp_pos <- comp_pos + 1L
   }
-
+  
   comparisons <- bind_rows(
     comparison_list
   ) %>%
@@ -3179,7 +3653,7 @@ summarise_shared_multi_organ <- function(
       )
     ) %>%
     ungroup()
-
+  
   list(
     summary = summary,
     descriptive = bind_rows(
@@ -3190,20 +3664,20 @@ summarise_shared_multi_organ <- function(
 }
 
 build_add_one_organ_deltas <- function(
-  summary_multi
+    summary_multi
 ) {
   to_rows <- summary_multi %>%
     filter(NOrgans >= 2L)
-
+  
   rows <- list()
   pos <- 1L
-
+  
   for (i in seq_len(nrow(to_rows))) {
     to_row <- to_rows[i, ]
     to_organs <- parse_organ_set(
       to_row$OrganSet
     )
-
+    
     for (added_organ in to_organs) {
       from_organs <- setdiff(
         to_organs,
@@ -3219,17 +3693,17 @@ build_add_one_organ_deltas <- function(
       } else {
         to_row$Method
       }
-
+      
       from_row <- summary_multi %>%
         filter(
           OrganSet == from_set,
           Method == from_method
         )
-
+      
       if (nrow(from_row) != 1L) {
         next
       }
-
+      
       rows[[pos]] <- tibble(
         FromNOrgans = length(from_organs),
         ToNOrgans = length(to_organs),
@@ -3242,16 +3716,16 @@ build_add_one_organ_deltas <- function(
         ToRMSE = to_row$RMSE,
         DeltaRMSE =
           from_row$RMSE -
-            to_row$RMSE,
+          to_row$RMSE,
         ImprovedAfterAddingOrgan =
           to_row$RMSE <
-            from_row$RMSE
+          from_row$RMSE
       )
-
+      
       pos <- pos + 1L
     }
   }
-
+  
   bind_rows(rows)
 }
 
@@ -3289,7 +3763,7 @@ metab_map <- setNames(
 
 map_metab_names <- function(ids) {
   mapped <- metab_map[ids]
-
+  
   ifelse(
     !is.na(mapped) &
       nchar(trimws(mapped)) > 0,
@@ -3421,7 +3895,7 @@ main_outputs <- lapply(
     idx <- as.character(
       meta_joint[[COL_TISSUE]]
     ) == tissue
-
+    
     run_loao_analysis(
       meta_joint[idx, , drop = FALSE],
       feat_metab_joint[
@@ -3491,13 +3965,395 @@ summary_main <- summarise_predictions(
     ModelLabel = unname(
       MODEL_LABELS[Model]
     ),
-    AnalysisType = ifelse(
-      Model %in% PRIMARY_MODELS,
-      "Primary fixed-K",
-      "Secondary all-retained-feature benchmark"
+    AnalysisType = case_when(
+      Model %in% BASELINE_MODELS ~
+        "Intercept-only baseline",
+      
+      Model %in% PRIMARY_MODELS ~
+        "Primary fixed-K",
+      
+      Model %in% ALL_BENCHMARK_MODELS ~
+        "Secondary all-retained-feature benchmark",
+      
+      TRUE ~ NA_character_
     )
   )
 
+# ============================================================
+# Sensitivity benchmark:
+# both algorithms applied to both omics layers
+# ============================================================
+
+algorithm_benchmark_outputs <- lapply(
+  setNames(TISSUES, TISSUES),
+  function(tissue) {
+    
+    idx <- as.character(
+      meta_joint[[COL_TISSUE]]
+    ) == tissue
+    
+    run_algorithm_benchmark(
+      meta = meta_joint[
+        idx, , drop = FALSE
+      ],
+      X_metab = feat_metab_joint[
+        idx, , drop = FALSE
+      ],
+      X_micro = feat_micro_joint[
+        idx, , drop = FALSE
+      ],
+      label = tissue
+    )
+  }
+)
+
+
+predictions_algorithm_benchmark <- bind_rows(
+  lapply(
+    algorithm_benchmark_outputs,
+    `[[`,
+    "predictions"
+  )
+)
+
+
+selections_algorithm_benchmark <- bind_rows(
+  lapply(
+    algorithm_benchmark_outputs,
+    `[[`,
+    "selections"
+  )
+)
+
+
+summary_algorithm_benchmark <- summarise_predictions(
+  predictions_algorithm_benchmark,
+  c(
+    "Label",
+    "Model"
+  )
+) %>%
+  mutate(
+    Omics = case_when(
+      str_starts(Model, "Metab_") ~
+        "Metabolomics",
+      
+      str_starts(Model, "Micro_") ~
+        "Microbiome",
+      
+      TRUE ~ NA_character_
+    ),
+    
+    Algorithm = case_when(
+      str_ends(Model, "_EN") ~
+        "Elastic Net",
+      
+      str_ends(Model, "_RF") ~
+        "Random Forest",
+      
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  arrange(
+    Label,
+    Omics,
+    Algorithm
+  )
+
+
+# LODO: days 0, 1, 2, 3, 5, and 7
+# ============================================================
+
+lodo_outputs <- lapply(
+  setNames(TISSUES, TISSUES),
+  function(tissue) {
+    
+    idx <- (
+      as.character(
+        meta_metab_all[[COL_TISSUE]]
+      ) == tissue
+    ) &
+      (
+        as.numeric(
+          meta_metab_all[[COL_TARGET]]
+        ) %in% LODO_DAYS
+      )
+    
+    meta_lodo <- meta_metab_all[
+      idx, , drop = FALSE
+    ]
+    
+    X_lodo <- feat_metab_all[
+      idx, , drop = FALSE
+    ]
+    
+    observed_days <- sort(
+      unique(
+        as.numeric(
+          meta_lodo[[COL_TARGET]]
+        )
+      )
+    )
+    
+    missing_days <- setdiff(
+      LODO_DAYS,
+      observed_days
+    )
+    
+    if (length(missing_days) > 0L) {
+      stop(
+        tissue,
+        ": missing PMI day(s) for LODO: ",
+        paste(
+          missing_days,
+          collapse = ", "
+        )
+      )
+    }
+    
+    cat(
+      sprintf(
+        "LODO %-12s animals=%3d rows=%4d days=%s\n",
+        tissue,
+        n_distinct(
+          meta_lodo[[COL_ANIMAL]]
+        ),
+        nrow(meta_lodo),
+        paste(
+          observed_days,
+          collapse = ","
+        )
+      )
+    )
+    
+    run_lodo_metab_analysis(
+      meta = meta_lodo,
+      X_metab = X_lodo,
+      label = tissue,
+      pmi_days = LODO_DAYS
+    )
+  }
+)
+
+
+predictions_lodo <- bind_rows(
+  lapply(
+    lodo_outputs,
+    `[[`,
+    "predictions"
+  )
+)
+
+features_lodo <- bind_rows(
+  lapply(
+    lodo_outputs,
+    `[[`,
+    "features"
+  )
+)
+
+selections_lodo <- bind_rows(
+  lapply(
+    lodo_outputs,
+    `[[`,
+    "selections"
+  )
+)
+# Performance for each held-out PMI day
+summary_lodo_by_day <- predictions_lodo %>%
+  group_by(
+    Label,
+    HeldOutDay
+  ) %>%
+  summarise(
+    NAnimals = n_distinct(
+      AnimalID
+    ),
+    RMSE = sqrt(
+      mean(
+        SquaredError,
+        na.rm = TRUE
+      )
+    ),
+    MAE = mean(
+      AbsoluteError,
+      na.rm = TRUE
+    ),
+    MeanError = mean(
+      Residual,
+      na.rm = TRUE
+    ),
+    MeanPredicted = mean(
+      Predicted,
+      na.rm = TRUE
+    ),
+    .groups = "drop"
+  )
+summary_lodo_overall <- summarise_predictions(
+  predictions_lodo,
+  "Label"
+) %>%
+  mutate(
+    NPMIDays = length(LODO_DAYS),
+    .after = NAnimals
+  )
+# ============================================================
+# Companion metabolomics LODO: days 2, 3, 5, and 7 
+# ============================================================
+lodo_2to7_outputs <- lapply(
+  setNames(TISSUES, TISSUES),
+  function(tissue) {
+    
+    idx <- (
+      as.character(
+        meta_metab_all[[COL_TISSUE]]
+      ) == tissue
+    ) &
+      (
+        as.numeric(
+          meta_metab_all[[COL_TARGET]]
+        ) %in% LODO_DAYS_2TO7
+      )
+    
+    meta_lodo_2to7 <- meta_metab_all[
+      idx, , drop = FALSE
+    ]
+    
+    X_lodo_2to7 <- feat_metab_all[
+      idx, , drop = FALSE
+    ]
+    
+    observed_days <- sort(
+      unique(
+        as.numeric(
+          meta_lodo_2to7[[COL_TARGET]]
+        )
+      )
+    )
+    
+    missing_days <- setdiff(
+      LODO_DAYS_2TO7,
+      observed_days
+    )
+    
+    if (length(missing_days) > 0L) {
+      stop(
+        tissue,
+        ": missing PMI day(s) for 2-7 d LODO: ",
+        paste(
+          missing_days,
+          collapse = ", "
+        )
+      )
+    }
+    
+    cat(
+      sprintf(
+        "LODO 2-7 d %-12s animals=%3d rows=%4d days=%s\n",
+        tissue,
+        n_distinct(
+          meta_lodo_2to7[[COL_ANIMAL]]
+        ),
+        nrow(meta_lodo_2to7),
+        paste(
+          observed_days,
+          collapse = ","
+        )
+      )
+    )
+    
+    run_lodo_metab_analysis(
+      meta = meta_lodo_2to7,
+      X_metab = X_lodo_2to7,
+      label = tissue,
+      pmi_days = LODO_DAYS_2TO7
+    )
+  }
+)
+
+
+predictions_lodo_2to7 <- bind_rows(
+  lapply(
+    lodo_2to7_outputs,
+    `[[`,
+    "predictions"
+  )
+)
+
+features_lodo_2to7 <- bind_rows(
+  lapply(
+    lodo_2to7_outputs,
+    `[[`,
+    "features"
+  )
+)
+
+selections_lodo_2to7 <- bind_rows(
+  lapply(
+    lodo_2to7_outputs,
+    `[[`,
+    "selections"
+  )
+)
+
+# LODO: 2-7 d window
+summary_lodo_2to7_by_day <- predictions_lodo_2to7 %>%
+  group_by(
+    Label,
+    HeldOutDay
+  ) %>%
+  group_modify(function(df, key) {
+    
+    point <- tibble(
+      NAnimals = n_distinct(df$AnimalID),
+      RMSE = calc_rmse(
+        df$Observed,
+        df$Predicted
+      ),
+      MAE = calc_mae(
+        df$Observed,
+        df$Predicted
+      ),
+      MeanError = mean(
+        df$Residual,
+        na.rm = TRUE
+      ),
+      MeanPredicted = mean(
+        df$Predicted,
+        na.rm = TRUE
+      )
+    )
+    
+    ci <- bootstrap_metric_ci(
+      df$Observed,
+      df$Predicted,
+      B = BOOT_B,
+      seed = stable_seed(
+        "LODO_2to7_Day_CI",
+        key$Label,
+        key$HeldOutDay
+      )
+    ) %>%
+      select(
+        RMSE_lower,
+        RMSE_upper,
+        MAE_lower,
+        MAE_upper
+      )
+    
+    bind_cols(point, ci)
+  }) %>%
+  ungroup()
+
+# LODO performance: 2-7 d window
+summary_lodo_2to7_overall <- summarise_predictions(
+  predictions_lodo_2to7,
+  "Label"
+) %>%
+  mutate(
+    NPMIDays = length(LODO_DAYS_2TO7),
+    .after = NAnimals
+  )
 
 SINGLE_OMICS_FIXEDK <- c(
   "Metab_FixedK",
@@ -3566,26 +4422,26 @@ fixedK_single_multi_comparisons <- tidyr::expand_grid(
 ) %>%
   purrr::pmap_dfr(
     function(
-      Label,
-      SingleModel,
-      MultiModel
+    Label,
+    SingleModel,
+    MultiModel
     ) {
       tissue <- Label
       single_model <- SingleModel
       multi_model <- MultiModel
-
+      
       candidate_df <- predictions_main %>%
         filter(
           .data$Label == .env$tissue,
           .data$Model == .env$multi_model
         )
-
+      
       reference_df <- predictions_main %>%
         filter(
           .data$Label == .env$tissue,
           .data$Model == .env$single_model
         )
-
+      
       paired_prediction_comparison(
         candidate_df = candidate_df,
         reference_df = reference_df,
@@ -3610,34 +4466,59 @@ fixedK_single_multi_comparisons <- tidyr::expand_grid(
         )
     }
   ) %>%
-  group_by(Label) %>%
+  
+  # ----------------------------------------------------------
+# Primary inference:
+
+group_by(Label) %>%
   mutate(
     PHolmWithinTissue = p.adjust(
       PPermutation,
       method = SINGLE_MULTI_P_ADJUST
+    )
+  ) %>%
+  ungroup() %>%
+  
+  
+  mutate(
+    PHolmAcrossTissues = p.adjust(
+      PPermutation,
+      method = SINGLE_MULTI_ACROSS_TISSUE_P_ADJUST
     ),
-    Significant =
+    
+    SignificantWithinTissue =
       is.finite(PHolmWithinTissue) &
-      PHolmWithinTissue <
-        SINGLE_MULTI_ALPHA,
-    Significance = case_when(
+      PHolmWithinTissue < SINGLE_MULTI_ALPHA,
+    
+    SignificantAcrossTissues =
+      is.finite(PHolmAcrossTissues) &
+      PHolmAcrossTissues < SINGLE_MULTI_ALPHA,
+    
+    SignificanceWithinTissue = case_when(
       PHolmWithinTissue <= 0.0001 ~ "****",
       PHolmWithinTissue < 0.001 ~ "***",
       PHolmWithinTissue < 0.01 ~ "**",
       PHolmWithinTissue < 0.05 ~ "*",
       TRUE ~ ""
     ),
+    
+    SignificanceAcrossTissues = case_when(
+      PHolmAcrossTissues <= 0.0001 ~ "****",
+      PHolmAcrossTissues < 0.001 ~ "***",
+      PHolmAcrossTissues < 0.01 ~ "**",
+      PHolmAcrossTissues < 0.05 ~ "*",
+      TRUE ~ ""
+    ),
+    
+    Significant = SignificantWithinTissue,
+    Significance = SignificanceWithinTissue,
+    
     Direction = case_when(
-      DeltaRMSE > 0 ~
-        "Multi-omics lower RMSE",
-      DeltaRMSE < 0 ~
-        "Single-omics lower RMSE",
-      TRUE ~
-        "Equal RMSE"
+      DeltaRMSE > 0 ~ "Multi-omics lower RMSE",
+      DeltaRMSE < 0 ~ "Single-omics lower RMSE",
+      TRUE ~ "Equal RMSE"
     )
-  ) %>%
-  ungroup()
-
+  )
 feature_summary_main <- features_main %>%
   group_by(
     Label,
@@ -3708,7 +4589,38 @@ write.csv(
   ),
   row.names = FALSE
 )
+supp_across_tissue_multiplicity <- 
+  fixedK_single_multi_comparisons %>%
+  select(
+    Label,
+    SingleModel,
+    MultiModel,
+    NAnimals,
+    DeltaRMSE,
+    DeltaRMSELower,
+    DeltaRMSEUpper,
+    WinRate,
+    PPermutation,
+    PHolmWithinTissue,
+    PHolmAcrossTissues,
+    SignificantWithinTissue,
+    SignificantAcrossTissues,
+    Direction
+  ) %>%
+  arrange(
+    SingleModel,
+    MultiModel,
+    Label
+  )
 
+write.csv(
+  supp_across_tissue_multiplicity,
+  file.path(
+    output_dir,
+    "Supplementary_across_tissue_multiplicity_correction.csv"
+  ),
+  row.names = FALSE
+)
 write.csv(
   selections_main,
   file.path(
@@ -3753,20 +4665,99 @@ write.csv(
   ),
   row.names = FALSE
 )
+write.csv(
+  predictions_algorithm_benchmark,
+  file.path(
+    output_dir,
+    "Supplementary_algorithm_sensitivity_predictions.csv"
+  ),
+  row.names = FALSE
+)
 
+write.csv(
+  summary_algorithm_benchmark,
+  file.path(
+    output_dir,
+    "Supplementary_algorithm_sensitivity_summary.csv"
+  ),
+  row.names = FALSE
+)
+
+write.csv(
+  selections_algorithm_benchmark,
+  file.path(
+    output_dir,
+    "Supplementary_algorithm_sensitivity_model_selections.csv"
+  ),
+  row.names = FALSE
+)
+
+write.csv(
+  predictions_lodo,
+  file.path(
+    output_dir,
+    "Supplementary_Metabolomics_LODO_predictions.csv"
+  ),
+  row.names = FALSE
+)
+
+write.csv(
+  summary_lodo_by_day,
+  file.path(
+    output_dir,
+    "Supplementary_Metabolomics_LODO_by_day.csv"
+  ),
+  row.names = FALSE
+)
+
+write.csv(
+  summary_lodo_overall,
+  file.path(
+    output_dir,
+    "Supplementary_Metabolomics_LODO_overall.csv"
+  ),
+  row.names = FALSE
+)
+
+write.csv(
+  predictions_lodo_2to7,
+  file.path(
+    output_dir,
+    "Supplementary_Metabolomics_LODO_2to7_predictions.csv"
+  ),
+  row.names = FALSE
+)
+
+write.csv(
+  summary_lodo_2to7_by_day,
+  file.path(
+    output_dir,
+    "Supplementary_Metabolomics_LODO_2to7_by_day.csv"
+  ),
+  row.names = FALSE
+)
+
+write.csv(
+  summary_lodo_2to7_overall,
+  file.path(
+    output_dir,
+    "Supplementary_Metabolomics_LODO_2to7_overall.csv"
+  ),
+  row.names = FALSE
+)
 
 make_rmse_plot <- function(
-  summary_df,
-  models,
-  title_text,
-  subtitle_text,
-  significance_df = NULL
+    summary_df,
+    models,
+    title_text,
+    subtitle_text,
+    significance_df = NULL
 ) {
   model_position <- setNames(
     seq_along(models),
     models
   )
-
+  
   plot_df <- summary_df %>%
     filter(
       Model %in% models
@@ -3786,7 +4777,7 @@ make_rmse_plot <- function(
         ]
       )
     )
-
+  
   p <- ggplot(
     plot_df,
     aes(
@@ -3865,7 +4856,7 @@ make_rmse_plot <- function(
         unit = "pt"
       )
     )
-
+  
   if (!is.null(significance_df)) {
     sig_df <- significance_df %>%
       filter(
@@ -3896,7 +4887,7 @@ make_rmse_plot <- function(
         BracketLevel = row_number()
       ) %>%
       ungroup()
-
+    
     if (nrow(sig_df) > 0L) {
       plot_top <- plot_df %>%
         mutate(
@@ -3925,7 +4916,7 @@ make_rmse_plot <- function(
             0.035
           )
         )
-
+      
       sig_df <- sig_df %>%
         left_join(
           plot_top,
@@ -3945,7 +4936,7 @@ make_rmse_plot <- function(
             XStart + XEnd
           ) / 2
         )
-
+      
       p <- p +
         geom_segment(
           data = sig_df,
@@ -3994,7 +4985,7 @@ make_rmse_plot <- function(
         )
     }
   }
-
+  
   p
 }
 
@@ -4525,11 +5516,11 @@ METAB_TREND_COLOR <- "#1A5276"
 MICRO_TREND_COLOR <- "#784212"
 
 save_supplementary_plot <- function(
-  plot_object,
-  filename_stem,
-  width,
-  height,
-  limitsize = TRUE
+    plot_object,
+    filename_stem,
+    width,
+    height,
+    limitsize = TRUE
 ) {
   ggsave(
     file.path(
@@ -4543,7 +5534,7 @@ save_supplementary_plot <- function(
     limitsize = limitsize,
     bg = "white"
   )
-
+  
   ggsave(
     file.path(
       output_dir,
@@ -4561,18 +5552,18 @@ save_supplementary_plot <- function(
 }
 
 make_feature_label_key <- function(
-  feature_summary,
-  omics_type,
-  feature_pool = NULL
+    feature_summary,
+    omics_type,
+    feature_pool = NULL
 ) {
   label_key <- feature_summary %>%
     filter(Omics == omics_type)
-
+  
   if (!is.null(feature_pool)) {
     label_key <- label_key %>%
       filter(Feature %in% feature_pool)
   }
-
+  
   label_key %>%
     distinct(
       Feature,
@@ -4595,11 +5586,11 @@ make_feature_label_key <- function(
 }
 
 get_feature_pool <- function(
-  feature_summary,
-  omics_type,
-  n_show,
-  frequency_cut,
-  min_tissues
+    feature_summary,
+    omics_type,
+    n_show,
+    frequency_cut,
+    min_tissues
 ) {
   feature_summary %>%
     filter(Omics == omics_type) %>%
@@ -4629,16 +5620,16 @@ get_feature_pool <- function(
 }
 
 make_bubble_data <- function(
-  feature_summary,
-  feature_pool,
-  omics_type
+    feature_summary,
+    feature_pool,
+    omics_type
 ) {
   label_key <- make_feature_label_key(
     feature_summary,
     omics_type,
     feature_pool
   )
-
+  
   feature_order <- feature_summary %>%
     filter(
       Omics == omics_type,
@@ -4671,7 +5662,7 @@ make_bubble_data <- function(
       desc(AverageFrequency),
       DisplayLabel
     )
-
+  
   expand_grid(
     Feature = feature_pool,
     Label = TISSUES
@@ -4713,16 +5704,16 @@ make_bubble_data <- function(
 }
 
 make_bubble_panel <- function(
-  df,
-  panel_title,
-  bubble_color
+    df,
+    panel_title,
+    bubble_color
 ) {
   right_labels <- df %>%
     distinct(
       DisplayLabel,
       NTissues
     )
-
+  
   ggplot(
     df,
     aes(
@@ -4841,7 +5832,7 @@ if (length(pool_metab) > 0L) {
     pool_metab,
     "Metabolomics"
   )
-
+  
   bubble_panels[["Metabolomics"]] <-
     make_bubble_panel(
       df_metab_bubble,
@@ -4858,7 +5849,7 @@ if (length(pool_micro) > 0L) {
     pool_micro,
     "Microbiome"
   )
-
+  
   bubble_panels[["Microbiome"]] <-
     make_bubble_panel(
       df_micro_bubble,
@@ -4878,7 +5869,7 @@ if (length(bubble_panels) > 0L) {
   } else {
     bubble_panels[[1]]
   }
-
+  
   p_features <- p_features +
     plot_annotation(
       title =
@@ -4906,7 +5897,7 @@ if (length(bubble_panels) > 0L) {
         )
       )
     )
-
+  
   n_bubble_rows <- sum(
     vapply(
       bubble_panels,
@@ -4918,15 +5909,15 @@ if (length(bubble_panels) > 0L) {
       integer(1)
     )
   )
-
+  
   figure_height <- min(
     n_bubble_rows * 0.28 + 5,
     16
   )
-
+  
   save_supplementary_plot(
     p_features,
-    "Figure 5c",
+    "Figure 5b",
     width = 10,
     height = figure_height,
     limitsize = FALSE
@@ -4951,7 +5942,7 @@ get_organ_specific_feature_pool <- function(
     frequency_cut
 ) {
   
- 
+  
   strictly_organ_specific_features <-
     feature_summary %>%
     filter(
@@ -4966,13 +5957,13 @@ get_organ_specific_feature_pool <- function(
       ),
       .groups = "drop"
     ) %>%
-
+    
     filter(
       NStableTissues == 1L
     ) %>%
     pull(Feature)
   
-
+  
   feature_summary %>%
     filter(
       Omics == omics_type,
@@ -5100,14 +6091,14 @@ organ_specific_height <- min(
 
 save_supplementary_plot(
   p_organ_specific_features,
-  "Figure S5b",
+  "Figure S5c",
   width = 11,
   height = organ_specific_height,
   limitsize = FALSE
 )
 make_frequency_bar <- function(
-  df,
-  omics_type
+    df,
+    omics_type
 ) {
   ggplot(
     df,
@@ -5193,7 +6184,7 @@ for (tissue in TISSUES) {
         levels = DisplayLabel
       )
     )
-
+  
   bar_micro <- fixed_feature_summary %>%
     filter(
       Label == tissue,
@@ -5225,10 +6216,10 @@ for (tissue in TISSUES) {
         levels = DisplayLabel
       )
     )
-
+  
   if (
     nrow(bar_metab) > 0L &&
-      nrow(bar_micro) > 0L
+    nrow(bar_micro) > 0L
   ) {
     p_bars <-
       make_frequency_bar(
@@ -5249,7 +6240,7 @@ for (tissue in TISSUES) {
           "fixed-K feature stability"
         )
       )
-
+    
     save_supplementary_plot(
       p_bars,
       paste0(
@@ -5280,26 +6271,18 @@ trend_breaks <- trend_breaks[
 ]
 
 metab_trend_pool <- fixed_feature_summary %>%
-  filter(Omics == "Metabolomics") %>%
-  group_by(Label) %>%
-  slice_max(
-    SelectionFrequency,
-    n = N_METAB_TREND,
-    with_ties = FALSE
+  filter(
+    Omics == "Metabolomics",
+    SelectionFrequency >= FREQ_CUT_SHOW
   ) %>%
-  ungroup() %>%
   pull(Feature) %>%
   unique()
 
 micro_trend_pool <- fixed_feature_summary %>%
-  filter(Omics == "Microbiome") %>%
-  group_by(Label) %>%
-  slice_max(
-    SelectionFrequency,
-    n = N_MICRO_TREND,
-    with_ties = FALSE
+  filter(
+    Omics == "Microbiome",
+    SelectionFrequency >= FREQ_CUT_SHOW
   ) %>%
-  ungroup() %>%
   pull(Feature) %>%
   unique()
 
@@ -5347,7 +6330,7 @@ if (length(available_micro_trend) > 0L) {
     clr_mat(feat_micro_joint),
     check.names = FALSE
   )
-
+  
   raw_micro_long <- micro_clr_all %>%
     select(
       all_of(available_micro_trend)
@@ -5375,12 +6358,12 @@ if (length(available_micro_trend) > 0L) {
 }
 
 make_feature_trend_plot <- function(
-  trend_df,
-  title_text,
-  y_label,
-  point_color,
-  ncol_facets,
-  markdown_strips = FALSE
+    trend_df,
+    title_text,
+    y_label,
+    point_color,
+    ncol_facets,
+    markdown_strips = FALSE
 ) {
   p <- ggplot(
     trend_df,
@@ -5394,12 +6377,12 @@ make_feature_trend_plot <- function(
       size = 1.7,
       alpha = 0.62
     )
-
+  
   if (
     nrow(trend_df) >= 4L &&
-      n_distinct(
-        trend_df$TrendX
-      ) >= 4L
+    n_distinct(
+      trend_df$TrendX
+    ) >= 4L
   ) {
     p <- p +
       geom_smooth(
@@ -5412,7 +6395,7 @@ make_feature_trend_plot <- function(
         linewidth = 0.85
       )
   }
-
+  
   p +
     scale_x_continuous(
       breaks = trend_breaks
@@ -5425,47 +6408,92 @@ make_feature_trend_plot <- function(
     labs(
       title = title_text,
       subtitle = paste0(
-        "Features are ranked by fixed-K LOAO selection frequency; ",
-        "curves are descriptive only."
+        "Features are ranked by fixed-K LOAO selection frequency"
       ),
       x = "PMI (days)",
       y = y_label
     ) +
-    theme_bw(
-      base_size = 9.5,
-      base_family = "Arial"
-    ) +
+    theme_bw(base_family = "Arial") +
     theme(
       strip.text = if (
         markdown_strips
       ) {
         ggtext::element_markdown(
-          size = 8
+          size = 13,
+          lineheight = 1.1,
+          margin = ggplot2::margin(t = 5, b = 5)
         )
       } else {
-        element_text(size = 7.8)
+        element_text(size = 13,
+                     lineheight = 1.1,
+                     margin = ggplot2::margin(t = 5, b = 5))
       },
-      panel.grid.minor =
-        element_blank(),
-      plot.title =
-        element_text(face = "bold")
+      axis.title.x = element_text(size = 14),
+      axis.title.y = element_text(size = 14),
+      axis.text.x  = element_text(size = 12),
+      axis.text.y  = element_text(size = 12),
+      panel.spacing = grid::unit(0.9, "lines"),
+      panel.grid.minor = element_blank(),
+      plot.title = element_text(face = "bold")
     )
+}
+
+wrap_feature_name <- function(x, width = 22L) {
+  stopifnot(length(width) == 1L,is.finite(width),width >= 1L)
+  width <- as.integer(width)
+  
+  vapply(
+    as.character(x),
+    function(label) {
+      if (is.na(label)) return(NA_character_)
+      
+      chars <- strsplit(label, "", fixed = TRUE)[[1]]
+      parts <- character()
+      
+      while (length(chars) > width) {
+        n_chars <- length(chars)
+        n_lines <- ceiling(n_chars / width)
+        ideal <- ceiling(n_chars / n_lines)
+        
+        breaks <- which(
+          chars[seq_len(width)] %in%
+            c(" ", "-", "/", "_", ")", "]")
+        )
+        
+        min_break <- n_chars - (n_lines - 1L) * width
+        breaks <- breaks[breaks >= min_break]
+        
+        cut_at <- if (length(breaks) > 0L) {
+          breaks[which.min(abs(breaks - ideal))]
+        } else {
+          ideal
+        }
+        
+        parts <- c(parts,paste0(chars[seq_len(cut_at)], collapse = ""))
+        chars <- chars[-seq_len(cut_at)]
+      }
+      
+      paste(
+        c(parts, paste0(chars, collapse = "")),
+        collapse = "\n"
+      )
+    },
+    character(1),
+    USE.NAMES = FALSE
+  )
 }
 
 for (tissue in TISSUES) {
   trend_metab <- fixed_feature_summary %>%
     filter(
       Label == tissue,
-      Omics == "Metabolomics"
-    ) %>%
-    slice_max(
-      SelectionFrequency,
-      n = N_METAB_TREND,
-      with_ties = FALSE
+      Omics == "Metabolomics",
+      SelectionFrequency >= FREQ_CUT_SHOW
     ) %>%
     arrange(
       desc(SelectionFrequency),
-      MeanRank
+      MeanRank,
+      Feature
     ) %>%
     left_join(
       make_feature_label_key(
@@ -5473,32 +6501,26 @@ for (tissue in TISSUES) {
           filter(Label == tissue),
         "Metabolomics"
       ),
-      by = c(
-        "Feature",
-        "DisplayName"
-      )
+      by = c("Feature","DisplayName")
     ) %>%
     mutate(
       PanelLabel = sprintf(
         "%s\n(freq=%.0f%%)",
-        DisplayLabel,
+        wrap_feature_name(DisplayLabel, width = 22L),
         100 * SelectionFrequency
       )
     )
-
+  
   trend_micro <- fixed_feature_summary %>%
     filter(
       Label == tissue,
-      Omics == "Microbiome"
-    ) %>%
-    slice_max(
-      SelectionFrequency,
-      n = N_MICRO_TREND,
-      with_ties = FALSE
+      Omics == "Microbiome",
+      SelectionFrequency >= FREQ_CUT_SHOW
     ) %>%
     arrange(
       desc(SelectionFrequency),
-      MeanRank
+      MeanRank,
+      Feature
     ) %>%
     left_join(
       make_feature_label_key(
@@ -5506,19 +6528,19 @@ for (tissue in TISSUES) {
           filter(Label == tissue),
         "Microbiome"
       ),
-      by = c(
-        "Feature",
-        "DisplayName"
-      )
+      by = c("Feature","DisplayName")
     ) %>%
     mutate(
       PanelLabel = sprintf(
         "<i>%s</i><br>(freq=%.0f%%)",
-        DisplayLabel,
+        gsub(
+          "\n", "<br>",
+          stringr::str_wrap(DisplayLabel, width = 25),
+          fixed = TRUE),
         100 * SelectionFrequency
       )
     )
-
+  
   trend_metab_df <- raw_metab_long %>%
     filter(
       Label == tissue,
@@ -5540,7 +6562,7 @@ for (tissue in TISSUES) {
           trend_metab$PanelLabel
       )
     )
-
+  
   trend_micro_df <- raw_micro_long %>%
     filter(
       Label == tissue,
@@ -5562,74 +6584,100 @@ for (tissue in TISSUES) {
           trend_micro$PanelLabel
       )
     )
-
+  
   if (nrow(trend_metab_df) > 0L) {
-    p_trend_metab <-
-      make_feature_trend_plot(
+    p_trend_metab <-make_feature_trend_plot(
         trend_metab_df,
-        paste(
-          tissue,
-          "stable metabolite trends"
-        ),
+        paste(tissue,"stable metabolite trends"),
         "Metabolite abundance",
         METAB_TREND_COLOR,
-        ncol_facets = 5L,
+        ncol_facets = min(5L, max(1L, nrow(trend_metab))),
         markdown_strips = FALSE
       )
-
+    
     save_supplementary_plot(
       p_trend_metab,
-      paste0(
-        "SuppFig_fixedK_trend_metab_",
-        tissue
-      ),
-      width = 14,
-      height = ceiling(
-        max(
-          1,
-          nrow(trend_metab)
-        ) / 5
-      ) * 3.6 + 2.3
+      paste0("SuppFig_fixedK_trend_metab_",tissue),
+      width =max(12,min(5L, nrow(trend_metab)) * 3.2),
+      height = ceiling(max(1L,nrow(trend_metab)) / 5L
+      ) * 3.5 + 2.3
     )
   }
-
+  
   if (nrow(trend_micro_df) > 0L) {
-    p_trend_micro <-
-      make_feature_trend_plot(
+    p_trend_micro <-make_feature_trend_plot(
         trend_micro_df,
-        paste(
-          tissue,
-          "stable microbial trends"
-        ),
+        paste(tissue,"stable microbial trends"),
         "CLR abundance",
         MICRO_TREND_COLOR,
-        ncol_facets = min(
-          5L,
-          max(
-            1L,
-            nrow(trend_micro)
-          )
-        ),
+        ncol_facets = min(5L,max(1L,nrow(trend_micro))),
         markdown_strips = TRUE
       )
-
+    
     save_supplementary_plot(
       p_trend_micro,
-      paste0(
-        "SuppFig_fixedK_trend_micro_",
-        tissue
-      ),
-      width = max(
-        10,
-        max(
-          1,
-          nrow(trend_micro)
-        ) * 2.7
-      ),
-      height = 5
+      paste0("SuppFig_fixedK_trend_micro_",tissue),
+      width = max(12,min(5L, nrow(trend_micro)) * 3.2),
+      height = ceiling(
+        max(1L, nrow(trend_micro)) / 5L
+      ) * 3.5 + 2.3
     )
   }
 }
+
+plot_lodo <- ggplot(
+  predictions_lodo,
+  aes(
+    x = Observed,
+    y = Predicted
+  )
+) +
+  geom_abline(
+    intercept = 0,
+    slope = 1,
+    linetype = "dashed",
+    linewidth = 0.6
+  ) +
+  geom_jitter(
+    width = 0.08,
+    height = 0,
+    alpha = 0.65,
+    size = 2
+  ) +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    size = 3
+  ) +
+  facet_wrap(
+    ~Label,
+    ncol = 3
+  ) +
+  scale_x_continuous(
+    breaks = LODO_DAYS
+  ) +
+  labs(
+    title = "Temporal generalization of metabolomic PMI models",
+    subtitle = paste0(
+      "Leave-one-PMI-day-out validation; ",
+      "each PMI day was absent from model training"
+    ),
+    x = "Observed PMI (days)",
+    y = "Predicted PMI (days)"
+  ) +
+  theme_bw(
+    base_size = 10,
+    base_family = "Arial"
+  )
+save_supplementary_plot(
+  plot_lodo,
+  "Supplementary_Metabolomics_LODO",
+  width = 9,
+  height = 6.5
+)
+
+
+
 
 
 #  Shared complete-cohort pairwise cross-organ analysis
@@ -5911,7 +6959,7 @@ primary_vs_complete_single <-
   mutate(
     DeltaRMSE_CompleteRefit_minus_PrimaryRestricted =
       CompleteRefit_RMSE -
-        PrimaryRestricted_RMSE
+      PrimaryRestricted_RMSE
   )
 
 write.csv(
@@ -5941,7 +6989,7 @@ SINGLE_ORGAN_COLOR <- "#68778D"
 REFERENCE_LINE_COLOR <- "#6B7280"
 
 theme_pmi_forest <- function(
-  base_size = 11
+    base_size = 11
 ) {
   theme_minimal(
     base_size = base_size,
@@ -6055,13 +7103,14 @@ plot_pair_delta <- ggplot(
     linewidth = 0.75,
     color = REFERENCE_LINE_COLOR
   ) +
-  geom_errorbarh(
+  geom_errorbar(
     aes(
       xmin = DeltaRMSELower,
       xmax = DeltaRMSEUpper,
       color = Direction
     ),
-    height = 0.17,
+    orientation = "y",
+    width = 0.17,
     linewidth = 0.9,
     alpha = 0.82
   ) +
@@ -6135,7 +7184,7 @@ plot_pair_delta <- ggplot(
 
 save_supplementary_plot(
   plot_pair_delta,
-  "Figure 5b",
+  "Figure S5b",
   width = 10,
   height = 6.7
 )
@@ -6155,7 +7204,6 @@ final_summary <- summary_main %>%
   ) %>%
   arrange(
     Label,
-    AnalysisType,
     ModelOrder
   ) %>%
   select(-ModelOrder)
