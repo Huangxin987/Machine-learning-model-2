@@ -1,4 +1,4 @@
-## Figure 2bcd: PMI-related Metabolite pattern Heatmap with Representative Time-Series Line Plots
+## Figure 2 b/c
 suppressPackageStartupMessages({
   library(dplyr)
   library(tidyr)
@@ -19,7 +19,6 @@ element_text <- ggplot2::element_text
 setwd("")
 output_dir <- file.path(getwd(), "results")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
-
 
 metab <- read.csv("metabolite_matrix.CSV", check.names = FALSE)
 meta  <- read.csv("sample metadata.CSV", check.names = FALSE)
@@ -47,7 +46,6 @@ metab_class_df <- metab_class_df %>%
                          metabolite, metab_name)
   )
 
-
 # Analysis parameters
 gam_k           <- 4
 global_pct_cut  <- 2.0
@@ -57,16 +55,11 @@ PLOT_HEATMAP    <- TRUE
 N_REP           <- 1
 ERROR_TYPE      <- "se"   
 
-
-
-
 # Variance-based feature filtering
-
 filter_features <- function(X_mat) {
   keep <- apply(X_mat, 2, function(v) sd(v, na.rm = TRUE) > 0)
   colnames(X_mat)[keep]
 }
-
 
 # Spearman correlation + GAM association test
 assoc_full_spearman_gam <- function(meta_df, X_df, gam_k = 4) {
@@ -110,7 +103,7 @@ assoc_full_spearman_gam <- function(meta_df, X_df, gam_k = 4) {
 }
 
 
-# 4.3 Three-patterns classification
+#Three-patterns classification
 
 classify_three_patterns <- function(assoc_tbl, meta_df, X_df,
                                     gam_k = 4) {
@@ -124,8 +117,8 @@ classify_three_patterns <- function(assoc_tbl, meta_df, X_df,
     rho        <- row$rho[1]
     
     if (is_sig_sp) {
-      pattern <- if (!is.na(rho) && rho > 0) "Monotone_Increase"
-      else "Monotone_Decrease"
+      pattern <- if (!is.na(rho) && rho > 0) "Increase"
+      else "Decrease"
       if (is_sig_gam && m %in% colnames(X_df)) {
         y   <- X_df[[m]]
         fit <- tryCatch(
@@ -159,8 +152,8 @@ classify_three_patterns <- function(assoc_tbl, meta_df, X_df,
   
   result <- bind_rows(lapply(sig_mets, classify_one))
   result$pattern <- factor(result$pattern,
-                           levels = c("Monotone_Increase",
-                                      "Monotone_Decrease",
+                           levels = c("Increase",
+                                      "Decrease",
                                       "Non_Monotone"))
   result
 }
@@ -199,29 +192,28 @@ select_representative_metabolites <- function(pattern_df, assoc_tbl,
 }
 
 
-# Figure 1b: Heatmap + bridge + time-series composite
+# Figure 2b
 plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
                                          assoc_tbl, metab_class_df,
                                          tissue_name,
                                          n_rep      = 1,
                                          error_type = "se",
                                          save_path  = NULL,
-                                         fig_width  = 19,
-                                         fig_height = 9,
-                                         res_dpi    = 300) {
+                                         fig_width  = 12,
+                                         fig_height = 8,
+                                         res_dpi    = 600) {
   
-  pattern_ORDER  <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
-  pattern_COLORS <- c(Monotone_Increase = "#C0392B",
-                      Monotone_Decrease = "#2980B9",
+  pattern_ORDER  <- c("Increase", "Decrease", "Non_Monotone")
+  pattern_COLORS <- c(Increase = "#C0392B",
+                      Decrease = "#2980B9",
                       Non_Monotone      = "#27AE60")
-  pattern_LABELS <- c(Monotone_Increase = "Monotone Increase",
-                      Monotone_Decrease = "Monotone Decrease",
+  pattern_LABELS <- c(Increase = "Increase",
+                      Decrease = "Decrease",
                       Non_Monotone      = "Non-Monotone")
   PMI_PALETTE <- c("#B39DFF", "#FF9A8B", "#FF59D1",
                    "#7CFC00", "#00C8FF", "#00D7A7",
                    "#FFA500", "#FF4500")
-  
-  # Step 1: Representative metabolites
+
   rep_mets_df <- select_representative_metabolites(
     pattern_df, assoc_tbl, metab_class_df, n_per_pattern = n_rep
   )
@@ -229,8 +221,7 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
     write.csv(rep_mets_df,
               sub("\\.png$", "_RepresentativeMetabolites.csv", save_path),
               row.names = FALSE)
-  
-  # Step 2: Heatmap matrix (Z-scored, ordered by PMI)
+
   pattern_df_plot <- pattern_df %>%
     filter(metabolite %in% colnames(X_t)) %>%
     mutate(pattern = factor(as.character(pattern),
@@ -301,7 +292,6 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
   cum_sizes     <- cumsum(cl_sizes$n)
   gap_positions <- cum_sizes[-length(cum_sizes)] + 0.5
   
-  # Step 3: Heatmap ggplot
   p_heatmap <- ggplot() +
     geom_tile(data = tile_df,
               aes(x = col_idx, y = row_idx, fill = z),
@@ -338,7 +328,6 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
       plot.margin     = ggplot2::margin(t = 8, r = 0, b = 4, l = 4)
     )
   
-  # Step 4: Time-series line plots (equal height, enlarged fonts)
   cl_nz   <- cl_sizes %>% filter(n > 0)
   n_plots <- nrow(cl_nz)
   avail_mets  <- intersect(rep_mets_df$metabolite, colnames(X_t))
@@ -422,7 +411,6 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
     rel_heights = rep(1, n_plots)
   )
   
-  # Step 5: Bridge connector
   cum_n        <- c(0, cumsum(cl_nz$n))
   left_tops    <- 1 - cum_n[-length(cum_n)] / n_mets
   left_bottoms <- 1 - cum_n[-1]             / n_mets
@@ -468,29 +456,35 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
     theme(plot.background = element_rect(fill = "white", color = NA),
           plot.margin     = margin(0, 0, 0, 0))
   
-  # Step 6: Legend panel
   legend_panel <- build_legend_panel_v2(
     pmi_levels     = pmi_levels,
     pmi_palette    = PMI_PALETTE,
     pattern_labels = pattern_LABELS,
     pattern_colors = pattern_COLORS
   )
-  
-  # Step 7: Assemble and save with ragg device
+
+
   bridge_ts <- cowplot::plot_grid(
     p_bridge, ts_panel,
     ncol       = 2,
-    rel_widths = c(0.12, 0.88),
+    rel_widths = c(0.06, 0.94),
     align      = "h",
     axis       = "tb"
   )
-  
-  combined <- cowplot::plot_grid(
-    p_heatmap, bridge_ts, legend_panel,
-    ncol       = 3,
-    rel_widths = c(0.62, 0.28, 0.10),
+
+  main_panel <- cowplot::plot_grid(
+    p_heatmap, bridge_ts,
+    ncol       = 2,
+    rel_widths = c(0.52, 0.48),
     align      = "h",
     axis       = "tb"
+  )
+
+  combined <- cowplot::plot_grid(
+    main_panel,
+    legend_panel,
+    ncol        = 1,
+    rel_heights = c(0.90, 0.10)
   )
   
   if (!is.null(save_path)) {
@@ -508,98 +502,189 @@ plot_heatmap_with_timeseries <- function(meta_t, X_t, pattern_df,
   invisible(rep_mets_df)
 }
 
-# Legend panel builder
 build_legend_panel_v2 <- function(pmi_levels, pmi_palette,
                                   pattern_labels, pattern_colors) {
   
-  grad_df <- data.frame(y = seq(-3, 3, length.out = 100), x = 1)
-  p_zscore <- ggplot(grad_df, aes(x = x, y = y, fill = y)) +
-    geom_tile() +
+
+  z_df <- data.frame(
+    x = seq(-3, 3, length.out = 200),
+    y = 1
+  )
+  
+  p_zscore <- ggplot(z_df, aes(x = x, y = y, fill = x)) +
+    geom_tile(height = 0.38) +
     scale_fill_gradientn(
-      colors = colorRampPalette(c("#2C7BB6", "white", "#D7191C"))(100),
+      colors = colorRampPalette(
+        c("#2C7BB6", "white", "#D7191C")
+      )(100),
       limits = c(-3, 3),
-      breaks = c(-3, -1.5, 0, 1.5, 3),
-      name   = "Z-score"
+      guide = "none"
     ) +
-    guides(fill = guide_colorbar(
-      title.position = "top", title.hjust = 0.5,
-      barwidth  = unit(0.5, "cm"),
-      barheight = unit(2.5, "cm"),
-      ticks.linewidth = 0.5
-    )) +
+    scale_x_continuous(
+      breaks = c(-3, 0, 3),
+      labels = c("-3", "0", "3"),
+      expand = c(0, 0)
+    ) +
+    scale_y_continuous(
+      limits = c(0.7, 1.3),
+      expand = c(0, 0)
+    ) +
+    labs(
+      title = "Z-score",
+      x = NULL,
+      y = NULL
+    ) +
     theme_void(base_family = "Arial") +
     theme(
-      text            = element_text(family = "Arial"),
-      legend.position = "right",
-      legend.title    = element_text(size = 12, face = "bold",
-                                     family = "Arial"),
-      legend.text     = element_text(size = 11, family = "Arial")
+      plot.title = element_text(
+        size = 10,
+        face = "bold",
+        hjust = 0.5,
+        family = "Arial",
+        margin = margin(b = 1)
+      ),
+      axis.text.x = element_text(
+        size = 8.5,
+        color = "grey20",
+        family = "Arial",
+        margin = margin(t = 1)
+      ),
+      plot.margin = margin(1, 8, 1, 8)
     )
   
-  cl_df <- data.frame(
+
+  pattern_names <- names(pattern_labels)
+  
+  pattern_df <- data.frame(
+    x = seq_along(pattern_names),
     label = unname(pattern_labels),
     color = unname(pattern_colors),
-    y     = rev(seq_along(pattern_labels)),
     stringsAsFactors = FALSE
   )
-  p_pattern <- ggplot(cl_df) +
-    geom_tile(aes(x = 1, y = y), fill = cl_df$color,
-              width = 0.6, height = 0.7) +
-    geom_text(aes(x = 1.55, y = y, label = label),
-              hjust = 0, size = 3.8, color = "grey15",
-              family = "Arial") +
-    scale_x_continuous(limits = c(0.5, 5.5)) +
-    scale_y_continuous(limits = c(0.2, length(pattern_labels) + 0.8)) +
-    labs(title = "pattern") +
+  
+  p_pattern <- ggplot(pattern_df) +
+    
+    geom_tile(
+      aes(x = x, y = 1),
+      fill = pattern_df$color,
+      width = 0.16,
+      height = 0.28
+    ) +
+    
+    geom_text(
+      aes(x = x + 0.12, y = 1, label = label),
+      hjust = 0,
+      size = 3.1,
+      family = "Arial",
+      color = "grey15"
+    ) +
+    
+    scale_x_continuous(
+      limits = c(
+        0.75,
+        length(pattern_names) + 0.95
+      ),
+      expand = c(0, 0)
+    ) +
+    
+    scale_y_continuous(
+      limits = c(0.70, 1.30),
+      expand = c(0, 0)
+    ) +
+    
+    labs(
+      title = "Pattern"
+    ) +
+    
     theme_void(base_family = "Arial") +
+    
     theme(
-      text       = element_text(family = "Arial"),
-      plot.title = element_text(size = 10, face = "bold",
-                                hjust = 0, family = "Arial",
-                                margin = ggplot2::margin(b = 3))
+      plot.title = element_text(
+        size = 10,
+        face = "bold",
+        hjust = 0.5,
+        family = "Arial",
+        margin = margin(b = 1)
+      ),
+      
+      plot.margin = margin(1, 6, 1, 6)
     )
   
+
   pmi_labels_vec <- paste0("Day", pmi_levels)
+  
   pmi_df <- data.frame(
+    x = seq_along(pmi_levels),
     label = pmi_labels_vec,
     color = pmi_palette[seq_along(pmi_levels)],
-    y     = rev(seq_along(pmi_levels)),
     stringsAsFactors = FALSE
   )
+  
   p_pmi <- ggplot(pmi_df) +
-    geom_tile(aes(x = 1, y = y), fill = pmi_df$color,
-              width = 0.6, height = 0.7) +
-    geom_text(aes(x = 1.55, y = y, label = label),
-              hjust = 0, size = 2.5, color = "grey15",
-              family = "Arial") +
-    scale_x_continuous(limits = c(0.5, 4.5)) +
-    scale_y_continuous(limits = c(0.2, length(pmi_levels) + 0.8)) +
-    labs(title = "PMI (days)") +
+    
+    geom_tile(
+      aes(x = x, y = 1),
+      fill = pmi_df$color,
+      width = 0.20,
+      height = 0.28
+    ) +
+    
+    geom_text(
+      aes(x = x + 0.14, y = 1, label = label),
+      hjust = 0,
+      size = 3.0,
+      family = "Arial",
+      color = "grey15"
+    ) +
+    
+    scale_x_continuous(
+      limits = c(
+        0.75,
+        length(pmi_levels) + 0.80
+      ),
+      expand = c(0, 0)
+    ) +
+    
+    scale_y_continuous(
+      limits = c(0.70, 1.30),
+      expand = c(0, 0)
+    ) +
+    
+    labs(
+      title = "PMI (days)"
+    ) +
+    
     theme_void(base_family = "Arial") +
+    
     theme(
-      text       = element_text(family = "Arial"),
-      plot.title = element_text(size = 8, face = "bold",
-                                hjust = 0, family = "Arial",
-                                margin = margin(b = 3))
+      plot.title = element_text(
+        size = 10,
+        face = "bold",
+        hjust = 0.5,
+        family = "Arial",
+        margin = margin(b = 1)
+      ),
+      
+      plot.margin = margin(1, 6, 1, 6)
     )
   
-  legend_zscore <- cowplot::get_plot_component(
-    p_zscore, "guide-box-right", return_all = FALSE
+  legend_panel <- cowplot::plot_grid(
+    p_zscore,
+    p_pattern,
+    p_pmi,
+    ncol = 3,
+    rel_widths = c(0.16, 0.37, 0.47),
+    align = "h",
+    axis = "tb"
   )
-  cowplot::plot_grid(
-    legend_zscore, p_pattern, p_pmi,
-    ncol        = 1,
-    rel_heights = c(0.28, 0.22, 0.50),
-    align       = "v",
-    axis        = "lr"
-  )
+  
+  return(legend_panel)
 }
 
 
-# Per-tissue metabolite class composition analysis
 analyze_class_composition_csv <- function(pattern_df, metab_class_df,
                                           tissue_name, output_dir) {
-  pattern_ORDER <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
+  pattern_ORDER <- c("Increase", "Decrease", "Non_Monotone")
   
   df <- pattern_df %>%
     left_join(metab_class_df %>% select(metabolite, metab_class),
@@ -658,11 +743,11 @@ analyze_class_composition_csv <- function(pattern_df, metab_class_df,
 }
 
 
-#  Figure 1c: Five-tissue integrated class composition bar plot
+#  Figure 2c
 plot_combined_class_composition <- function(all_comp_list, output_dir) {
-  pattern_ORDER  <- c("Monotone_Increase", "Monotone_Decrease", "Non_Monotone")
-  pattern_LABELS <- c(Monotone_Increase = "Monotone Increase",
-                      Monotone_Decrease = "Monotone Decrease",
+  pattern_ORDER  <- c("Increase", "Decrease", "Non_Monotone")
+  pattern_LABELS <- c(Increase = "Increase",
+                      Decrease = "Decrease",
                       Non_Monotone      = "Non-Monotone")
   TISSUE_ORDER   <- c("Heart", "Liver", "Lung", "Muscle", "Spleen")
   
@@ -731,7 +816,7 @@ plot_combined_class_composition <- function(all_comp_list, output_dir) {
   
   ggsave(
     filename = file.path(output_dir,
-                         "FigureS_ClassComposition_AllTissues.png"),
+                         "Figure 2C_ClassComposition_AllTissues.png"),
     plot   = p,
     width  = 16,
     height = 6,
@@ -744,7 +829,7 @@ plot_combined_class_composition <- function(all_comp_list, output_dir) {
 }
 
 
-# Section 3b: Global class color palette
+# Figure S3a
 all_classes_global <- metab_class_df %>%
   pull(metab_class) %>% unique() %>% sort()
 n_cls <- length(all_classes_global)
@@ -764,7 +849,6 @@ GLOBAL_CLASS_COLORS <- setNames(soft_palette[seq_len(n_cls)],
 GLOBAL_CLASS_COLORS["Other"]   <- "#D8D8D8"
 GLOBAL_CLASS_COLORS["Unknown"] <- "#E8E8E8"
 
-#Main analysis loop 
 all_out       <- setNames(vector("list", length(tissues)), tissues)
 all_comp_list <- list()
 for (tis in tissues) {
@@ -815,9 +899,9 @@ for (tis in tissues) {
       save_path      = file.path(output_dir,
                                  paste0("Figure2_Heatmap_Timeseries_",
                                         tis, ".TIFF")),
-      fig_width      = 19,
-      fig_height     = 9,
-      res_dpi        = 300
+      fig_width      = 10,
+      fig_height     = 7,
+      res_dpi        = 600
     )
   }
   
@@ -828,12 +912,9 @@ for (tis in tissues) {
                          pattern_df       = pattern_df)
 }
 
-
-# Five-tissue class composition plot
-
 plot_combined_class_composition(all_comp_list, output_dir)
 
-# Figure 2d - Five-set Venn diagram 
+
 PMI_related_full_sets <- lapply(tissues,
                                 function(tis) all_out[[tis]]$PMI_related_full)
 names(PMI_related_full_sets) <- tissues
@@ -844,7 +925,7 @@ S  <- PMI_related_full_sets[["Spleen"]]
 Lu <- PMI_related_full_sets[["Lung"]]
 M  <- PMI_related_full_sets[["Muscle"]]
 
-venn_file <- file.path(output_dir, "FigureS_Venn_PMIrelated_5tissues.TIFF")
+venn_file <- file.path(output_dir, "Figure S3a_Venn_PMIrelated_5tissues.TIFF")
 
 ragg::agg_tiff(venn_file,
               width  = 2200,
@@ -908,10 +989,6 @@ for (tis in tissues) {
 
 
 
-#  Per-tissue trend table of the 382 shared core
-#            + up/down COUNT figure (supplementary, no baseline)
-
-
 class_lookup <- metab_class_df %>%
   dplyr::select(metabolite, metab_class) %>% distinct() %>%
   mutate(metab_class = ifelse(is.na(metab_class) | metab_class == "",
@@ -923,8 +1000,8 @@ dir_by_tissue <- bind_rows(lapply(tissues, function(tis){
     transmute(metabolite,
               tissue = tis,
               call = dplyr::recode(as.character(pattern),
-                                   "Monotone_Increase" = "Increase",
-                                   "Monotone_Decrease" = "Decrease",
+                                   "Increase" = "Increase",
+                                   "Decrease" = "Decrease",
                                    "Non_Monotone"      = "Non-monotone"))
 }))
 
@@ -935,8 +1012,6 @@ dir_wide <- dir_by_tissue %>%
   left_join(class_lookup, by = "metabolite")
 
 
-# Per-tissue trend table of the 382 shared core
-#            + strict five-tissue concordance direction figure
 strict_order <- c("Unanimous increase",
                   "Unanimous decrease",
                   "Mixed / non-concordant")
@@ -1111,7 +1186,7 @@ p_counts <- ggplot(plot_long,
   )
 
 ggsave(
-  file.path(output_dir, "FigureS_SharedCore_StrictConcordant_UpDownCounts.png"),
+  file.path(output_dir, "Figure S3c_SharedCore_StrictConcordant_UpDownCounts.png"),
   p_counts,
   width  = 8.5,
   height = 6,
@@ -1121,8 +1196,6 @@ ggsave(
 )
 
 
-#  Descriptive chemical-class composition of the
-#                 382 shared PMI-related core  (panel e)
 class_lookup <- metab_class_df %>%
   dplyr::select(metabolite, metab_class) %>% distinct() %>%
   mutate(metab_class = ifelse(is.na(metab_class) | metab_class == "",
@@ -1165,7 +1238,7 @@ p_comp <- ggplot(comp_plot, aes(x = pct, y = class_show, fill = class_show)) +
         plot.subtitle = element_text(size = 9, color = "grey40"),
         axis.text.y = element_text(size = 10, color = "grey15"))
 
-ggsave(file.path(output_dir, "Figure2e_SharedCore_ClassComposition.png"),
+ggsave(file.path(output_dir, "Figure S3b_SharedCore_ClassComposition.png"),
        p_comp, width = 8.5, height = 5.5, units = "in",
        dpi = 300, device = ragg::agg_tiff)
 
