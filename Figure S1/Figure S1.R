@@ -1,4 +1,4 @@
-setwd("D:/PMI_Project/Figure S1")
+setwd("")
 output_dir <- file.path(getwd(), "results")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
